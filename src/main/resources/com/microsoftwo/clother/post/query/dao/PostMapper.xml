@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsoftwo.clother.post.query.dao.PostMapper">
+    <resultMap id="testResultMap" type="com.microsoftwo.clother.post.query.dto.TestPostDTO">
+        <id property="id" column="id"/>
+        <result property="content" column="content"/>
+    </resultMap>
+
+    <resultMap id="getPostByIdResultMap" type="com.microsoftwo.clother.post.query.dto.PostDTO">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="content" column="content"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="likeCount" column="like_count"/>
+        <result property="commentCount" column="comment_count"/>
+        <result property="imageUrls" column="image_urls"/>
+    </resultMap>
+
+    <select id="test" resultMap="testResultMap">
+        SELECT A.ID, A.CONTENT FROM POST A WHERE ID = 1
+    </select>
+
+    <select id="getPostById" resultMap="getPostByIdResultMap" parameterType="_int">
+        SELECT
+               A.ID
+             , A.USER_ID
+             , A.CONTENT
+             , A.CREATED_AT
+             , A.LIKE_COUNT
+             , A.COMMENT_COUNT
+             , GROUP_CONCAT(B.IMAGE_URL ORDER BY B.ORDER ASC) AS IMAGE_URLS
+          FROM POST A
+          JOIN POST_IMAGE B ON A.ID = B.POST_ID
+         WHERE A.ID = #{postId}
+         GROUP BY
+               A.ID
+             , A.USER_ID
+             , A.CONTENT
+             , A.CREATED_AT
+             , A.LIKE_COUNT
+             , A.COMMENT_COUNT
+    </select>
+</mapper>
