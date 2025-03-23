@@ -26,27 +26,27 @@
 
     <select id="getPostById" resultMap="getPostByIdResultMap" parameterType="_int">
         SELECT
-        A.ID
-        , A.USER_ID
-        , A.CONTENT
-        , A.CREATED_AT
-        , A.LIKE_COUNT
-        , A.COMMENT_COUNT
-        , GROUP_CONCAT(DISTINCT B.IMAGE_URL ORDER BY B.ORDER ASC) AS IMAGE_URLS
-        , GROUP_CONCAT(DISTINCT D.NAME ORDER BY D.ID ASC) AS LOOK_TAGS
-        , GROUP_CONCAT(DISTINCT E.NAME ORDER BY E.ID ASC) AS HAIR_TAGS
-        FROM POST A
-        LEFT JOIN POST_IMAGE B ON A.ID = B.POST_ID
-        LEFT JOIN TAG C ON A.ID = C.POST_ID
-        LEFT JOIN LOOK_TAG D ON C.LOOK_TAG_ID = D.ID
-        LEFT JOIN HAIR_TAG E ON C.HAIR_TAG_ID = E.ID
-        WHERE A.ID = #{postId}
-        GROUP BY
-        A.ID
-        , A.USER_ID
-        , A.CONTENT
-        , A.CREATED_AT
-        , A.LIKE_COUNT
-        , A.COMMENT_COUNT
+               A.ID
+             , A.USER_ID
+             , A.CONTENT
+             , A.CREATED_AT
+             , A.LIKE_COUNT
+             , A.COMMENT_COUNT
+             , GROUP_CONCAT(DISTINCT B.IMAGE_URL ORDER BY B.ORDER ASC) AS IMAGE_URLS
+             , GROUP_CONCAT(DISTINCT D.NAME ORDER BY D.ID ASC) AS LOOK_TAGS
+             , GROUP_CONCAT(DISTINCT E.NAME ORDER BY E.ID ASC) AS HAIR_TAGS
+          FROM POST A
+          JOIN POST_IMAGE B ON A.ID = B.POST_ID
+          JOIN TAG C ON A.ID = C.POST_ID
+          JOIN LOOK_TAG D ON C.LOOK_TAG_ID = D.ID
+          JOIN HAIR_TAG E ON C.HAIR_TAG_ID = E.ID
+         WHERE A.ID = #{postId}
+         GROUP BY
+               A.ID
+             , A.USER_ID
+             , A.CONTENT
+             , A.CREATED_AT
+             , A.LIKE_COUNT
+             , A.COMMENT_COUNT
     </select>
 </mapper>
