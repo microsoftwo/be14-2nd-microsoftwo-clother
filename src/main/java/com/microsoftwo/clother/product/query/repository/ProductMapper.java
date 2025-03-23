@@ -13,4 +13,5 @@ public interface ProductMapper {
 
     // 사용자가 등록 신청한 상품 목록 조회
     List<ProductRegistHistoryDTO> selectProductHistoryByUserId(int userId);
+
 }

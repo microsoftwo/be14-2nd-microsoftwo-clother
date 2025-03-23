@@ -37,4 +37,23 @@
         LEFT OUTER JOIN CATEGORY C ON (B.ID = C.PARENT_ID)
         WHERE A.PARENT_ID IS NULL
     </select>
+
+    <resultMap id="productRegistHistoryMap" type="com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO">
+        <id property="id" column="id"/>
+        <result property="brandName" column="brand_name"/>
+        <result property="name" column="name"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="productLink" column="product_link"/>
+    </resultMap>
+
+    <select id="selectProductHistoryByUserId" resultMap="productRegistHistoryMap">
+        SELECT
+        ID
+        , BRAND_NAME
+        , CREATED_AT
+        , PRODUCT_LINK
+        FROM PRODUCT_REGISTRATION
+        WHERE USER_ID = #{userId}
+        ORDER BY CREATED_AT ASC;
+    </select>
 </mapper>
