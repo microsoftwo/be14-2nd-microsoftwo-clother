@@ -25,6 +25,8 @@ public class ResponsePostVO {
     private List<String> lookTags;
     private Integer hairTagId;
     private String hairTagLink;
+    private String hairTagName;
+    private Integer hairTagCategoryId;
     private BigDecimal hairTagPositionX;
     private BigDecimal hairTagPositionY;
 

@@ -1,5 +1,6 @@
 package com.microsoftwo.clother.post.query.controller;
 
+import com.microsoftwo.clother.post.query.dto.PostAndHairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostDTO;
 import com.microsoftwo.clother.post.query.dto.TestPostDTO;
 import com.microsoftwo.clother.post.query.service.PostService;
@@ -34,11 +35,12 @@ public class PostController {
 
     @GetMapping("/{postId}")
     public ResponseEntity<ResponsePostVO> getPostById(@PathVariable int postId) {
-        PostDTO postDTO = postService.getPostById(postId);
+        PostAndHairTagDTO postAndHairTagDTO = postService.getPostById(postId);
 
-        if (postDTO == null) {
+        if (postAndHairTagDTO == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
+
 
         /* todo. 회원 정보 요청 */
 
@@ -50,40 +52,31 @@ public class PostController {
 
         /* todo. 상품, 카테고리 정보 요청 */
 
+        ResponsePostVO returnValue = new ResponsePostVO();
+
+        // DTO VO로 매핑
+        returnValue.setId(postAndHairTagDTO.getId());
+        returnValue.setUserId(postAndHairTagDTO.getUserId());
+        returnValue.setContent(postAndHairTagDTO.getContent());
+        returnValue.setCreatedAt(postAndHairTagDTO.getCreatedAt());
+        returnValue.setLikeCount(postAndHairTagDTO.getLikeCount());
+        returnValue.setCommentCount(postAndHairTagDTO.getCommentCount());
+        returnValue.setImageUrls(postAndHairTagDTO.getImageUrls());
+        returnValue.setLookTags(postAndHairTagDTO.getLookTags());
+        returnValue.setHairTagId(postAndHairTagDTO.getHairTagId());
+        returnValue.setHairTagLink(postAndHairTagDTO.getHairTagLink());
+        returnValue.setHairTagName(postAndHairTagDTO.getHairTagName());
+        returnValue.setHairTagCategoryId(postAndHairTagDTO.getHairTagCategoryId());
+        returnValue.setHairTagPositionX(postAndHairTagDTO.getHairTagPositionX());
+        returnValue.setHairTagPositionY(postAndHairTagDTO.getHairTagPositionY());
+
+
+
         /* todo. 추가 요청된 데이터 ResponsePostVO에 매핑 */
-        ResponsePostVO returnValue = DTOsToResponsePostVO(postDTO);
+
+
+
 
         return ResponseEntity.ok(returnValue);
-    }
-
-    private ResponsePostVO DTOsToResponsePostVO(PostDTO postDTO) {
-        ResponsePostVO responsePostVO = new ResponsePostVO();
-
-        List<String> imageUrls = null;
-        if (postDTO.getImageUrls() != null) {
-            imageUrls = Arrays.stream(postDTO.getImageUrls().split(",")).toList();
-        }
-
-        List<String> lookTags = null;
-        if (postDTO.getLookTags() != null) {
-            lookTags = Arrays.stream(postDTO.getLookTags().split(",")).toList();
-        }
-
-        responsePostVO.setId(postDTO.getId());
-        responsePostVO.setUserId(postDTO.getUserId());
-        responsePostVO.setContent(postDTO.getContent());
-        responsePostVO.setCreatedAt(postDTO.getCreatedAt());
-        responsePostVO.setLikeCount(postDTO.getLikeCount());
-        responsePostVO.setCommentCount(postDTO.getCommentCount());
-        responsePostVO.setImageUrls(imageUrls);
-        responsePostVO.setLookTags(lookTags);
-        if (postDTO.getHairTagId() != null) {
-            responsePostVO.setHairTagId(postDTO.getHairTagId());
-            responsePostVO.setHairTagLink(postDTO.getHairTagLink());
-            responsePostVO.setHairTagPositionX(postDTO.getHairTagPositionX());
-            responsePostVO.setHairTagPositionY(postDTO.getHairTagPositionY());
-        }
-
-        return responsePostVO;
     }
 }

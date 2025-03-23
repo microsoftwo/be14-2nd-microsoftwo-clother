@@ -12,13 +12,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PostDTO {
-    private int id;
-    private int userId;
-    private String content;
-    private String createdAt;
-    private int likeCount;
-    private int commentCount;
-    private String imageUrls;
-    private String lookTags;
+public class HairTagDTO {
+    private Integer id;
+    private String link;
+    private String name;
+    private int categoryId;
+    private BigDecimal hairTagPositionX;
+    private BigDecimal hairTagPositionY;
 }
