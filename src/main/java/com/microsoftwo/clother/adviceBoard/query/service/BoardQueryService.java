@@ -20,6 +20,7 @@ public class BoardQueryService {
         this.boardMapper = boardMapper;
     }
 
+    // 게시판 조회
     public List<BoardDTO> getBoards(String sortBy) {
         // 기본값: 최신순
         if (!"like".equals(sortBy)) {
@@ -27,5 +28,11 @@ public class BoardQueryService {
         }
         return boardMapper.getBoards(sortBy);
     }
+
+    // 게시물 조회
+    public BoardDTO getBoardById(int id) {
+        return boardMapper.getBoradById(id);
+    }
+
 
 }

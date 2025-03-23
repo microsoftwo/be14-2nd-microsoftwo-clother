@@ -9,6 +9,10 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
 
+    // 게시판 조회
     List<BoardDTO> getBoards(@Param("sortBy") String sortBy);
+
+    // 게시물 조회
+    BoardDTO getBoradById(@Param("id") int id);
 
 }

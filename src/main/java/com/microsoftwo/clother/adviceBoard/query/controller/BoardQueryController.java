@@ -22,5 +22,11 @@ public class BoardQueryController {
     public List<BoardDTO> getBoards(@RequestParam(required = false) String sortBy) {
         return boardQueryService.getBoards(sortBy);
     }
+
+    // 게시물 조회
+    @GetMapping("/{id}")
+    public BoardDTO getBoardById(@PathVariable int id) {
+        return boardQueryService.getBoardById(id);
+    }
 }
 
