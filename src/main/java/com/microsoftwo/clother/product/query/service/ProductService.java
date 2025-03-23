@@ -2,9 +2,7 @@ package com.microsoftwo.clother.product.query.service;
 
 import com.microsoftwo.clother.product.query.dto.CategoryDTO;
 import com.microsoftwo.clother.product.query.dto.ProductCategoryDTO;
-
 import java.util.List;
-
 
 public interface ProductService {
     // 카테고리 목록 조회

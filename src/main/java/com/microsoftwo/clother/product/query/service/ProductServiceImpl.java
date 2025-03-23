@@ -14,7 +14,6 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductMapper productMapper;
 
-//    ProductMapper 의존성 주입
     @Autowired
     public ProductServiceImpl(ProductMapper productMapper) {
         this.productMapper = productMapper;
