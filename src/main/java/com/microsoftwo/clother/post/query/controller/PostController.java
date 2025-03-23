@@ -69,20 +69,20 @@ public class PostController {
             lookTags = Arrays.stream(postDTO.getLookTags().split(",")).toList();
         }
 
-        List<Integer> hairTagIds = null;
-        if (postDTO.getHairTagIds() != null) {
-            hairTagIds = Arrays.stream(postDTO.getHairTagIds().split(",")).map(Integer::parseInt).toList();
-        }
-
         responsePostVO.setId(postDTO.getId());
         responsePostVO.setUserId(postDTO.getUserId());
-        responsePostVO.setCreatedAt(postDTO.getCreatedAt());
         responsePostVO.setContent(postDTO.getContent());
+        responsePostVO.setCreatedAt(postDTO.getCreatedAt());
         responsePostVO.setLikeCount(postDTO.getLikeCount());
         responsePostVO.setCommentCount(postDTO.getCommentCount());
         responsePostVO.setImageUrls(imageUrls);
         responsePostVO.setLookTags(lookTags);
-        responsePostVO.setHairTagIds(hairTagIds);
+        if (postDTO.getHairTagId() != null) {
+            responsePostVO.setHairTagId(postDTO.getHairTagId());
+            responsePostVO.setHairTagLink(postDTO.getHairTagLink());
+            responsePostVO.setHairTagPositionX(postDTO.getHairTagPositionX());
+            responsePostVO.setHairTagPositionY(postDTO.getHairTagPositionY());
+        }
 
         return responsePostVO;
     }

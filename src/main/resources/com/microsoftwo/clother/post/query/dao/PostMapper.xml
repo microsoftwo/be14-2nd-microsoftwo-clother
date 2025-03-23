@@ -17,7 +17,10 @@
         <result property="commentCount" column="comment_count"/>
         <result property="imageUrls" column="image_urls"/>
         <result property="lookTags" column="look_tags"/>
-        <result property="hairTagIds" column="hair_tag_ids"/>
+        <result property="hairTagId" column="hair_tag_id"/>
+        <result property="hairTagLink" column="hair_tag_link"/>
+        <result property="hairTagPositionX" column="hair_tag_position_x"/>
+        <result property="hairTagPositionY" column="hair_tag_position_y"/>
     </resultMap>
 
     <select id="test" resultMap="testResultMap">
@@ -34,7 +37,11 @@
              , A.COMMENT_COUNT
              , GROUP_CONCAT(DISTINCT B.IMAGE_URL ORDER BY B.ORDER ASC) AS IMAGE_URLS
              , GROUP_CONCAT(DISTINCT D.NAME ORDER BY D.ID ASC) AS LOOK_TAGS
-             , GROUP_CONCAT(DISTINCT E.ID ORDER BY E.ID ASC) AS HAIR_TAG_IDS
+             , E.ID AS HAIR_TAG_ID
+             , E.NAME AS HAIR_TAG_NAME
+             , E.LINK AS HAIR_TAG_LINK
+             , C.POSITION_X AS HAIR_TAG_POSITION_X
+             , C.POSITION_Y AS HAIR_TAG_POSITION_Y
           FROM POST A
           LEFT JOIN POST_IMAGE B ON A.ID = B.POST_ID
           LEFT JOIN TAG C ON A.ID = C.POST_ID
@@ -48,5 +55,10 @@
              , A.CREATED_AT
              , A.LIKE_COUNT
              , A.COMMENT_COUNT
+             , E.ID
+             , E.NAME
+             , E.LINK
+             , C.POSITION_X
+             , C.POSITION_Y
     </select>
 </mapper>
