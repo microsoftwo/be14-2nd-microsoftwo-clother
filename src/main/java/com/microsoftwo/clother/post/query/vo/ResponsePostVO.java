@@ -21,6 +21,8 @@ public class ResponsePostVO {
     private int likeCount;
     private int commentCount;
     private List<String> imageUrls;
+    private List<String> lookTags;
+    private List<String> hairTags;
 
     /* todo. 회원 정보 요청해서 추가될 값 */
 
@@ -29,5 +31,7 @@ public class ResponsePostVO {
     /* todo. 좋아요 여부 요청해서 추가될 값 */
 
     /* todo. 댓글 정보 요청해서 추가될 값 */
+    
+    /* todo. 상품, 카테고리 정보 요청해서 추가될 값 */
 
 }

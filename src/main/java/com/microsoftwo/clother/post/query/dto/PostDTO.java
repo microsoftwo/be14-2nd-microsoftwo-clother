@@ -19,4 +19,6 @@ public class PostDTO {
     private int likeCount;
     private int commentCount;
     private String imageUrls;
+    private String lookTags;
+    private String hairTags;
 }

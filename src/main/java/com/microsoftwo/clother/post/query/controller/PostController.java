@@ -29,7 +29,6 @@ public class PostController {
     @GetMapping("/test")
     public void test() {
         TestPostDTO testPostDTO = postService.test();
-        log.debug(testPostDTO.toString());
     }
 
     @GetMapping("/{postId}")
@@ -44,6 +43,8 @@ public class PostController {
 
         /* todo. 댓글 정보 요청 */
 
+        /* todo. 상품, 카테고리 정보 요청 */
+
         /* todo. 추가 요청된 데이터 ResponsePostVO에 매핑 */
         ResponsePostVO returnValue = DTOsToResponsePostVO(postDTO);
 
@@ -53,7 +54,20 @@ public class PostController {
     private ResponsePostVO DTOsToResponsePostVO(PostDTO postDTO) {
         ResponsePostVO responsePostVO = new ResponsePostVO();
 
-        List<String> image_urls = Arrays.stream(postDTO.getImageUrls().split(",")).toList();
+        // imageUrls는 null일 수 없음
+        List<String> imageUrls = Arrays.stream(postDTO.getImageUrls().split(",")).toList();
+
+        // lookTags는 null 가능
+        List<String> lookTags = null;
+        if (postDTO.getLookTags() != null) {
+            lookTags = Arrays.stream(postDTO.getLookTags().split(",")).toList();
+        }
+
+        // hairTags는 null 가능
+        List<String> hairTags = null;
+        if (postDTO.getHairTags() != null) {
+            hairTags = Arrays.stream(postDTO.getHairTags().split(",")).toList();
+        }
 
         responsePostVO.setId(postDTO.getId());
         responsePostVO.setUserId(postDTO.getUserId());
@@ -61,7 +75,9 @@ public class PostController {
         responsePostVO.setContent(postDTO.getContent());
         responsePostVO.setLikeCount(postDTO.getLikeCount());
         responsePostVO.setCommentCount(postDTO.getCommentCount());
-        responsePostVO.setImageUrls(image_urls);
+        responsePostVO.setImageUrls(imageUrls);
+        responsePostVO.setLookTags(lookTags);
+        responsePostVO.setHairTags(hairTags);
 
         return responsePostVO;
     }
