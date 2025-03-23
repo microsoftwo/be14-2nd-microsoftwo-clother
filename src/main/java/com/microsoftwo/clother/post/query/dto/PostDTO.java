@@ -20,5 +20,5 @@ public class PostDTO {
     private int commentCount;
     private String imageUrls;
     private String lookTags;
-    private String hairTags;
+    private String hairTagIds;
 }

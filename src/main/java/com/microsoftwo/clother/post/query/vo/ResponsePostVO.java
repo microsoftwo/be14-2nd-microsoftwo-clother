@@ -13,7 +13,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ResponsePostVO {
-    // post, post_image에서 가져온 값
+    // post domain에서 가져온 값
     private int id;
     private int userId;
     private String createdAt;
@@ -22,7 +22,7 @@ public class ResponsePostVO {
     private int commentCount;
     private List<String> imageUrls;
     private List<String> lookTags;
-    private List<String> hairTags;
+    private List<Integer> hairTagIds;
 
     /* todo. 회원 정보 요청해서 추가될 값 */
 

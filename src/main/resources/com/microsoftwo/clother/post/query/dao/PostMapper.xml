@@ -17,7 +17,7 @@
         <result property="commentCount" column="comment_count"/>
         <result property="imageUrls" column="image_urls"/>
         <result property="lookTags" column="look_tags"/>
-        <result property="hairTags" column="hair_tags"/>
+        <result property="hairTagIds" column="hair_tag_ids"/>
     </resultMap>
 
     <select id="test" resultMap="testResultMap">
@@ -34,12 +34,12 @@
              , A.COMMENT_COUNT
              , GROUP_CONCAT(DISTINCT B.IMAGE_URL ORDER BY B.ORDER ASC) AS IMAGE_URLS
              , GROUP_CONCAT(DISTINCT D.NAME ORDER BY D.ID ASC) AS LOOK_TAGS
-             , GROUP_CONCAT(DISTINCT E.NAME ORDER BY E.ID ASC) AS HAIR_TAGS
+             , GROUP_CONCAT(DISTINCT E.ID ORDER BY E.ID ASC) AS HAIR_TAG_IDS
           FROM POST A
-          JOIN POST_IMAGE B ON A.ID = B.POST_ID
-          JOIN TAG C ON A.ID = C.POST_ID
-          JOIN LOOK_TAG D ON C.LOOK_TAG_ID = D.ID
-          JOIN HAIR_TAG E ON C.HAIR_TAG_ID = E.ID
+          LEFT JOIN POST_IMAGE B ON A.ID = B.POST_ID
+          LEFT JOIN TAG C ON A.ID = C.POST_ID
+          LEFT JOIN LOOK_TAG D ON C.LOOK_TAG_ID = D.ID
+          LEFT JOIN HAIR_TAG E ON C.HAIR_TAG_ID = E.ID
          WHERE A.ID = #{postId}
          GROUP BY
                A.ID

@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,10 @@ public class PostController {
     public ResponseEntity<ResponsePostVO> getPostById(@PathVariable int postId) {
         PostDTO postDTO = postService.getPostById(postId);
 
+        if (postDTO == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
         /* todo. 회원 정보 요청 */
 
         /* todo. 북마크 여부 요청 */
@@ -54,19 +59,19 @@ public class PostController {
     private ResponsePostVO DTOsToResponsePostVO(PostDTO postDTO) {
         ResponsePostVO responsePostVO = new ResponsePostVO();
 
-        // imageUrls는 null일 수 없음
-        List<String> imageUrls = Arrays.stream(postDTO.getImageUrls().split(",")).toList();
+        List<String> imageUrls = null;
+        if (postDTO.getImageUrls() != null) {
+            imageUrls = Arrays.stream(postDTO.getImageUrls().split(",")).toList();
+        }
 
-        // lookTags는 null 가능
         List<String> lookTags = null;
         if (postDTO.getLookTags() != null) {
             lookTags = Arrays.stream(postDTO.getLookTags().split(",")).toList();
         }
 
-        // hairTags는 null 가능
-        List<String> hairTags = null;
-        if (postDTO.getHairTags() != null) {
-            hairTags = Arrays.stream(postDTO.getHairTags().split(",")).toList();
+        List<Integer> hairTagIds = null;
+        if (postDTO.getHairTagIds() != null) {
+            hairTagIds = Arrays.stream(postDTO.getHairTagIds().split(",")).map(Integer::parseInt).toList();
         }
 
         responsePostVO.setId(postDTO.getId());
@@ -77,7 +82,7 @@ public class PostController {
         responsePostVO.setCommentCount(postDTO.getCommentCount());
         responsePostVO.setImageUrls(imageUrls);
         responsePostVO.setLookTags(lookTags);
-        responsePostVO.setHairTags(hairTags);
+        responsePostVO.setHairTagIds(hairTagIds);
 
         return responsePostVO;
     }
