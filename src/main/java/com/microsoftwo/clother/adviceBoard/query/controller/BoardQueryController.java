@@ -28,5 +28,18 @@ public class BoardQueryController {
     public BoardDTO getBoardById(@PathVariable int id) {
         return boardQueryService.getBoardById(id);
     }
+
+
+    // 키워드별 [ (제목순,내용순, 제목+내용순) + 최신순 ]조회
+    @GetMapping("/search")
+    public List<BoardDTO> searchBoards(@RequestParam(required = false) String sortBy,
+                                       @RequestParam(required = false) String keyword) {
+        log.info("검색 요청 - sortBy: {}, keyword: {}", sortBy, keyword);
+
+        if (StringUtils.isBlank(keyword)) { // null 또는 빈 문자열 체크
+            return boardQueryService.getBoards(sortBy);
+        }
+        return boardQueryService.searchBoards(sortBy, keyword);
+    }
 }
 

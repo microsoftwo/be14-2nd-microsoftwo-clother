@@ -34,5 +34,18 @@ public class BoardQueryService {
         return boardMapper.getBoradById(id);
     }
 
+    // 키워드별 조회
+    public List<BoardDTO> searchBoards(String sortBy, String keyword) {
+
+        // 허용된 정렬 기준 목록
+        Set<String> validSortOptions = Set.of("title", "content", "title+content");
+
+        // 유효한 값인지 검증 (유효하지 않으면 기본값 설정)
+        if (validSortOptions == null | !validSortOptions.contains(sortBy)) {
+            sortBy = "title+content";
+        }
+        return boardMapper.searchBoards(sortBy, keyword);
+    }
+
 
 }

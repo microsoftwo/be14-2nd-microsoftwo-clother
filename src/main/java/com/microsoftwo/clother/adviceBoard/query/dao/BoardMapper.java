@@ -15,4 +15,7 @@ public interface BoardMapper {
     // 게시물 조회
     BoardDTO getBoradById(@Param("id") int id);
 
+    // 키워드별 조회
+    List<BoardDTO> searchBoards(@Param("sortBy") String sortBy, @Param("keyword") String keyword);
+
 }
