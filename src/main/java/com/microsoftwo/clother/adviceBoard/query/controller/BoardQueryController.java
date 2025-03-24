@@ -24,9 +24,9 @@ public class BoardQueryController {
     }
 
     // 게시물 조회
-    @GetMapping("/{id}")
-    public BoardDTO getBoardById(@PathVariable int id) {
-        return boardQueryService.getBoardById(id);
+    @GetMapping("/{PostId}")
+    public BoardDTO getBoardById(@PathVariable int PostId) {
+        return boardQueryService.getBoardById(PostId);
     }
 
 
