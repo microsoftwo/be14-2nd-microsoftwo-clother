@@ -1,6 +1,7 @@
 package com.microsoftwo.clother.product.command.domain.aggregate;
 
 // 사용자가 등록 신청한 제품
+import com.microsoftwo.clother.product.command.application.dto.ProductRegistDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
@@ -34,4 +35,15 @@ public class ProductRegist {
     @Column(name = "user_id", nullable = false)
     private int userId;
 
+    public void update(ProductRegistDTO modifiedProduct) {
+
+        // 등록 시간은 수정되지 않도록 함
+        if (this.createdAt == null) {
+            this.createdAt = modifiedProduct.getCreatedAt() != null ? modifiedProduct.getCreatedAt() : new Date();
+        }
+
+        this.brandName = modifiedProduct.getBrandName();
+        this.name = modifiedProduct.getName();
+        this.productLink = modifiedProduct.getProductLink();
+    }
 }

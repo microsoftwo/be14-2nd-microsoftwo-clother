@@ -3,6 +3,7 @@ package com.microsoftwo.clother.product.command.domain.service;
 import com.microsoftwo.clother.product.command.application.dto.ProductRegistDTO;
 import com.microsoftwo.clother.product.command.domain.aggregate.ProductRegist;
 import com.microsoftwo.clother.product.command.domain.repository.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ public class ProductService {
         this.modelMapper = modelMapper;
     }
 
-    /* 설명. 상품 등록하기 (insert) */
     @Transactional
     public void registProduct(ProductRegistDTO newProduct) {
 
@@ -34,6 +34,16 @@ public class ProductService {
         productEntity.setUserId(newProduct.getUserId());
         productRepository.save(productEntity);
         log.info("New product registered: {}", productEntity);
+    }
+
+    @Transactional
+    public void updateProduct(int productId, ProductRegistDTO modifiedProduct) {
+        ProductRegist productEntity = productRepository.findById(productId)
+                .orElseThrow(() -> new EntityNotFoundException("상품을 찾을 수 없습니다."));
+
+        productEntity.update(modifiedProduct);
+        productRepository.save(productEntity);
+        log.info("Product updated: {}", productEntity);
     }
 
     // User 서버에서 사용자 정보를 받아오기
