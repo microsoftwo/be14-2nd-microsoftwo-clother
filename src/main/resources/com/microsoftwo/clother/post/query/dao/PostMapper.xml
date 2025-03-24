@@ -14,23 +14,6 @@
         <result property="imageUrls" column="image_urls"/>
         <result property="lookTags" column="look_tags"/>
     </resultMap>
-
-    <resultMap id="getHairTagByPostIdResultMap" type="com.microsoftwo.clother.post.query.dto.HairTagDTO">
-        <id property="id" column="id"/>
-        <result property="link" column="hair_tag_link"/>
-        <result property="name" column="hair_tag_name"/>
-        <result property="categoryId" column="hair_tag_category_id"/>
-        <result property="hairTagPositionX" column="hair_tag_position_x"/>
-        <result property="hairTagPositionY" column="hair_tag_position_y"/>
-    </resultMap>
-
-    <resultMap id="getProductTagByPostIdResultMap" type="com.microsoftwo.clother.post.query.dto.ProductTagDTO">
-        <id property="id" column="id"/>
-        <result property="productId" column="product_id"/>
-        <result property="productTagPositionX" column="product_tag_position_x"/>
-        <result property="productTagPositionY" column="product_tag_position_y"/>
-    </resultMap>
-
     <select id="getPostById" resultMap="getPostByIdResultMap" parameterType="_int">
         SELECT
                A.ID
@@ -55,6 +38,14 @@
              , A.COMMENT_COUNT
     </select>
 
+    <resultMap id="getHairTagByPostIdResultMap" type="com.microsoftwo.clother.post.query.dto.HairTagDTO">
+        <id property="id" column="id"/>
+        <result property="link" column="hair_tag_link"/>
+        <result property="name" column="hair_tag_name"/>
+        <result property="categoryId" column="hair_tag_category_id"/>
+        <result property="hairTagPositionX" column="hair_tag_position_x"/>
+        <result property="hairTagPositionY" column="hair_tag_position_y"/>
+    </resultMap>
     <select id="getHairTagByPostId" resultMap="getHairTagByPostIdResultMap" parameterType="_int">
         SELECT
                A.POSITION_X AS HAIR_TAG_POSITION_X
@@ -68,6 +59,12 @@
          WHERE A.POST_ID = #{postId}
     </select>
 
+    <resultMap id="getProductTagByPostIdResultMap" type="com.microsoftwo.clother.post.query.dto.ProductTagDTO">
+        <id property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="productTagPositionX" column="product_tag_position_x"/>
+        <result property="productTagPositionY" column="product_tag_position_y"/>
+    </resultMap>
     <select id="getProductTagByPostId" resultMap="getProductTagByPostIdResultMap" parameterType="_int">
         SELECT
                ID
