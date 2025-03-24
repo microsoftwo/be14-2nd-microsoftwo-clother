@@ -42,8 +42,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDetailDTO> getProductDetailByProductId(int productId) {
-        List<ProductDetailDTO> productDetailDTOList = productMapper.selectProductDetailByProductId(productId);
-        return productDetailDTOList;
+    public ProductDetailDTO getProductDetailByProductId(int productId) {
+        ProductDetailDTO productDetailDTO = productMapper.selectProductDetailByProductId(productId);
+        return productDetailDTO;
     }
 }

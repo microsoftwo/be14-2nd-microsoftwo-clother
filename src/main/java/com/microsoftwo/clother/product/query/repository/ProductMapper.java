@@ -18,7 +18,7 @@ public interface ProductMapper {
 
     List<ProductRegistHistoryDTO> selectProductHistoryByUserId(int userId);
 
-    List<ProductDetailDTO> selectProductDetailByProductId(int productId);
+    ProductDetailDTO selectProductDetailByProductId(int productId);
 
 
 }

@@ -15,5 +15,5 @@ public interface ProductService {
 
     List<ProductRegistHistoryDTO> getProductRegistHistoryByUserId(int userId);
 
-    List<ProductDetailDTO> getProductDetailByProductId(int productId);
+    ProductDetailDTO getProductDetailByProductId(int productId);
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/main")
+@RequestMapping
 public class ProductController {
 
     private final ProductService productService;
@@ -47,9 +47,9 @@ public class ProductController {
 
     // 상품 상세 정보 조회
     @GetMapping("/categories/post/{productId}/productdetail")
-    public ResponseEntity<List<ProductDetailDTO>> getProductDetailByProductId(
+    public ResponseEntity<ProductDetailDTO> getProductDetailByProductId(
             @PathVariable("productId") int productId) {
-        List<ProductDetailDTO> productDetail = productService.getProductDetailByProductId(productId);
+        ProductDetailDTO productDetail = productService.getProductDetailByProductId(productId);
         return ResponseEntity.ok(productDetail);
     }
 
