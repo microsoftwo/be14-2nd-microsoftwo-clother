@@ -28,11 +28,6 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/test")
-    public void test() {
-        TestPostDTO testPostDTO = postService.test();
-    }
-
     @GetMapping("/{postId}")
     public ResponseEntity<ResponsePostVO> getPostById(@PathVariable int postId) {
         PostAndHairTagDTO postAndHairTagDTO = postService.getPostById(postId);

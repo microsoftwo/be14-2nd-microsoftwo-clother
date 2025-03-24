@@ -3,10 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.microsoftwo.clother.post.query.dao.PostMapper">
-    <resultMap id="testResultMap" type="com.microsoftwo.clother.post.query.dto.TestPostDTO">
-        <id property="id" column="id"/>
-        <result property="content" column="content"/>
-    </resultMap>
 
     <resultMap id="getPostByIdResultMap" type="com.microsoftwo.clother.post.query.dto.PostDTO">
         <id property="id" column="id"/>
@@ -24,13 +20,16 @@
         <result property="link" column="hair_tag_link"/>
         <result property="name" column="hair_tag_name"/>
         <result property="categoryId" column="hair_tag_category_id"/>
-        <result property="hairTagPositionX" column="position_x"/>
-        <result property="hairTagPositionY" column="position_y"/>
+        <result property="hairTagPositionX" column="hair_tag_position_x"/>
+        <result property="hairTagPositionY" column="hair_tag_position_y"/>
     </resultMap>
 
-    <select id="test" resultMap="testResultMap">
-        SELECT A.ID, A.CONTENT FROM POST A WHERE ID = 1
-    </select>
+    <resultMap id="getProductTagByPostIdResultMap" type="com.microsoftwo.clother.post.query.dto.ProductTagDTO">
+        <id property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="productTagPositionX" column="product_tag_position_x"/>
+        <result property="productTagPositionY" column="product_tag_position_y"/>
+    </resultMap>
 
     <select id="getPostById" resultMap="getPostByIdResultMap" parameterType="_int">
         SELECT
@@ -58,8 +57,8 @@
 
     <select id="getHairTagByPostId" resultMap="getHairTagByPostIdResultMap" parameterType="_int">
         SELECT
-               A.POSITION_X AS POSITION_X
-             , A.POSITION_Y AS POSITION_Y
+               A.POSITION_X AS HAIR_TAG_POSITION_X
+             , A.POSITION_Y AS HAIR_TAG_POSITION_Y
              , B.ID AS id
              , B.LINK AS HAIR_TAG_LINK
              , B.NAME AS HAIR_TAG_NAME
@@ -67,5 +66,15 @@
           FROM TAG A
           JOIN HAIR_TAG B ON A.HAIR_TAG_ID = B.ID
          WHERE A.POST_ID = #{postId}
+    </select>
+
+    <select id="getProductTagByPostId" resultMap="getProductTagByPostIdResultMap" parameterType="_int">
+        SELECT
+               ID
+             , PRODUCT_ID
+             , POSITION_X AS PRODUCT_TAG_POSITION_X
+             , POSITION_Y AS PRODUCT_TAG_POSITION_Y
+          FROM tag
+         WHERE POST_ID = #{postId} AND PRODUCT_ID IS NOT NULL;
     </select>
 </mapper>

@@ -4,14 +4,17 @@ import com.microsoftwo.clother.post.query.dao.PostMapper;
 import com.microsoftwo.clother.post.query.dto.HairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostAndHairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostDTO;
+import com.microsoftwo.clother.post.query.dto.ProductTagDTO;
 import com.microsoftwo.clother.post.query.dto.TestPostDTO;
 import java.util.Arrays;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Slf4j
 public class PostServiceImpl implements PostService {
 
     private final PostMapper postMapper;
@@ -21,16 +24,24 @@ public class PostServiceImpl implements PostService {
         this.postMapper = postMapper;
     }
 
-    @Override
-    public TestPostDTO test() {
-        return postMapper.test();
-    }
-
     @Transactional
     @Override
     public PostAndHairTagDTO getPostById(int postId) {
         PostDTO postDTO = postMapper.getPostById(postId);
         HairTagDTO hairTagDTO = postMapper.getHairTagByPostId(postId);
+        List<ProductTagDTO> productTagDTOs = postMapper.getProductTagByPostId(postId);
+
+//        log.debug(Arrays.toString(productTagDTOs.toArray()));
+
+        List<Integer> productTagIds = productTagDTOs.stream()
+                .map(ProductTagDTO::getId)
+                .toList();
+
+        if (!productTagIds.isEmpty()) {
+            // product 도메인에 요청 보내기
+            // ex) sendRequestToProductDomain(productTagIds);
+        }
+        /* todo. 받은 정보 DTO 합치기 */
 
         PostAndHairTagDTO postAndHairTagDTO = new PostAndHairTagDTO();
         mergePostAndHairTag(postDTO, postAndHairTagDTO, hairTagDTO);
