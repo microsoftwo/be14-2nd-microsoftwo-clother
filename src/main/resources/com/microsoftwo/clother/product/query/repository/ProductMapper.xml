@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsoftwo.clother.product.query.repository.ProductMapper">
+    <resultMap id="categoryHierarchyMap" type="com.microsoftwo.clother.product.query.dto.CategoryDTO">
+        <id property="id" column="a_id"/>
+        <result property="name" column="a_name"/>
+        <result property="parentId" column="a_parent_id"/>
+
+        <collection property="children" ofType="com.microsoftwo.clother.product.query.dto.CategoryDTO">
+            <id property="id" column="b_id"/>
+            <result property="name" column="b_name"/>
+            <result property="parentId" column="b_parent_id"/>
+
+            <collection property="children" ofType="com.microsoftwo.clother.product.query.dto.CategoryDTO">
+                <id property="id" column="c_id"/>
+                <result property="name" column="c_name"/>
+                <result property="parentId" column="c_parent_id"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="selectAllCategories" resultMap="categoryHierarchyMap">
+        SELECT
+        A.ID as a_id
+        , A.NAME as a_name
+        , A.PARENT_ID as a_parent_id
+        , B.ID as b_id
+        , B.NAME as b_name
+        , B.PARENT_ID as b_parent_id
+        , C.ID as c_id
+        , C.NAME as c_name
+        , C.PARENT_ID as c_parent_id
+        FROM CATEGORY A
+        LEFT OUTER JOIN CATEGORY B ON (A.ID = B.PARENT_ID)
+        LEFT OUTER JOIN CATEGORY C ON (B.ID = C.PARENT_ID)
+        WHERE A.PARENT_ID IS NULL
+    </select>
+
+    <resultMap id="productRegistHistoryMap" type="com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO">
+        <id property="id" column="id"/>
+        <result property="brandName" column="brand_name"/>
+        <result property="name" column="name"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="productLink" column="product_link"/>
+    </resultMap>
+
+    <select id="selectProductHistoryByUserId" resultMap="productRegistHistoryMap">
+        SELECT
+        ID
+        , BRAND_NAME
+        , CREATED_AT
+        , PRODUCT_LINK
+        FROM PRODUCT_REGISTRATION
+        WHERE USER_ID = #{userId}
+        ORDER BY CREATED_AT ASC;
+    </select>
+</mapper>
