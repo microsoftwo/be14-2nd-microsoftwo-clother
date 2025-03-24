@@ -1,6 +1,6 @@
 package com.microsoftwo.clother.post.query.service;
 
-import com.microsoftwo.clother.post.query.dao.PostMapper;
+import com.microsoftwo.clother.post.query.dao.QueryPostMapper;
 import com.microsoftwo.clother.post.query.dto.HairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostAndHairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostDTO;
@@ -16,21 +16,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
-public class PostServiceImpl implements PostService {
+public class QueryPostServiceImpl implements QueryPostService {
 
-    private final PostMapper postMapper;
+    private final QueryPostMapper queryPostMapper;
 
     @Autowired
-    public PostServiceImpl(PostMapper postMapper) {
-        this.postMapper = postMapper;
+    public QueryPostServiceImpl(QueryPostMapper queryPostMapper) {
+        this.queryPostMapper = queryPostMapper;
     }
 
     @Transactional
     @Override
     public PostAndHairTagDTO getPostById(int postId) {
-        PostDTO postDTO = postMapper.getPostById(postId);
-        HairTagDTO hairTagDTO = postMapper.getHairTagByPostId(postId);
-        List<ProductTagDTO> productTagDTOs = postMapper.getProductTagByPostId(postId);
+        PostDTO postDTO = queryPostMapper.getPostById(postId);
+        HairTagDTO hairTagDTO = queryPostMapper.getHairTagByPostId(postId);
+        List<ProductTagDTO> productTagDTOs = queryPostMapper.getProductTagByPostId(postId);
 
         List<Integer> productTagIds = productTagDTOs.stream()
                 .map(ProductTagDTO::getId)
@@ -91,6 +91,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostForFeedDTO> getPostFeedOrderByDate(Integer lastPostId) {
-        return postMapper.getPostFeedOrderByDate(lastPostId);
+        return queryPostMapper.getPostFeedOrderByDate(lastPostId);
     }
 }
