@@ -32,8 +32,6 @@ public class ProductController {
         if (categories.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        log.info(categories.toString());
-        log.info(categoryName);
         return ResponseEntity.ok(categories);
     }
 
