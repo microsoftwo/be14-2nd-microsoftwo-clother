@@ -4,6 +4,7 @@ import com.microsoftwo.clother.post.query.dao.PostMapper;
 import com.microsoftwo.clother.post.query.dto.HairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostAndHairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostDTO;
+import com.microsoftwo.clother.post.query.dto.PostForFeedDTO;
 import com.microsoftwo.clother.post.query.dto.ProductTagDTO;
 import java.util.Arrays;
 import java.util.Collections;
@@ -86,5 +87,10 @@ public class PostServiceImpl implements PostService {
             postAndHairTagDTO.setHairTagPositionX(hairTagDTO.getHairTagPositionX());
             postAndHairTagDTO.setHairTagPositionY(hairTagDTO.getHairTagPositionY());
         }
+    }
+
+    @Override
+    public List<PostForFeedDTO> getPostFeedOrderByDate(Integer lastPostId) {
+        return postMapper.getPostFeedOrderByDate(lastPostId);
     }
 }

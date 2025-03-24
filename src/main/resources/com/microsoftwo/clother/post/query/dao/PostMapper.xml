@@ -74,4 +74,25 @@
           FROM tag
          WHERE POST_ID = #{postId} AND PRODUCT_ID IS NOT NULL;
     </select>
+
+    <resultMap id="getPostFeedOrderByDateResultMap" type="com.microsoftwo.clother.post.query.dto.PostForFeedDTO">
+        <id property="id" column="id"/>
+        <result property="likeCount" column="like_count"/>
+        <result property="commentCount" column="comment_count"/>
+        <result property="thumbnailUrl" column="thumbnail_url"/>
+    </resultMap>
+    <select id="getPostFeedOrderByDate" resultMap="getPostFeedOrderByDateResultMap" parameterType="int">
+        SELECT
+               A.ID
+             , A.LIKE_COUNT
+             , A.COMMENT_COUNT
+             , B.IMAGE_URL AS THUMBNAIL_URL
+          FROM POST A
+          JOIN POST_IMAGE B ON A.ID = B.POST_ID AND B.ORDER = 1
+         WHERE <![CDATA[
+                 (#{lastPostId} IS NULL OR A.ID < #{lastPostId})
+               ]]>
+         ORDER BY A.ID DESC
+         LIMIT 9;
+    </select>
 </mapper>
