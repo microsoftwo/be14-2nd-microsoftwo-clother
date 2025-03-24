@@ -1,7 +1,7 @@
 package com.microsoftwo.clother.product.query.repository;
 
 import com.microsoftwo.clother.product.query.dto.CategoryDTO;
-import com.microsoftwo.clother.product.query.dto.ProductCategoryDTO;
+import com.microsoftwo.clother.product.query.dto.CategoryProductDTO;
 import com.microsoftwo.clother.product.query.dto.ProductDetailDTO;
 import com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,9 +12,9 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
 
-    List<CategoryDTO> selectAllCategories();
+    List<CategoryDTO> selectSubCategories(String categoryName);
 
-    List<ProductCategoryDTO> selectAllProductsByCategory(@Param("categoryNames") List<String> categoryNames);
+    CategoryProductDTO selectAllProductsByCategory(String categoryName);
 
     List<ProductRegistHistoryDTO> selectProductHistoryByUserId(int userId);
 

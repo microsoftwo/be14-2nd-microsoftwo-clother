@@ -3,39 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.microsoftwo.clother.product.query.repository.ProductMapper">
-    <resultMap id="categoryHierarchyMap" type="com.microsoftwo.clother.product.query.dto.CategoryDTO">
-        <id property="id" column="a_id"/>
-        <result property="name" column="a_name"/>
-        <result property="parentId" column="a_parent_id"/>
-
-        <collection property="children" ofType="com.microsoftwo.clother.product.query.dto.CategoryDTO">
-            <id property="id" column="b_id"/>
-            <result property="name" column="b_name"/>
-            <result property="parentId" column="b_parent_id"/>
-
-            <collection property="children" ofType="com.microsoftwo.clother.product.query.dto.CategoryDTO">
-                <id property="id" column="c_id"/>
-                <result property="name" column="c_name"/>
-                <result property="parentId" column="c_parent_id"/>
-            </collection>
-        </collection>
+    <resultMap id="categoryMap" type="com.microsoftwo.clother.product.query.dto.CategoryDTO">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
     </resultMap>
 
-    <select id="selectAllCategories" resultMap="categoryHierarchyMap">
+    <select id="selectSubCategories" resultMap="categoryMap">
         SELECT
-        A.ID AS A_ID
-        , A.NAME AS A_NAME
-        , A.PARENT_ID AS A_PARENT_ID
-        , B.ID AS B_ID
-        , B.NAME AS B_NAME
-        , B.PARENT_ID AS B_PARENT_ID
-        , C.ID AS C_ID
-        , C.NAME AS C_NAME
-        , C.PARENT_ID AS C_PARENT_ID
-        FROM CATEGORY A
-        LEFT OUTER JOIN CATEGORY B ON (A.ID = B.PARENT_ID)
-        LEFT OUTER JOIN CATEGORY C ON (B.ID = C.PARENT_ID)
-        WHERE A.PARENT_ID IS NULL
+        C.ID
+        , C.NAME
+        FROM CATEGORY C
+        JOIN CATEGORY P ON C.PARENT_ID = P.ID
+        WHERE P.NAME = #{categoryName}
+        ORDER BY C.ID ASC;
     </select>
 
     <resultMap id="productRegistHistoryMap" type="com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO">
@@ -78,50 +58,36 @@
         WHERE ID = #{productId}
     </select>
 
-    <resultMap id="productCategoryMap" type="com.microsoftwo.clother.product.query.dto.ProductCategoryDTO">
-        <id property="id" column="p_id"/>
-        <result property="brandName" column="p_brand_name"/>
-        <result property="imageUrl" column="p_image_url"/>
+    <resultMap id="categoryProductMap" type="com.microsoftwo.clother.product.query.dto.CategoryProductDTO">
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
 
-        <collection property="category" ofType="com.microsoftwo.clother.product.query.dto.CategoryDTO">
-            <id property="id" column="c_id"/>
-            <result property="name" column="c_name"/>
-            <result property="parentId" column="c_parent_id"/>
+        <collection property="products" ofType="com.microsoftwo.clother.product.query.dto.ProductDTO">
+            <id property="id" column="p_id"/>
+            <result property="name" column="p_name"/>
+            <result property="brandName" column="p_brand_name"/>
+            <result property="imageUrl" column="p_image_url"/>
         </collection>
-
     </resultMap>
 
-    <select id="selectAllProductsByCategory" resultMap="productCategoryMap">
-        WITH RECURSIVE CATEGORY_TREE AS (
-
-        SELECT
-        ID
-        , NAME
-        , PARENT_ID
-        FROM CATEGORY
-        WHERE NAME IN
-        <foreach item="name" collection="categoryNames" open="(" separator="," close=")">
-            #{name}
-        </foreach>
-        UNION ALL
-
-        SELECT
-        C.ID
-        , C.NAME
-        , C.PARENT_ID
-        FROM CATEGORY C
-        INNER JOIN CATEGORY_TREE CT ON C.PARENT_ID = CT.ID
-        )
+    <select id="selectAllProductsByCategory" resultMap="categoryProductMap">
         SELECT
         P.ID AS P_ID
         , P.BRAND_NAME AS P_BRAND_NAME
         , P.IMAGE_URL AS P_IMAGE_URL
+        , P.NAME AS P_NAME
         , C.ID AS C_ID
         , C.NAME AS C_NAME
-        , C.PARENT_ID AS C_PARENT_ID
         FROM PRODUCT P
         JOIN CATEGORY C ON P.CATEGORY_ID = C.ID
-        WHERE C.ID IN (SELECT ID FROM CATEGORY_TREE)
+        <where>
+            <if test="categoryName != null and categoryName != '전체'">
+                C.NAME = #{categoryName}
+            </if>
+            <if test="categoryName == '전체'">
+                C.PARENT_ID = #{parentCategoryId}  <!-- 전체 선택 시 같은 부모 카테고리의 모든 제품 조회 -->
+            </if>
+        </where>
         ORDER BY P.ID ASC;
     </select>
 </mapper>

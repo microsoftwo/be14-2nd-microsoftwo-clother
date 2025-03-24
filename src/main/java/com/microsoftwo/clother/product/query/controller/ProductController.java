@@ -1,16 +1,17 @@
 package com.microsoftwo.clother.product.query.controller;
 
 import com.microsoftwo.clother.product.query.dto.CategoryDTO;
-import com.microsoftwo.clother.product.query.dto.ProductCategoryDTO;
+import com.microsoftwo.clother.product.query.dto.CategoryProductDTO;
 import com.microsoftwo.clother.product.query.dto.ProductDetailDTO;
 import com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO;
 import com.microsoftwo.clother.product.query.service.ProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping
 public class ProductController {
@@ -22,18 +23,25 @@ public class ProductController {
         this.productService = productService;
     }
 
-    // 카테고리 목록 조회
-    @GetMapping("/categories")
-    public ResponseEntity<List<CategoryDTO>> getCategories() {
-        List<CategoryDTO> categories = productService.getCategories();
+    // 하위 카테고리 목록 조회
+    @GetMapping("/categories/{categoryName}")
+    public ResponseEntity<List<CategoryDTO>> getSubCategories(
+            @PathVariable("categoryName") String categoryName) {
+        List<CategoryDTO> categories = productService.getSubCategories(categoryName);
+
+        if (categories.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        log.info(categories.toString());
+        log.info(categoryName);
         return ResponseEntity.ok(categories);
     }
 
-    // 카테고리 별 전체 상품 목록 조회
-    @GetMapping("/categories/products")
-    public ResponseEntity<List<ProductCategoryDTO>> getProductsByCategory(
-            @RequestParam("categoryName") List<String> categoryNames) {
-        List<ProductCategoryDTO> products = productService.getProductListByCategory(categoryNames);
+    // 최하위 카테고리 별 상품 목록 조회
+    @GetMapping("/categories/{categoryName}/products")
+    public ResponseEntity<CategoryProductDTO> getProductsByCategory(
+            @PathVariable("categoryName") String categoryName) {
+        CategoryProductDTO products = productService.getProductListByCategory(categoryName);
         return ResponseEntity.ok(products);
     }
 

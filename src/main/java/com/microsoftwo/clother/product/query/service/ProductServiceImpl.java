@@ -1,7 +1,7 @@
 package com.microsoftwo.clother.product.query.service;
 
 import com.microsoftwo.clother.product.query.dto.CategoryDTO;
-import com.microsoftwo.clother.product.query.dto.ProductCategoryDTO;
+import com.microsoftwo.clother.product.query.dto.CategoryProductDTO;
 import com.microsoftwo.clother.product.query.dto.ProductDetailDTO;
 import com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO;
 import com.microsoftwo.clother.product.query.repository.ProductMapper;
@@ -24,15 +24,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<CategoryDTO> getCategories() {
-        List<CategoryDTO> categoryDTOList = productMapper.selectAllCategories();
+    public List<CategoryDTO> getSubCategories(String categoryName) {
+        List<CategoryDTO> categoryDTOList = productMapper.selectSubCategories(categoryName);
+//        log.info("subcategories: {}", categoryDTOList);
         return categoryDTOList;
     }
 
     @Override
-    public List<ProductCategoryDTO> getProductListByCategory(List<String> categoryNames) {
-        List<ProductCategoryDTO> productCategoryDTOList = productMapper.selectAllProductsByCategory(categoryNames);
-        return productCategoryDTOList;
+    public CategoryProductDTO getProductListByCategory(String categoryName) {
+        CategoryProductDTO categoryProductDTO = productMapper.selectAllProductsByCategory(categoryName);
+        return categoryProductDTO;
     }
 
     @Override
