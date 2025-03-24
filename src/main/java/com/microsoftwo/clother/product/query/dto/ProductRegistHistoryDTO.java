@@ -3,11 +3,14 @@ package com.microsoftwo.clother.product.query.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@ToString
 public class ProductRegistHistoryDTO {
     private int id; // 상품 신청 번호
     private String brandName; // 브랜드명
