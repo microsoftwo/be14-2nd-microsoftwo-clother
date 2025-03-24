@@ -36,17 +36,6 @@ public class PostController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
-
-        /* todo. 회원 정보 요청 */
-
-        /* todo. 북마크 여부 요청 */
-
-        /* todo. 좋아요 여부 요청 */
-
-        /* todo. 댓글 정보 요청 */
-
-        /* todo. 상품, 카테고리 정보 요청 */
-
         ResponsePostVO returnValue = new ResponsePostVO();
 
         // DTO VO로 매핑

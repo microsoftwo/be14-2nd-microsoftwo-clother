@@ -37,10 +37,21 @@ public class PostServiceImpl implements PostService {
                 .map(ProductTagDTO::getId)
                 .toList();
 
+        /* todo. 상품, 카테고리 정보 요청 */
         if (!productTagIds.isEmpty()) {
             // product 도메인에 요청 보내기
             // ex) sendRequestToProductDomain(productTagIds);
         }
+
+        /* todo. 북마크 여부 요청 */
+
+        /* todo. 좋아요 여부 요청 */
+
+        /* todo. 댓글 정보 요청 */
+
+        /* todo. 회원 정보 요청 */
+
+
         /* todo. 받은 정보 DTO 합치기 */
 
         PostAndHairTagDTO postAndHairTagDTO = new PostAndHairTagDTO();
