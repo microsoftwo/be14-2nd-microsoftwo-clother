@@ -33,21 +33,29 @@ public class ProductService {
         productEntity.setId(0); // 새로운 상품으로 인식되도록 id를 0으로 초기화
         productEntity.setUserId(newProduct.getUserId());
         productRepository.save(productEntity);
-        log.info("New product registered: {}", productEntity);
     }
 
     @Transactional
     public void updateProduct(int productId, ProductRegistDTO modifiedProduct) {
         ProductRegist productEntity = productRepository.findById(productId)
-                .orElseThrow(() -> new EntityNotFoundException("상품을 찾을 수 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("해당 상품 등록 내역을 찾을 수 없습니다."));
 
         productEntity.update(modifiedProduct);
         productRepository.save(productEntity);
-        log.info("Product updated: {}", productEntity);
+    }
+
+    @Transactional
+    public void deleteProduct(int productId) {
+
+        if (!productRepository.existsById(productId)) {
+            throw new EntityNotFoundException("해당 상품 등록 내역을 찾을 수 없습니다.");
+        }
+        productRepository.deleteById(productId);
     }
 
     // User 서버에서 사용자 정보를 받아오기
 //    public UserDTO getUserById(int userId) {
 //
 //    }
+
 }
