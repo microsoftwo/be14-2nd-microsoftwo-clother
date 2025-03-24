@@ -4,10 +4,13 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-/* memo : 사용자의 회원가입 요청 데이터를 받을 때  */
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class SignupRequestVO {
 
     @Email
@@ -23,8 +26,8 @@ public class SignupRequestVO {
     @NotEmpty(message = "닉네임을 입력해 주세요")
     private String nickname;
 
-    // @Pattern(regexp = "정규식") 어노테이션은 입력값이 특정 정규식 패턴과 일치하는지 검증하는 데 사용
-    @Pattern(regexp = "M|F", message = "M 또는 F만 입력 가능합니다.")
+    @NotEmpty(message = "성별을 선택해 주세요")
+    @Pattern(regexp = "M|F", message = "M 또는 F만 입력 가능합니다")
     private String gender;
 
     private int height;

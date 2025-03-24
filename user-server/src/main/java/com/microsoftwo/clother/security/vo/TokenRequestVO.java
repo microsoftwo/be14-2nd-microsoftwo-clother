@@ -1,8 +1,12 @@
 package com.microsoftwo.clother.security.vo;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class TokenRequestVO {
     private String accessToken;
     private String refreshToken;

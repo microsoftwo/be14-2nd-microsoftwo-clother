@@ -12,4 +12,8 @@ public interface UserService extends UserDetailsService {
     LoginResponseVO findMemberInfoById(Long userId);
 
     LoginResponseVO findMemberInfoByEmail(String email);
+
+    boolean isNicknameExists(String nickname);
+
+    boolean isEmailRegistered(String email);
 }

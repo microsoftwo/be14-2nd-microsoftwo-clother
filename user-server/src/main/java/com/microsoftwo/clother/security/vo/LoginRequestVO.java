@@ -2,11 +2,15 @@ package com.microsoftwo.clother.security.vo;
 
 import com.microsoftwo.clother.user.aggregate.Role;
 import com.microsoftwo.clother.user.aggregate.UserEntity;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class LoginRequestVO {
     private String email;
     private String password;

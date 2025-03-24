@@ -1,6 +1,7 @@
 package com.microsoftwo.clother.email.service;
 
 import com.microsoftwo.clother.email.config.RedisUtil;
+import com.microsoftwo.clother.user.service.UserService;
 import java.util.Random;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -14,11 +15,13 @@ public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender mailSender;
     private final RedisUtil redisUtil;
+    private final UserService userService;
 
     @Autowired
-    public EmailServiceImpl(JavaMailSender mailSender, RedisUtil redisUtil) {
+    public EmailServiceImpl(JavaMailSender mailSender, RedisUtil redisUtil, UserService userService) {
         this.mailSender = mailSender;
         this.redisUtil = redisUtil;
+        this.userService = userService;
     }
 
     private int authNumber;
@@ -55,6 +58,11 @@ public class EmailServiceImpl implements EmailService {
     public boolean CheckAuthNum(String email, String authNum) {
         String storedAuthNum = redisUtil.getData(email);                // email을 키로 조회
         return storedAuthNum != null && storedAuthNum.equals(authNum);
+    }
+
+    @Override
+    public boolean isEmailRegistered(String email) {
+        return userService.isEmailRegistered(email);
     }
 
     // 이메일 전송

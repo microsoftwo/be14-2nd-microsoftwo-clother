@@ -1,9 +1,13 @@
 package com.microsoftwo.clother.security.vo;
 
 import com.microsoftwo.clother.user.aggregate.UserEntity;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class LoginResponseVO {
     private String email;
 

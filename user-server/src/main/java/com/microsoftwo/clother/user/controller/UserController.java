@@ -1,17 +1,17 @@
 package com.microsoftwo.clother.user.controller;
 
+import com.microsoftwo.clother.email.exception.CustomException;
 import com.microsoftwo.clother.security.dto.TokenDTO;
 import com.microsoftwo.clother.security.service.AuthService;
 import com.microsoftwo.clother.security.vo.LoginRequestVO;
 import com.microsoftwo.clother.user.service.UserService;
 import com.microsoftwo.clother.user.vo.SignupRequestVO;
 import jakarta.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,22 +31,12 @@ public class UserController {
 
     // 기능 : 회원가입
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequestVO signupRequestVO,
-                                          BindingResult bindingResult) {
-        // 유효성 검사 실패 시 처리
-        if (bindingResult.hasErrors()) {
-            log.error("회원가입 요청 유효성 검사 실패: {}", signupRequestVO.getEmail());
+    public ResponseEntity<String> registerUser(@RequestBody @Valid SignupRequestVO signupRequestVO) {
+        // BindingResult 제거: GlobalExceptionHandler가 유효성 검사 오류를 처리
 
-            // 에러 메시지를 담을 Map 생성
-            Map<String, String> errors = new HashMap<>();
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                errors.put(error.getField(), error.getDefaultMessage());
-            }
-
-            // 로그 출력
-            errors.forEach((field, message) -> log.error("유효성 오류 - {}: {}", field, message));
-
-            return ResponseEntity.badRequest().body(errors);
+        // 닉네임 중복 검사
+        if (userService.isNicknameExists(signupRequestVO.getNickname())) {
+            throw new CustomException("이미 존재하는 닉네임입니다.");
         }
 
         // 회원가입 진행
@@ -58,5 +48,16 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<TokenDTO> login(@RequestBody LoginRequestVO loginRequestVO) {
         return ResponseEntity.ok(authService.login(loginRequestVO));
+    }
+
+    // 테스트
+    // JWT를 포함한 요청에서 사용자 정보 조회
+    @GetMapping("/me")
+    public ResponseEntity<String> getUserInfo(@AuthenticationPrincipal UserDetails userDetails) {
+        if (userDetails == null) {
+            return ResponseEntity.status(401).body("토큰이 유효하지 않습니다.");
+        }
+
+        return ResponseEntity.ok("로그인한 유저의 이메일 : " + userDetails.getUsername());
     }
 }
