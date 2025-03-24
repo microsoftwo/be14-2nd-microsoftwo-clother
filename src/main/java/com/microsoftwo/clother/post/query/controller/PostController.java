@@ -1,8 +1,10 @@
 package com.microsoftwo.clother.post.query.controller;
 
 import com.microsoftwo.clother.post.query.dto.PostAndHairTagDTO;
+import com.microsoftwo.clother.post.query.dto.PostForFeedDTO;
 import com.microsoftwo.clother.post.query.service.PostService;
 import com.microsoftwo.clother.post.query.vo.ResponsePostVO;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -58,5 +61,13 @@ public class PostController {
 
 
         return ResponseEntity.ok(returnValue);
+    }
+
+    @GetMapping("/feed")
+    public ResponseEntity<List<PostForFeedDTO>> getPostFeedOrderByDate(
+            @RequestParam(required = false) Integer lastPostId) {
+
+        List<PostForFeedDTO> posts = postService.getPostFeedOrderByDate(lastPostId);
+        return ResponseEntity.ok(posts);
     }
 }

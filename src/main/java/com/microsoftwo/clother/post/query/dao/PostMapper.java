@@ -2,6 +2,7 @@ package com.microsoftwo.clother.post.query.dao;
 
 import com.microsoftwo.clother.post.query.dto.HairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostDTO;
+import com.microsoftwo.clother.post.query.dto.PostForFeedDTO;
 import com.microsoftwo.clother.post.query.dto.ProductTagDTO;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,4 +13,6 @@ public interface PostMapper {
     PostDTO getPostById(int postId);
     HairTagDTO getHairTagByPostId(int postId);
     List<ProductTagDTO> getProductTagByPostId(int postId);
+
+    List<PostForFeedDTO> getPostFeedOrderByDate(Integer lastPostId);
 }
