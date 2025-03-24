@@ -34,7 +34,6 @@ public class BoardQueryController {
     @GetMapping("/search")
     public List<BoardDTO> searchBoards(@RequestParam(required = false) String sortBy,
                                        @RequestParam(required = false) String keyword) {
-        log.info("검색 요청 - sortBy: {}, keyword: {}", sortBy, keyword);
 
         if (StringUtils.isBlank(keyword)) { // null 또는 빈 문자열 체크
             return boardQueryService.getBoards(sortBy);
