@@ -31,8 +31,6 @@ public class PostServiceImpl implements PostService {
         HairTagDTO hairTagDTO = postMapper.getHairTagByPostId(postId);
         List<ProductTagDTO> productTagDTOs = postMapper.getProductTagByPostId(postId);
 
-//        log.debug(Arrays.toString(productTagDTOs.toArray()));
-
         List<Integer> productTagIds = productTagDTOs.stream()
                 .map(ProductTagDTO::getId)
                 .toList();

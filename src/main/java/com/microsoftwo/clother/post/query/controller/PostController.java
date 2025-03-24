@@ -1,12 +1,8 @@
 package com.microsoftwo.clother.post.query.controller;
 
 import com.microsoftwo.clother.post.query.dto.PostAndHairTagDTO;
-import com.microsoftwo.clother.post.query.dto.PostDTO;
-import com.microsoftwo.clother.post.query.dto.TestPostDTO;
 import com.microsoftwo.clother.post.query.service.PostService;
 import com.microsoftwo.clother.post.query.vo.ResponsePostVO;
-import java.util.Arrays;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -3,7 +3,6 @@ package com.microsoftwo.clother.post.query.dao;
 import com.microsoftwo.clother.post.query.dto.HairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostDTO;
 import com.microsoftwo.clother.post.query.dto.ProductTagDTO;
-import com.microsoftwo.clother.post.query.dto.TestPostDTO;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
