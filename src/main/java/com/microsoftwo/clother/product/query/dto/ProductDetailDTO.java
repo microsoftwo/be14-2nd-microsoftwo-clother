@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class ProductDetailDTO {
     private int id; // 상품 번호
     private String brandName; // 브랜드명
+    private String name; // 상품명
     private int price; // 가격
     private String link; // 제품 url
     private String imageUrl; // 상품 이미지

@@ -23,15 +23,15 @@
 
     <select id="selectAllCategories" resultMap="categoryHierarchyMap">
         SELECT
-        A.ID as a_id
-        , A.NAME as a_name
-        , A.PARENT_ID as a_parent_id
-        , B.ID as b_id
-        , B.NAME as b_name
-        , B.PARENT_ID as b_parent_id
-        , C.ID as c_id
-        , C.NAME as c_name
-        , C.PARENT_ID as c_parent_id
+        A.ID AS A_ID
+        , A.NAME AS A_NAME
+        , A.PARENT_ID AS A_PARENT_ID
+        , B.ID AS B_ID
+        , B.NAME AS B_NAME
+        , B.PARENT_ID AS B_PARENT_ID
+        , C.ID AS C_ID
+        , C.NAME AS C_NAME
+        , C.PARENT_ID AS C_PARENT_ID
         FROM CATEGORY A
         LEFT OUTER JOIN CATEGORY B ON (A.ID = B.PARENT_ID)
         LEFT OUTER JOIN CATEGORY C ON (B.ID = C.PARENT_ID)
@@ -55,5 +55,73 @@
         FROM PRODUCT_REGISTRATION
         WHERE USER_ID = #{userId}
         ORDER BY CREATED_AT ASC;
+    </select>
+
+    <resultMap id="productDetailMap" type="com.microsoftwo.clother.product.query.dto.ProductDetailDTO">
+        <id property="id" column="id"/>
+        <result property="brandName" column="brand_name"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="link" column="link"/>
+        <result property="imageUrl" column="image_url"/>
+    </resultMap>
+
+    <select id="selectProductDetailByProductId" resultMap="productDetailMap">
+        SELECT
+        ID
+        , BRAND_NAME
+        , NAME
+        , PRICE
+        , LINK
+        , IMAGE_URL
+        FROM PRODUCT
+        WHERE ID = #{productId}
+    </select>
+
+    <resultMap id="productCategoryMap" type="com.microsoftwo.clother.product.query.dto.ProductCategoryDTO">
+        <id property="id" column="p_id"/>
+        <result property="brandName" column="p_brand_name"/>
+        <result property="imageUrl" column="p_image_url"/>
+
+        <collection property="category" ofType="com.microsoftwo.clother.product.query.dto.CategoryDTO">
+            <id property="id" column="c_id"/>
+            <result property="name" column="c_name"/>
+            <result property="parentId" column="c_parent_id"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="selectAllProductsByCategory" resultMap="productCategoryMap">
+        WITH RECURSIVE CATEGORY_TREE AS (
+
+        SELECT
+        ID
+        , NAME
+        , PARENT_ID
+        FROM CATEGORY
+        WHERE NAME IN
+        <foreach item="name" collection="categoryNames" open="(" separator="," close=")">
+            #{name}
+        </foreach>
+        UNION ALL
+
+        SELECT
+        C.ID
+        , C.NAME
+        , C.PARENT_ID
+        FROM CATEGORY C
+        INNER JOIN CATEGORY_TREE CT ON C.PARENT_ID = CT.ID
+        )
+        SELECT
+        P.ID AS P_ID
+        , P.BRAND_NAME AS P_BRAND_NAME
+        , P.IMAGE_URL AS P_IMAGE_URL
+        , C.ID AS C_ID
+        , C.NAME AS C_NAME
+        , C.PARENT_ID AS C_PARENT_ID
+        FROM PRODUCT P
+        JOIN CATEGORY C ON P.CATEGORY_ID = C.ID
+        WHERE C.ID IN (SELECT ID FROM CATEGORY_TREE)
+        ORDER BY P.ID ASC;
     </select>
 </mapper>

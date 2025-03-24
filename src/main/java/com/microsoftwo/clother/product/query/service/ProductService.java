@@ -2,18 +2,18 @@ package com.microsoftwo.clother.product.query.service;
 
 import com.microsoftwo.clother.product.query.dto.CategoryDTO;
 import com.microsoftwo.clother.product.query.dto.ProductCategoryDTO;
+import com.microsoftwo.clother.product.query.dto.ProductDetailDTO;
 import com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO;
 
 import java.util.List;
 
 public interface ProductService {
-    // 카테고리 목록 조회
+
     List<CategoryDTO> getCategories();
 
-    // 카테고리 별 전체 상품 목록 조회
-    List<ProductCategoryDTO> getProductListByCategory();
+    List<ProductCategoryDTO> getProductListByCategory(List<String> categoryNames);
 
-    // 사용자가 등록 신청한 상품 목록 조회
     List<ProductRegistHistoryDTO> getProductRegistHistoryByUserId(int userId);
 
+    List<ProductDetailDTO> getProductDetailByProductId(int productId);
 }

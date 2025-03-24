@@ -2,6 +2,7 @@ package com.microsoftwo.clother.product.query.service;
 
 import com.microsoftwo.clother.product.query.dto.CategoryDTO;
 import com.microsoftwo.clother.product.query.dto.ProductCategoryDTO;
+import com.microsoftwo.clother.product.query.dto.ProductDetailDTO;
 import com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO;
 import com.microsoftwo.clother.product.query.repository.ProductMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -29,8 +30,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductCategoryDTO> getProductListByCategory() {
-        return List.of();
+    public List<ProductCategoryDTO> getProductListByCategory(List<String> categoryNames) {
+        List<ProductCategoryDTO> productCategoryDTOList = productMapper.selectAllProductsByCategory(categoryNames);
+        return productCategoryDTOList;
     }
 
     @Override
@@ -39,5 +41,9 @@ public class ProductServiceImpl implements ProductService {
         return productRegistHistoryDTOList;
     }
 
-
+    @Override
+    public List<ProductDetailDTO> getProductDetailByProductId(int productId) {
+        List<ProductDetailDTO> productDetailDTOList = productMapper.selectProductDetailByProductId(productId);
+        return productDetailDTOList;
+    }
 }
