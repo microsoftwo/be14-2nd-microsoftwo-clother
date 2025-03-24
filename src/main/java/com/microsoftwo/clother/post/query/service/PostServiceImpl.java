@@ -5,8 +5,8 @@ import com.microsoftwo.clother.post.query.dto.HairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostAndHairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostDTO;
 import com.microsoftwo.clother.post.query.dto.ProductTagDTO;
-import com.microsoftwo.clother.post.query.dto.TestPostDTO;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,17 +69,15 @@ public class PostServiceImpl implements PostService {
             postAndHairTagDTO.setLikeCount(postDTO.getLikeCount());
             postAndHairTagDTO.setCommentCount(postDTO.getCommentCount());
 
-            List<String> imageUrls = null;
-            if (postDTO.getImageUrls() != null) {
-                imageUrls = Arrays.stream(postDTO.getImageUrls().split(",")).toList();
-                postAndHairTagDTO.setImageUrls(imageUrls);
-            }
+            List<String> imageUrls = postDTO.getImageUrls() != null
+                    ? Arrays.stream(postDTO.getImageUrls().split(",")).toList()
+                    : Collections.emptyList();
+            postAndHairTagDTO.setImageUrls(imageUrls);
 
-            List<String> lookTags = null;
-            if (postDTO.getLookTags() != null) {
-                lookTags = Arrays.stream(postDTO.getLookTags().split(",")).toList();
-                postAndHairTagDTO.setLookTags(lookTags);
-            }
+            List<String> lookTags = postDTO.getLookTags() != null
+                    ? Arrays.stream(postDTO.getLookTags().split(",")).toList()
+                    : Collections.emptyList();
+            postAndHairTagDTO.setLookTags(lookTags);
         }
 
         if (hairTagDTO != null) {
