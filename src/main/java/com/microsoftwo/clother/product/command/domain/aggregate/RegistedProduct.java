@@ -24,8 +24,10 @@ public class RegistedProduct {
     @Column(name = "brand_name")
     private String brandName;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "product_link")
     private String productLink;
 
 
