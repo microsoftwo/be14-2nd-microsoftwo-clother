@@ -2,12 +2,12 @@ package com.microsoftwo.clother.email.service;
 
 import com.microsoftwo.clother.email.config.RedisUtil;
 import com.microsoftwo.clother.user.service.UserService;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;

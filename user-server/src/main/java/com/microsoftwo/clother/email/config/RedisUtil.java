@@ -34,7 +34,7 @@ public class RedisUtil {
     }
 
     // 데이터 삭제
-    public void deleteData(String key) { // 지정된 키(key)에 해당하는 데이터를 Redis에서 삭제하는 메서드
+    public void deleteData(String key) {
         redisTemplate.delete(key);
     }
 

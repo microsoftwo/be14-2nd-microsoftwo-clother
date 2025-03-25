@@ -1,6 +1,7 @@
 package com.microsoftwo.clother.user.service;
 
 import com.microsoftwo.clother.email.config.RedisUtil;
+import com.microsoftwo.clother.email.dto.EmailCheckDTO;
 import com.microsoftwo.clother.email.exception.CustomException;
 import com.microsoftwo.clother.security.vo.LoginResponseVO;
 import com.microsoftwo.clother.user.aggregate.Role;
@@ -11,6 +12,7 @@ import jakarta.validation.Valid;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -82,6 +84,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isEmailRegistered(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public ResponseEntity<String> verifyEmailAuthentication(EmailCheckDTO emailCheckDto) {
+        // 이메일 중복 확인
+        if (isEmailRegistered(emailCheckDto.getEmail())) {
+            return ResponseEntity.badRequest().body("이미 가입된 이메일입니다.");
+        }
+
+        // 인증번호 직접 검증
+        String storedAuthNum = redisUtil.getData(emailCheckDto.getEmail());
+
+        if (storedAuthNum == null || !storedAuthNum.equals(emailCheckDto.getAuthNum())) {
+            return ResponseEntity.badRequest().body("인증 번호가 일치하지 않습니다.");
+        }
+
+        return ResponseEntity.ok("인증 성공");
     }
 
     // login 할때 자동 호출될 메소드

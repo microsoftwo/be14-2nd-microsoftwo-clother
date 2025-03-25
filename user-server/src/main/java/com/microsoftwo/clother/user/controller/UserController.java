@@ -8,9 +8,6 @@ import com.microsoftwo.clother.user.vo.SignupRequestVO;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,16 +35,5 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<TokenDTO> login(@RequestBody LoginRequestVO loginRequestVO) {
         return ResponseEntity.ok(authService.login(loginRequestVO));
-    }
-
-    // 테스트
-    // JWT를 포함한 요청에서 사용자 정보 조회
-    @GetMapping("/me")
-    public ResponseEntity<String> getUserInfo(@AuthenticationPrincipal UserDetails userDetails) {
-        if (userDetails == null) {
-            return ResponseEntity.status(401).body("토큰이 유효하지 않습니다.");
-        }
-
-        return ResponseEntity.ok("로그인한 유저의 이메일 : " + userDetails.getUsername());
     }
 }

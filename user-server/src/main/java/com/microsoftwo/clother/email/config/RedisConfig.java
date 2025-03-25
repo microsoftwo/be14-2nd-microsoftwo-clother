@@ -8,7 +8,7 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-/* memo : Redis 설정 클래스 */
+// Redis 설정 클래스
 @Configuration
 public class RedisConfig {
     // 명시적으로 값 주입 (사용하지 않아도 boot 가 자동으로 적용해줌)
