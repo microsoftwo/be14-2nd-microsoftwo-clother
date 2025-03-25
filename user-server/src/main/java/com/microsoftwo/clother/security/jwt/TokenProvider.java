@@ -36,9 +36,9 @@ public class TokenProvider {
     private final Key key;
 
     public TokenProvider(@Value("${spring.jwt.secret}") String secretKey) {
-        log.info("✅ Injected JWT Secret Key: {}", secretKey);
+        log.info("Injected JWT Secret Key: {}", secretKey);
         if (secretKey == null || secretKey.isEmpty()) {
-            throw new IllegalStateException("❌ JWT Secret Key is NOT set!");
+            throw new IllegalStateException("JWT Secret Key is NOT set!");
         }
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
