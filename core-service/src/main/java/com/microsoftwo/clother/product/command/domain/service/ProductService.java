@@ -33,7 +33,6 @@ public class ProductService {
         productEntity.setId(0); // 새로운 상품으로 인식되도록 id를 0으로 초기화
         productEntity.setUserId(newProduct.getUserId());
         productRepository.save(productEntity);
-        log.info("New product registered: {}", productEntity);
     }
 
     // User 서버에서 사용자 정보를 받아오기

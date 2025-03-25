@@ -24,6 +24,4 @@ public class ProductRegistController {
         productService.registProduct(newProduct);
         return "상품 등록 신청이 완료되었습니다";
     }
-
-
 }
