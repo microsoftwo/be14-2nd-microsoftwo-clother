@@ -2,6 +2,7 @@ package com.microsoftwo.clother.post.query.controller;
 
 import com.microsoftwo.clother.post.query.dto.PostAndHairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostForFeedDTO;
+import com.microsoftwo.clother.post.query.dto.ResponsePostDetailDTO;
 import com.microsoftwo.clother.post.query.service.QueryPostService;
 import com.microsoftwo.clother.post.query.vo.ResponsePostVO;
 import java.util.List;
@@ -28,39 +29,10 @@ public class QueryPostController {
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<ResponsePostVO> getPostById(@PathVariable int postId) {
-        PostAndHairTagDTO postAndHairTagDTO = queryPostService.getPostById(postId);
+    public ResponseEntity<ResponsePostDetailDTO> getPostById(@PathVariable int postId) {
+        ResponsePostDetailDTO responsePostDetailDTO = queryPostService.getPostById(postId);
 
-        if (postAndHairTagDTO == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-
-        ResponsePostVO returnValue = new ResponsePostVO();
-
-        // DTO VO로 매핑
-        returnValue.setId(postAndHairTagDTO.getId());
-        returnValue.setUserId(postAndHairTagDTO.getUserId());
-        returnValue.setContent(postAndHairTagDTO.getContent());
-        returnValue.setCreatedAt(postAndHairTagDTO.getCreatedAt());
-        returnValue.setLikeCount(postAndHairTagDTO.getLikeCount());
-        returnValue.setCommentCount(postAndHairTagDTO.getCommentCount());
-        returnValue.setImageUrls(postAndHairTagDTO.getImageUrls());
-        returnValue.setLookTags(postAndHairTagDTO.getLookTags());
-        returnValue.setHairTagId(postAndHairTagDTO.getHairTagId());
-        returnValue.setHairTagLink(postAndHairTagDTO.getHairTagLink());
-        returnValue.setHairTagName(postAndHairTagDTO.getHairTagName());
-        returnValue.setHairTagCategoryId(postAndHairTagDTO.getHairTagCategoryId());
-        returnValue.setHairTagPositionX(postAndHairTagDTO.getHairTagPositionX());
-        returnValue.setHairTagPositionY(postAndHairTagDTO.getHairTagPositionY());
-
-
-
-        /* todo. 추가 요청된 데이터 ResponsePostVO에 매핑 */
-
-
-
-
-        return ResponseEntity.ok(returnValue);
+        return ResponseEntity.ok(responsePostDetailDTO);
     }
 
     @GetMapping("/feed")

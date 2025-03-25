@@ -2,7 +2,9 @@ package com.microsoftwo.clother.product.query.service;
 
 import com.microsoftwo.clother.product.query.dto.CategoryDTO;
 import com.microsoftwo.clother.product.query.dto.CategoryProductDTO;
+import com.microsoftwo.clother.product.query.dto.ProductDTO;
 import com.microsoftwo.clother.product.query.dto.ProductDetailDTO;
+import com.microsoftwo.clother.product.query.dto.ProductForPostDTO;
 import com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO;
 import com.microsoftwo.clother.product.query.repository.ProductMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -46,5 +48,10 @@ public class ProductServiceImpl implements ProductService {
     public ProductDetailDTO getProductDetailByProductId(int productId) {
         ProductDetailDTO productDetailDTO = productMapper.selectProductDetailByProductId(productId);
         return productDetailDTO;
+    }
+
+    @Override
+    public List<ProductForPostDTO> getProductsByIds(List<Integer> productIds) {
+        return productMapper.selectProductsByIds(productIds);
     }
 }
