@@ -33,12 +33,7 @@ public class EmailServiceImpl implements EmailService {
     // 임의의 6자리 양수를 반환 (이메일 인증 코드)
     public void makeRandomNumber() {
         Random r = new Random();
-        String randomNumber = "";
-        for (int i = 0; i < 6; i++) {
-            randomNumber += Integer.toString(r.nextInt(10));
-        }
-
-        authNumber = Integer.parseInt(randomNumber);
+        authNumber = r.nextInt(900000) + 100000; // 100000 ~ 999999
     }
 
     @Override
