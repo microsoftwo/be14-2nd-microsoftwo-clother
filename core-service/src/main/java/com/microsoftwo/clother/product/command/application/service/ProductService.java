@@ -1,4 +1,4 @@
-package com.microsoftwo.clother.product.command.domain.service;
+package com.microsoftwo.clother.product.command.application.service;
 
 import com.microsoftwo.clother.product.command.application.dto.ProductRegistDTO;
 import com.microsoftwo.clother.product.command.domain.aggregate.ProductRegist;

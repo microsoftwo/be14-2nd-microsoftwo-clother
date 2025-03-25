@@ -1,9 +1,8 @@
 package com.microsoftwo.clother.product.command.application.controller;
 
 import com.microsoftwo.clother.product.command.application.dto.ProductRegistDTO;
-import com.microsoftwo.clother.product.command.domain.service.ProductService;
+import com.microsoftwo.clother.product.command.application.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
