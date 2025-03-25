@@ -46,7 +46,7 @@ public class EmailServiceImpl implements EmailService {
         makeRandomNumber();
         String setFrom = "\"Clother Admin\" <yushiii002@gmail.com>";
         String toMail = email;
-        String title = "회원 가입 인증 이메일 입니다.";
+        String title = "Clother 회원 가입 인증 이메일 입니다.";
 
         try {
             // HTML 템플릿 로드
