@@ -13,23 +13,35 @@
     </resultMap>
 
     <select id="findLikedItemsByUserId" resultType="com.microsoftwo.clother.likes.query.dto.LikeDTO">
-        SELECT l.id, 'post' AS type, p.content, p.created_at
-        FROM likes l
-                 JOIN post p ON l.post_id = p.id
-        WHERE l.user_id = #{userId}
+        SELECT
+        L.ID
+        , 'post' AS TYPE
+        , P.CONTENT
+        , P.CREATED_AT
+        FROM LIKES L
+        JOIN POST P ON L.POST_ID = P.ID
+        WHERE L.USER_ID = #{userId}
 
         UNION ALL
 
-        SELECT l.id, 'comment' AS type, c.content, c.created_at
-        FROM likes l
-                 JOIN comment c ON l.comment_id = c.id
-        WHERE l.user_id = #{userId}
+        SELECT
+        L.ID
+        , 'comment' AS TYPE
+        , C.CONTENT
+        , C.CREATED_AT
+        FROM LIKES L
+        JOIN COMMENT C ON L.COMMENT_ID = C.ID
+        WHERE L.USER_ID = #{userId}
 
         UNION ALL
 
-        SELECT l.id, 'board' AS type, b.title, b.created_at
-        FROM likes l
-                 JOIN advice_board b ON l.board_id = b.id
-        WHERE l.user_id = #{userId}
+        SELECT
+        L.ID
+        , 'board' AS TYPE
+        , B.TITLE AS CONTENT
+        , B.CREATED_AT
+        FROM LIKES L
+        JOIN ADVICE_BOARD B ON L.BOARD_ID = B.ID
+        WHERE L.USER_ID = #{userId}
     </select>
 </mapper>
