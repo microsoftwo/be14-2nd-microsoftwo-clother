@@ -31,6 +31,26 @@ public class BoardCommandController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedBoard);
     }
 
+
+    // 게시글 수정
+    @PutMapping("/{Postid}")
+    public ResponseEntity<BoardRequestDTO> updateBoard(
+            @PathVariable int Postid,
+            @RequestBody BoardRequestDTO request) {
+
+        BoardRequestDTO updated = boardCommandService.updateBoard(Postid, request);
+        return ResponseEntity.ok(updated);
+    }
+
+
+    // 게시글 삭제
+    @DeleteMapping("/{boardId}")
+    public ResponseEntity<String> deleteBoard(@PathVariable int boardId) {
+        boardCommandService.deleteBoard(boardId);
+//        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("게시글이 삭제되었습니다.");
+    }
+
 }
 
 

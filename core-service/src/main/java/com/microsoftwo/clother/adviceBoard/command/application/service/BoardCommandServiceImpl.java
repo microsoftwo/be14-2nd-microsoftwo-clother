@@ -70,6 +70,45 @@ public class BoardCommandServiceImpl implements BoardCommandService {
         return BoardRequestDTO .fromEntity(savedEntity);
     }
 
+    // 게시물 수정
+    @Override
+    @Transactional
+    public BoardRequestDTO updateBoard(int boardId, BoardRequestDTO request) {
+        BoardEntity board = boardCommandRepository.findById(boardId)
+                .orElseThrow(() -> new RuntimeException("게시글이 존재하지 않습니다."));
+
+        // 논리 삭제된 게시글은 수정 불가
+        if (Boolean.TRUE.equals(board.getIsDeleted())) {
+            throw new RuntimeException("삭제된 게시글은 수정할 수 없습니다.");
+        }
+
+        if (request.getTitle() != null) {
+            board.setTitle(request.getTitle());
+        }
+
+        if (request.getContent() != null) {
+            board.setContent(request.getContent());
+        }
+
+        BoardEntity updatedEntity = boardCommandRepository.save(board);
+        return BoardRequestDTO.fromEntity(updatedEntity);
+    }
+
+
+
+    // 게시물 삭제
+    @Override
+    @Transactional
+    public void deleteBoard(int boardId) {
+        BoardEntity board = boardCommandRepository.findById(boardId)
+                .orElseThrow(() -> new RuntimeException("게시글이 존재하지 않습니다."));
+
+        board.setIsDeleted(true);  // 논리적 삭제 처리
+        boardCommandRepository.save(board);
+    }
+
+
+
 
 
 }
