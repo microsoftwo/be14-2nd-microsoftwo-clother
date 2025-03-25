@@ -28,7 +28,7 @@ public class ProductRegistController {
     }
 
     /* 설명. 등록 신청한 상품 수정하기 (update) */
-    @PutMapping("/users/{userId}/registproduct/{productId}")
+    @PatchMapping("/users/{userId}/registproduct/{productId}")
     public String modifyProduct(
             @PathVariable int productId,
             @PathVariable int userId,
