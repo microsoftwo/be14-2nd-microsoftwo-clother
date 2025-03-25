@@ -9,4 +9,8 @@ import java.util.List;
 @Mapper
 public interface LikeMapper {
     List<LikeDTO> findLikedItemsByUserId(@Param("userId") int userId);
+
+    int checkUserLiked(@Param("userId") int userId,
+                       @Param("type") String type,
+                       @Param("targetId") int targetId);
 }

@@ -20,4 +20,9 @@ public class LikeServiceImpl implements LikeService {
     public List<LikeDTO> getUserLikes(int userId) {
         return likeMapper.findLikedItemsByUserId(userId);
     }
+
+    @Override
+    public boolean hasUserLiked(int userId, String type, int targetId) {
+        return likeMapper.checkUserLiked(userId, type, targetId) > 0;
+    }
 }

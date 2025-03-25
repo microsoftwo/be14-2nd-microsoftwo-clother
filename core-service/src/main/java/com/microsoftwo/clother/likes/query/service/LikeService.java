@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface LikeService {
     List<LikeDTO> getUserLikes(int userId);
+
+    boolean hasUserLiked(int userId, String type, int targetId);
 }

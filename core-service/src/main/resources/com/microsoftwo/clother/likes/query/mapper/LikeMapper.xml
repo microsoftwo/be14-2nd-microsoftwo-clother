@@ -44,4 +44,17 @@
         JOIN ADVICE_BOARD B ON L.BOARD_ID = B.ID
         WHERE L.USER_ID = #{userId}
     </select>
+
+    <select id="checkUserLiked" resultType="int">
+        SELECT
+               COUNT(*)
+          FROM LIKES
+         WHERE USER_ID = #{userId}
+           AND (
+                    (#{type} = 'post'    AND POST_ID    = #{targetId})
+                 OR (#{type} = 'comment' AND COMMENT_ID = #{targetId})
+                 OR (#{type} = 'board'   AND BOARD_ID   = #{targetId})
+               )
+    </select>
+
 </mapper>
