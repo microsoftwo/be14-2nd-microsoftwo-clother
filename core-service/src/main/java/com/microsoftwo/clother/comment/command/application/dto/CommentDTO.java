@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 public class CommentDTO {
     private int id;
     private int userId;
-    private int postId;
-    private int boardId;
-    private int parentId;
+    private Integer postId;
+    private Integer boardId;
+    private Integer parentId;
     private String content;
     private LocalDateTime createdAt;
     private Boolean isDeleted = false;
