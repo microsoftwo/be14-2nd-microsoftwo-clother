@@ -18,7 +18,7 @@ public class ProductRegistController {
     }
 
     /* 설명. 상품 등록하기 (insert) */
-    @PostMapping("/users/{userId}/apply-product")
+    @PostMapping("/users/{userId}/applications")
     public String applyForProductRegistration(
             @PathVariable("userId") int userId,
             @RequestBody ProductRegistDTO newProduct) {
@@ -27,15 +27,23 @@ public class ProductRegistController {
         return "상품 등록 신청이 완료되었습니다";
     }
 
-    /* 설명. 상품 수정하기 (update) */
-    @PutMapping("/users/{userId}/registproduct/{productId}")
+    /* 설명. 등록 신청한 상품 수정하기 (update) */
+    @PatchMapping("/users/{userId}/applications/{productId}")
     public String modifyProduct(
             @PathVariable int productId,
             @PathVariable int userId,
             @RequestBody ProductRegistDTO modifiedProduct) {
         modifiedProduct.setUserId(userId);
         productService.updateProduct(productId, modifiedProduct);
-        return "상품 수정이 완료되었습니다";
+        return productId + "번의 상품 등록 내역 수정이 완료되었습니다";
+    }
+
+    /* 설명. 등록 신청한 상품 삭제하기 (delete) */
+    @DeleteMapping("/users/{userId}/applications/{productId}")
+    public String deleteProduct(
+            @PathVariable int productId) {
+        productService.deleteProduct(productId);
+        return productId + "번의 상품 등록 내역 삭제가 완료되었습니다";
     }
 
 }
