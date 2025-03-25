@@ -3,6 +3,7 @@ package com.microsoftwo.clother.product.query.controller;
 import com.microsoftwo.clother.product.query.dto.CategoryDTO;
 import com.microsoftwo.clother.product.query.dto.CategoryProductDTO;
 import com.microsoftwo.clother.product.query.dto.ProductDetailDTO;
+import com.microsoftwo.clother.product.query.dto.ProductForPostDTO;
 import com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO;
 import com.microsoftwo.clother.product.query.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -57,6 +58,14 @@ public class ProductController {
             @PathVariable("productId") int productId) {
         ProductDetailDTO productDetail = productService.getProductDetailByProductId(productId);
         return ResponseEntity.ok(productDetail);
+    }
+
+    // post domain에서 요청
+    @GetMapping("/products")
+    public ResponseEntity<List<ProductForPostDTO>> getProducts(@RequestParam List<Integer> productIds) {
+        List<ProductForPostDTO> products = productService.getProductsByIds(productIds);
+
+        return ResponseEntity.ok(products);
     }
 
 }

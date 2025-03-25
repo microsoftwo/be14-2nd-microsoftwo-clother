@@ -91,4 +91,33 @@
         </where>
         ORDER BY P.ID ASC;
     </select>
+
+    <resultMap id="selectProductsByIdsResultMap" type="com.microsoftwo.clother.product.query.dto.ProductForPostDTO">
+        <id property="id" column="id"/>
+        <result property="brandName" column="brand_name"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="link" column="link"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="categoryName" column="category_name"/>
+    </resultMap>
+
+    <select id="selectProductsByIds" resultMap="selectProductsByIdsResultMap">
+        SELECT
+               A.ID
+             , A.BRAND_NAME
+             , A.NAME
+             , A.PRICE
+             , A.LINK
+             , A.IMAGE_URL
+             , A.CATEGORY_ID
+             , B.NAME AS CATEGORY_NAME
+          FROM PRODUCT A
+          JOIN CATEGORY B ON A.CATEGORY_ID = B.ID
+         WHERE A.ID IN
+        <foreach item="id" collection="productIds" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
 </mapper>
