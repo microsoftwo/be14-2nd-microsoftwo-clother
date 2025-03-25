@@ -77,7 +77,7 @@ public class BoardCommandServiceImpl implements BoardCommandService {
         BoardEntity board = boardCommandRepository.findById(boardId)
                 .orElseThrow(() -> new RuntimeException("게시글이 존재하지 않습니다."));
 
-        // 논리 삭제된 게시글은 수정 불가
+        // 논리 삭제된 게시물은 수정 불가
         if (Boolean.TRUE.equals(board.getIsDeleted())) {
             throw new RuntimeException("삭제된 게시글은 수정할 수 없습니다.");
         }
@@ -101,7 +101,7 @@ public class BoardCommandServiceImpl implements BoardCommandService {
     @Transactional
     public void deleteBoard(int boardId) {
         BoardEntity board = boardCommandRepository.findById(boardId)
-                .orElseThrow(() -> new RuntimeException("게시글이 존재하지 않습니다."));
+                .orElseThrow(() -> new RuntimeException("게시물이 존재하지 않습니다."));
 
         board.setIsDeleted(true);  // 논리적 삭제 처리
         boardCommandRepository.save(board);

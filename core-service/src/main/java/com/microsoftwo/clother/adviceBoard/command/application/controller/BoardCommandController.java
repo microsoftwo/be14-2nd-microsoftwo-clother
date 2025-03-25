@@ -18,7 +18,7 @@ public class BoardCommandController {
         this.boardCommandService = boardCommandService;
     }
 
-    // 게시글 등록
+    // 게시물 등록
     @PostMapping("/board")
     // ResponseEntity -- Spring에서 HTTP 응답을 생성하는 객체
     public ResponseEntity<BoardRequestDTO> createBoard(@RequestBody BoardRequestDTO request ) {
@@ -32,7 +32,7 @@ public class BoardCommandController {
     }
 
 
-    // 게시글 수정
+    // 게시물 수정
     @PatchMapping("/{Postid}")
     public ResponseEntity<BoardRequestDTO> updateBoard(
             @PathVariable int Postid,
@@ -43,12 +43,12 @@ public class BoardCommandController {
     }
 
 
-    // 게시글 삭제
+    // 게시물 삭제
     @DeleteMapping("/{boardId}")
     public ResponseEntity<String> deleteBoard(@PathVariable int boardId) {
         boardCommandService.deleteBoard(boardId);
 //        return ResponseEntity.noContent().build();
-        return ResponseEntity.ok("게시글이 삭제되었습니다.");
+        return ResponseEntity.ok("게시물이 삭제되었습니다.");
     }
 
 }
