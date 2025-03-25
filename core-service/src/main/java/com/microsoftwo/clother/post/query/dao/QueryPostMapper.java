@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface PostMapper {
+public interface QueryPostMapper {
 
     PostDTO getPostById(int postId);
     HairTagDTO getHairTagByPostId(int postId);

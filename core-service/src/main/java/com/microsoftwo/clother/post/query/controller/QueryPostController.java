@@ -2,7 +2,7 @@ package com.microsoftwo.clother.post.query.controller;
 
 import com.microsoftwo.clother.post.query.dto.PostAndHairTagDTO;
 import com.microsoftwo.clother.post.query.dto.PostForFeedDTO;
-import com.microsoftwo.clother.post.query.service.PostService;
+import com.microsoftwo.clother.post.query.service.QueryPostService;
 import com.microsoftwo.clother.post.query.vo.ResponsePostVO;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -18,18 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/post")
 @Slf4j
-public class PostController {
+public class QueryPostController {
 
-    private final PostService postService;
+    private final QueryPostService queryPostService;
 
     @Autowired
-    public PostController(PostService postService) {
-        this.postService = postService;
+    public QueryPostController(QueryPostService queryPostService) {
+        this.queryPostService = queryPostService;
     }
 
     @GetMapping("/{postId}")
     public ResponseEntity<ResponsePostVO> getPostById(@PathVariable int postId) {
-        PostAndHairTagDTO postAndHairTagDTO = postService.getPostById(postId);
+        PostAndHairTagDTO postAndHairTagDTO = queryPostService.getPostById(postId);
 
         if (postAndHairTagDTO == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -67,7 +67,7 @@ public class PostController {
     public ResponseEntity<List<PostForFeedDTO>> getPostFeedOrderByDate(
             @RequestParam(required = false) Integer lastPostId) {
 
-        List<PostForFeedDTO> posts = postService.getPostFeedOrderByDate(lastPostId);
+        List<PostForFeedDTO> posts = queryPostService.getPostFeedOrderByDate(lastPostId);
         return ResponseEntity.ok(posts);
     }
 }
