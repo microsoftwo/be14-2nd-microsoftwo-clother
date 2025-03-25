@@ -61,7 +61,7 @@ public class ProductController {
     }
 
     // post domain에서 요청
-    @GetMapping("/products/")
+    @GetMapping("/products")
     public ResponseEntity<List<ProductForPostDTO>> getProducts(@RequestParam List<Integer> productIds) {
         List<ProductForPostDTO> products = productService.getProductsByIds(productIds);
 
