@@ -22,12 +22,12 @@ public class Comment {
     private int userId; // 회원 ID
 
 
-    private int postId; // 포스트 ID (NULL 가능)
+    private Integer postId; // 포스트 ID (NULL 가능)
 
 
-    private int boardId; // 게시판 ID (NULL 가능)
+    private Integer boardId; // 게시판 ID (NULL 가능)
 
-    private int parentId; // 부모 댓글 ID (NULL 가능)
+    private Integer parentId; // 부모 댓글 ID (NULL 가능)
 
     @Column(nullable = false, length = 255)
     private String content; // 댓글 내용
