@@ -19,7 +19,7 @@ public class BoardCommandController {
     }
 
     // 게시글 등록
-    @PostMapping("/create")
+    @PostMapping("/board")
     // ResponseEntity -- Spring에서 HTTP 응답을 생성하는 객체
     public ResponseEntity<BoardRequestDTO> createBoard(@RequestBody BoardRequestDTO request ) {
 
