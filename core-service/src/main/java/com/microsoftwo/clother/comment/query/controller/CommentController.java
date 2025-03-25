@@ -23,8 +23,7 @@ public class CommentController {
     }
 
     @GetMapping("/{type}/{id}")
-    public ResponseEntity<List<CommentDTO>> getComments(@PathVariable("type") String type,
-                                                        @PathVariable("id") int id) {
+    public ResponseEntity<List<CommentDTO>> getComments(@PathVariable String type, @PathVariable int id) {
         List<CommentDTO> comment = commentService.getComments(type,id);
         return ResponseEntity.ok(comment);
     }

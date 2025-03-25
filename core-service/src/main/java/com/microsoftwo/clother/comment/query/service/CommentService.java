@@ -6,6 +6,5 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface CommentService {
-    List<CommentDTO> getComments(@Param("type") String type,
-                                 @Param("id") int id);
+    List<CommentDTO> getComments(String type, int id);
 }
