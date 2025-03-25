@@ -36,29 +36,26 @@ public class AuthorizationHeaderFilter
 
     @Override
     public GatewayFilter apply(Config config) {
-        // ServerWebExchange 파라미터는 필터가 동작하는 동안 현재 요청 및 응답에 대한 정보를 제공한다.
-        // 비동기 서버 Netty 에서는 동기 서버(ex:tomcat)와 다르게 request/response 객체를 선언할 때 Server~ 를 사용한다.
-        GatewayFilter filter = (exchange, chain) -> {
 
+        GatewayFilter filter = (exchange, chain) -> {
             // 현재 요청 경로 확인
             String path = exchange.getRequest().getPath().toString();
 
-            // auth나 mails 경로면 인증 건너뛰기
-            if (path.contains("/auth/**") || path.contains("/mails/**")) {
-                // Authorization 헤더가 없거나 있어도 무관
-                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                    return chain.filter(exchange);
-                }
-
-//                // Authorization 헤더가 있다면 토큰 유효성 검사
-//                String authorizationHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
-//                String jwt = authorizationHeader.replace("Bearer", "").trim();
-//
-//                // 토큰이 유효하지 않아도 통과
-//                if (!isJwtValid(jwt)) {
-//                    return chain.filter(exchange);
-//                }
+            // 경로 패턴 매칭
+            if (path.startsWith("/auth") || path.startsWith("/mails")) {
+                // Authorization 헤더가 있든 없든 그대로 통과
+                return chain.filter(exchange);
             }
+
+//            log.info("Request path: {}", path);
+//            if (path.startsWith("/auth/") || path.startsWith("/mails/")) {
+//                log.info("Bypassing authentication for path: {}", path);
+//            }
+//
+//            log.info("Request URI: {}", exchange.getRequest().getURI());
+//            log.info("Request Headers: {}", exchange.getRequest().getHeaders());
+//            log.info("Request Method: {}", exchange.getRequest().getMethod());
+            System.out.println(path);
 
             ServerHttpRequest request = exchange.getRequest();
 
@@ -70,7 +67,7 @@ public class AuthorizationHeaderFilter
 
             // "Authorization" 헤더에서 JWT 토큰을 추출.
             String authorizationHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
-            String jwt = authorizationHeader.replace("Bearer", "");
+            String jwt = authorizationHeader.replace("Bearer", "").trim();
 
             // 추출한 JWT 토큰의 유효성을 확인.
             if (!isJwtValid(jwt)) {
@@ -82,8 +79,8 @@ public class AuthorizationHeaderFilter
         };
 
         return filter;
-    }
 
+    }
 
     private boolean isJwtValid(String jwt) {
         // 반환값으로 사용할 boolean 변수를 초기값 true로 설정
@@ -113,8 +110,6 @@ public class AuthorizationHeaderFilter
         // 최종적으로 JWT의 유효성 여부를 나타내는 반환값을 반환
         return returnValue;
     }
-
-
 
     // Mono, Flux -> Spring WebFlux (기존의 SpringMVC 방식이 아니기때문에 Servlet 을 사용하지 않음)
     private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus httpStatus) {
