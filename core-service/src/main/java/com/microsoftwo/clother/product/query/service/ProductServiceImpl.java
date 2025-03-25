@@ -26,7 +26,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<CategoryDTO> getSubCategories(String categoryName) {
         List<CategoryDTO> categoryDTOList = productMapper.selectSubCategories(categoryName);
-//        log.info("subcategories: {}", categoryDTOList);
         return categoryDTOList;
     }
 
