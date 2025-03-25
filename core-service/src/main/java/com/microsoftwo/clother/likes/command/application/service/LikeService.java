@@ -20,7 +20,15 @@ public class LikeService {
         return LikeDTO.fromEntity(savedLike);
     }
 
+    @Transactional
+    public void deleteLike(int id) {
+        if (likeRepository.existsById(id)) {
+            likeRepository.deleteById(id); // JPA를 활용한 ID로 삭제
+        } else {
+            throw new IllegalArgumentException("좋아요 ID를 찾을 수 없습니다: " + id);
+        }
 
+    }
 }
 
 
