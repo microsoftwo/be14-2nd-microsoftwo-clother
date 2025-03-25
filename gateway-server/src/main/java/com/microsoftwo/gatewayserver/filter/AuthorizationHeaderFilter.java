@@ -39,6 +39,27 @@ public class AuthorizationHeaderFilter
         // ServerWebExchange 파라미터는 필터가 동작하는 동안 현재 요청 및 응답에 대한 정보를 제공한다.
         // 비동기 서버 Netty 에서는 동기 서버(ex:tomcat)와 다르게 request/response 객체를 선언할 때 Server~ 를 사용한다.
         GatewayFilter filter = (exchange, chain) -> {
+
+            // 현재 요청 경로 확인
+            String path = exchange.getRequest().getPath().toString();
+
+            // auth나 mails 경로면 인증 건너뛰기
+            if (path.contains("/auth/**") || path.contains("/mails/**")) {
+                // Authorization 헤더가 없거나 있어도 무관
+                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+                    return chain.filter(exchange);
+                }
+
+//                // Authorization 헤더가 있다면 토큰 유효성 검사
+//                String authorizationHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+//                String jwt = authorizationHeader.replace("Bearer", "").trim();
+//
+//                // 토큰이 유효하지 않아도 통과
+//                if (!isJwtValid(jwt)) {
+//                    return chain.filter(exchange);
+//                }
+            }
+
             ServerHttpRequest request = exchange.getRequest();
 
             // 요청 헤더에 "Authorization" 헤더가 포함되어 있는지 확인한다.
