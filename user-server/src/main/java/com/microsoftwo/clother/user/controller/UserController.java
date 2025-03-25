@@ -1,6 +1,5 @@
 package com.microsoftwo.clother.user.controller;
 
-import com.microsoftwo.clother.email.exception.CustomException;
 import com.microsoftwo.clother.security.dto.TokenDTO;
 import com.microsoftwo.clother.security.service.AuthService;
 import com.microsoftwo.clother.security.vo.LoginRequestVO;
@@ -32,16 +31,7 @@ public class UserController {
     // 기능 : 회원가입
     @PostMapping("/signup")
     public ResponseEntity<String> registerUser(@RequestBody @Valid SignupRequestVO signupRequestVO) {
-        // BindingResult 제거: GlobalExceptionHandler가 유효성 검사 오류를 처리
-
-        // 닉네임 중복 검사
-        if (userService.isNicknameExists(signupRequestVO.getNickname())) {
-            throw new CustomException("이미 존재하는 닉네임입니다.");
-        }
-
-        // 회원가입 진행
-        String result = userService.registerUser(signupRequestVO);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(userService.registerUser(signupRequestVO));
     }
 
     // 기능 : 로그인

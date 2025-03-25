@@ -71,7 +71,7 @@ public class SecurityConfig {
                         .frameOptions(frameOptions -> frameOptions.sameOrigin()))
 
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers("/auth/**", "/mail/**").permitAll()
+                        .requestMatchers("/auth/**", "/mails/**").permitAll()
                         .anyRequest().authenticated())
 
                 // 빈으로 등록한 JwtFilter 를 추가
