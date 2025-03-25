@@ -59,7 +59,7 @@ public class BoardCommandServiceImpl implements BoardCommandService {
                 imageRepository.save(imageEntity);
             }
         } else {
-            log.warn("🚨 저장할 이미지가 없습니다.");
+            log.warn("저장할 이미지가 없습니다.");
         }
 
         // 게시글 엔티티를 다시 저장 (연관관계 반영)
@@ -69,6 +69,46 @@ public class BoardCommandServiceImpl implements BoardCommandService {
         // 트랜잭션 종료 시점(commit)
         return BoardRequestDTO .fromEntity(savedEntity);
     }
+
+    // 게시물 수정
+    @Override
+    @Transactional
+    public BoardRequestDTO updateBoard(int boardId, BoardRequestDTO request) {
+        BoardEntity board = boardCommandRepository.findById(boardId)
+                .orElseThrow(() -> new RuntimeException("게시글이 존재하지 않습니다."));
+
+        // 논리 삭제된 게시물은 수정 불가
+        if (Boolean.TRUE.equals(board.getIsDeleted())) {
+            throw new RuntimeException("삭제된 게시글은 수정할 수 없습니다.");
+        }
+
+
+        if (request.getTitle() != null) {
+            board.setTitle(request.getTitle());
+        }
+
+        if (request.getContent() != null) {
+            board.setContent(request.getContent());
+        }
+
+        BoardEntity updatedEntity = boardCommandRepository.save(board);
+        return BoardRequestDTO.fromEntity(updatedEntity);
+    }
+
+
+
+    // 게시물 삭제
+    @Override
+    @Transactional
+    public void deleteBoard(int boardId) {
+        BoardEntity board = boardCommandRepository.findById(boardId)
+                .orElseThrow(() -> new RuntimeException("게시물이 존재하지 않습니다."));
+
+        board.setIsDeleted(true);  // 논리적 삭제 처리
+        boardCommandRepository.save(board);
+    }
+
+
 
 
 
