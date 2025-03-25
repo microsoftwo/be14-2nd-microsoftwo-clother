@@ -18,12 +18,12 @@ public class ProductRegistController {
     }
 
     /* 설명. 상품 등록하기 (insert) */
-    @PostMapping("/users/{userId}/registproduct")
-    public String registProduct(
+    @PostMapping("/users/{userId}/apply-product")
+    public String applyForProductRegistration(
             @PathVariable("userId") int userId,
             @RequestBody ProductRegistDTO newProduct) {
         newProduct.setUserId(userId); // userId 는 로그인을 가정하고 Id 값만 받아옴
-        productService.registProduct(newProduct);
+        productService.applyForProductRegistration(newProduct);
         return "상품 등록 신청이 완료되었습니다";
     }
 
