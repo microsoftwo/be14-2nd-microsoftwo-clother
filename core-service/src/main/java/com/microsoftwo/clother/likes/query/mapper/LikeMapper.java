@@ -1,0 +1,12 @@
+package com.microsoftwo.clother.likes.query.mapper;
+
+import com.microsoftwo.clother.likes.query.dto.LikeDTO;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+@Mapper
+public interface LikeMapper {
+    List<LikeDTO> findLikedItemsByUserId(@Param("userId") int userId);
+}
