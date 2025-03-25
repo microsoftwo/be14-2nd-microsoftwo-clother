@@ -33,7 +33,7 @@ public class BoardCommandController {
 
 
     // 게시글 수정
-    @PutMapping("/{Postid}")
+    @PatchMapping("/{Postid}")
     public ResponseEntity<BoardRequestDTO> updateBoard(
             @PathVariable int Postid,
             @RequestBody BoardRequestDTO request) {
