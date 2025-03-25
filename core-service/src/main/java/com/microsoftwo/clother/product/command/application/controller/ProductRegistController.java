@@ -18,17 +18,17 @@ public class ProductRegistController {
     }
 
     /* 설명. 상품 등록하기 (insert) */
-    @PostMapping("/users/{userId}/registproduct")
-    public String registProduct(
+    @PostMapping("/users/{userId}/applications")
+    public String applyForProductRegistration(
             @PathVariable("userId") int userId,
             @RequestBody ProductRegistDTO newProduct) {
         newProduct.setUserId(userId); // userId 는 로그인을 가정하고 Id 값만 받아옴
-        productService.registProduct(newProduct);
+        productService.applyForProductRegistration(newProduct);
         return "상품 등록 신청이 완료되었습니다";
     }
 
     /* 설명. 등록 신청한 상품 수정하기 (update) */
-    @PatchMapping("/users/{userId}/registproduct/{productId}")
+    @PatchMapping("/users/{userId}/applications/{productId}")
     public String modifyProduct(
             @PathVariable int productId,
             @PathVariable int userId,
@@ -39,10 +39,11 @@ public class ProductRegistController {
     }
 
     /* 설명. 등록 신청한 상품 삭제하기 (delete) */
-    @DeleteMapping("/users/{userId}/registproduct/{productId}")
+    @DeleteMapping("/users/{userId}/applications/{productId}")
     public String deleteProduct(
             @PathVariable int productId) {
         productService.deleteProduct(productId);
         return productId + "번의 상품 등록 내역 삭제가 완료되었습니다";
     }
+
 }

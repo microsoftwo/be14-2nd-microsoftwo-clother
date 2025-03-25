@@ -24,7 +24,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void registProduct(ProductRegistDTO newProduct) {
+    public void applyForProductRegistration(ProductRegistDTO newProduct) {
 
         // DTO → Entity 매핑
         ProductRegist productEntity = modelMapper.map(newProduct, ProductRegist.class);

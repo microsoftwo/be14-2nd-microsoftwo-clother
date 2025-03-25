@@ -1,0 +1,96 @@
+package com.microsoftwo.clother.post.query.service;
+
+import com.microsoftwo.clother.post.query.dao.QueryPostMapper;
+import com.microsoftwo.clother.post.query.dto.HairTagDTO;
+import com.microsoftwo.clother.post.query.dto.PostAndHairTagDTO;
+import com.microsoftwo.clother.post.query.dto.PostDTO;
+import com.microsoftwo.clother.post.query.dto.PostForFeedDTO;
+import com.microsoftwo.clother.post.query.dto.ProductTagDTO;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@Slf4j
+public class QueryPostServiceImpl implements QueryPostService {
+
+    private final QueryPostMapper queryPostMapper;
+
+    @Autowired
+    public QueryPostServiceImpl(QueryPostMapper queryPostMapper) {
+        this.queryPostMapper = queryPostMapper;
+    }
+
+    @Transactional
+    @Override
+    public PostAndHairTagDTO getPostById(int postId) {
+        PostDTO postDTO = queryPostMapper.getPostById(postId);
+        HairTagDTO hairTagDTO = queryPostMapper.getHairTagByPostId(postId);
+        List<ProductTagDTO> productTagDTOs = queryPostMapper.getProductTagByPostId(postId);
+
+        List<Integer> productTagIds = productTagDTOs.stream()
+                .map(ProductTagDTO::getId)
+                .toList();
+
+        /* todo. 상품, 카테고리 정보 요청 */
+        if (!productTagIds.isEmpty()) {
+            // product 도메인에 요청 보내기
+            // ex) sendRequestToProductDomain(productTagIds);
+        }
+
+        /* todo. 북마크 여부 요청 */
+
+        /* todo. 좋아요 여부 요청 */
+
+        /* todo. 댓글 정보 요청 */
+
+        /* todo. 회원 정보 요청 */
+
+
+        /* todo. 받은 정보 DTO 합치기 */
+
+        PostAndHairTagDTO postAndHairTagDTO = new PostAndHairTagDTO();
+        mergePostAndHairTag(postDTO, postAndHairTagDTO, hairTagDTO);
+
+        return postAndHairTagDTO;
+    }
+
+    private static void mergePostAndHairTag(PostDTO postDTO, PostAndHairTagDTO postAndHairTagDTO, HairTagDTO hairTagDTO) {
+        if (postDTO != null) {
+            postAndHairTagDTO.setId(postDTO.getId());
+            postAndHairTagDTO.setUserId(postDTO.getUserId());
+            postAndHairTagDTO.setContent(postDTO.getContent());
+            postAndHairTagDTO.setCreatedAt(postDTO.getCreatedAt());
+            postAndHairTagDTO.setLikeCount(postDTO.getLikeCount());
+            postAndHairTagDTO.setCommentCount(postDTO.getCommentCount());
+
+            List<String> imageUrls = postDTO.getImageUrls() != null
+                    ? Arrays.stream(postDTO.getImageUrls().split(",")).toList()
+                    : Collections.emptyList();
+            postAndHairTagDTO.setImageUrls(imageUrls);
+
+            List<String> lookTags = postDTO.getLookTags() != null
+                    ? Arrays.stream(postDTO.getLookTags().split(",")).toList()
+                    : Collections.emptyList();
+            postAndHairTagDTO.setLookTags(lookTags);
+        }
+
+        if (hairTagDTO != null) {
+            postAndHairTagDTO.setHairTagId(hairTagDTO.getId());
+            postAndHairTagDTO.setHairTagLink(hairTagDTO.getLink());
+            postAndHairTagDTO.setHairTagName(hairTagDTO.getName());
+            postAndHairTagDTO.setHairTagCategoryId(hairTagDTO.getCategoryId());
+            postAndHairTagDTO.setHairTagPositionX(hairTagDTO.getHairTagPositionX());
+            postAndHairTagDTO.setHairTagPositionY(hairTagDTO.getHairTagPositionY());
+        }
+    }
+
+    @Override
+    public List<PostForFeedDTO> getPostFeedOrderByDate(Integer lastPostId) {
+        return queryPostMapper.getPostFeedOrderByDate(lastPostId);
+    }
+}

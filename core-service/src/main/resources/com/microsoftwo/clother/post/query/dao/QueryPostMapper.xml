@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsoftwo.clother.post.query.dao.QueryPostMapper">
+
+    <resultMap id="getPostByIdResultMap" type="com.microsoftwo.clother.post.query.dto.PostDTO">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="content" column="content"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="likeCount" column="like_count"/>
+        <result property="commentCount" column="comment_count"/>
+        <result property="imageUrls" column="image_urls"/>
+        <result property="lookTags" column="look_tags"/>
+    </resultMap>
+    <select id="getPostById" resultMap="getPostByIdResultMap" parameterType="_int">
+        SELECT
+               A.ID
+             , A.USER_ID
+             , A.CONTENT
+             , A.CREATED_AT
+             , A.LIKE_COUNT
+             , A.COMMENT_COUNT
+             , GROUP_CONCAT(DISTINCT B.IMAGE_URL ORDER BY B.ORDER ASC) AS IMAGE_URLS
+             , GROUP_CONCAT(DISTINCT D.NAME ORDER BY D.ID ASC) AS LOOK_TAGS
+          FROM POST A
+          LEFT JOIN POST_IMAGE B ON A.ID = B.POST_ID
+          LEFT JOIN TAG C ON A.ID = C.POST_ID
+          LEFT JOIN LOOK_TAG D ON C.LOOK_TAG_ID = D.ID
+         WHERE A.ID = #{postId}
+         GROUP BY
+               A.ID
+             , A.USER_ID
+             , A.CONTENT
+             , A.CREATED_AT
+             , A.LIKE_COUNT
+             , A.COMMENT_COUNT
+    </select>
+
+    <resultMap id="getHairTagByPostIdResultMap" type="com.microsoftwo.clother.post.query.dto.HairTagDTO">
+        <id property="id" column="id"/>
+        <result property="link" column="hair_tag_link"/>
+        <result property="name" column="hair_tag_name"/>
+        <result property="categoryId" column="hair_tag_category_id"/>
+        <result property="hairTagPositionX" column="hair_tag_position_x"/>
+        <result property="hairTagPositionY" column="hair_tag_position_y"/>
+    </resultMap>
+    <select id="getHairTagByPostId" resultMap="getHairTagByPostIdResultMap" parameterType="_int">
+        SELECT
+               A.POSITION_X AS HAIR_TAG_POSITION_X
+             , A.POSITION_Y AS HAIR_TAG_POSITION_Y
+             , B.ID AS id
+             , B.LINK AS HAIR_TAG_LINK
+             , B.NAME AS HAIR_TAG_NAME
+             , B.CATEGORY_ID AS HAIR_TAG_CATEGORY_ID
+          FROM TAG A
+          JOIN HAIR_TAG B ON A.HAIR_TAG_ID = B.ID
+         WHERE A.POST_ID = #{postId}
+    </select>
+
+    <resultMap id="getProductTagByPostIdResultMap" type="com.microsoftwo.clother.post.query.dto.ProductTagDTO">
+        <id property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="productTagPositionX" column="product_tag_position_x"/>
+        <result property="productTagPositionY" column="product_tag_position_y"/>
+    </resultMap>
+    <select id="getProductTagByPostId" resultMap="getProductTagByPostIdResultMap" parameterType="_int">
+        SELECT
+               ID
+             , PRODUCT_ID
+             , POSITION_X AS PRODUCT_TAG_POSITION_X
+             , POSITION_Y AS PRODUCT_TAG_POSITION_Y
+          FROM tag
+         WHERE POST_ID = #{postId} AND PRODUCT_ID IS NOT NULL;
+    </select>
+
+    <resultMap id="getPostFeedOrderByDateResultMap" type="com.microsoftwo.clother.post.query.dto.PostForFeedDTO">
+        <id property="id" column="id"/>
+        <result property="likeCount" column="like_count"/>
+        <result property="commentCount" column="comment_count"/>
+        <result property="thumbnailUrl" column="thumbnail_url"/>
+    </resultMap>
+    <select id="getPostFeedOrderByDate" resultMap="getPostFeedOrderByDateResultMap" parameterType="int">
+        SELECT
+               A.ID
+             , A.LIKE_COUNT
+             , A.COMMENT_COUNT
+             , B.IMAGE_URL AS THUMBNAIL_URL
+          FROM POST A
+          JOIN POST_IMAGE B ON A.ID = B.POST_ID AND B.ORDER = 1
+         WHERE <![CDATA[
+                 (#{lastPostId} IS NULL OR A.ID < #{lastPostId})
+               ]]>
+         ORDER BY A.ID DESC
+         LIMIT 9;
+    </select>
+</mapper>
