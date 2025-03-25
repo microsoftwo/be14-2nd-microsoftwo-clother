@@ -59,7 +59,7 @@ public class BoardCommandServiceImpl implements BoardCommandService {
                 imageRepository.save(imageEntity);
             }
         } else {
-            log.warn("🚨 저장할 이미지가 없습니다.");
+            log.warn("저장할 이미지가 없습니다.");
         }
 
         // 게시글 엔티티를 다시 저장 (연관관계 반영)
@@ -81,6 +81,7 @@ public class BoardCommandServiceImpl implements BoardCommandService {
         if (Boolean.TRUE.equals(board.getIsDeleted())) {
             throw new RuntimeException("삭제된 게시글은 수정할 수 없습니다.");
         }
+
 
         if (request.getTitle() != null) {
             board.setTitle(request.getTitle());
