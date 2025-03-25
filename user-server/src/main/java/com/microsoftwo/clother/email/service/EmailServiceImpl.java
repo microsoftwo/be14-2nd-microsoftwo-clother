@@ -2,10 +2,14 @@ package com.microsoftwo.clother.email.service;
 
 import com.microsoftwo.clother.email.config.RedisUtil;
 import com.microsoftwo.clother.user.service.UserService;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Random;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -42,16 +46,31 @@ public class EmailServiceImpl implements EmailService {
         makeRandomNumber();
         String setFrom = "\"Clother Admin\" <yushiii002@gmail.com>";
         String toMail = email;
-        String title = "회원 가입 인증 이메일 입니다.";
-        String content =
-                "<h1>Clother</h1>" +
-                        "<br><br>" +
-                        "고객님의 인증번호는 다음과 같습니다." +
-                        "<h3>" + authNumber + "</h3>" +
-                        "<br>";
-        //이메일 내용
-        mailSend(setFrom, toMail, title, content);
-        return Integer.toString(authNumber);
+        String title = "Clother 회원 가입 인증 이메일 입니다.";
+
+        try {
+            // HTML 템플릿 로드
+            String content = loadHtmlTemplate();
+
+            // 템플릿에 인증 번호 삽입
+            content = content.replace("${authNumber}", String.valueOf(authNumber));
+
+            // 이메일 발송
+            mailSend(setFrom, toMail, title, content);
+
+            return Integer.toString(authNumber);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // HTML 템플릿 로드 메서드
+    private String loadHtmlTemplate() throws IOException {
+        // ClassPathResource를 사용하여 리소스 폴더의 템플릿 로드
+        ClassPathResource resource = new ClassPathResource("email-template.html");
+        byte[] fileBytes = Files.readAllBytes(Paths.get(resource.getURI()));
+        return new String(fileBytes, "UTF-8");
     }
 
     @Override
