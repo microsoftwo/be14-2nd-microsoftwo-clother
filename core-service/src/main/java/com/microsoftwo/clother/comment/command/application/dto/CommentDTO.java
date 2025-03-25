@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class CommentDTO {
-    private Long id;
-    private Long userId;
-    private Long postId;
-    private Long boardId;
-    private Long parentId;
+    private int id;
+    private int userId;
+    private int postId;
+    private int boardId;
+    private int parentId;
     private String content;
     private LocalDateTime createdAt;
     private Boolean isDeleted = false;
