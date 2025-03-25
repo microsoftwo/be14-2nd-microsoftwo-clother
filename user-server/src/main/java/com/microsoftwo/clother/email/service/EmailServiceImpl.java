@@ -5,6 +5,7 @@ import com.microsoftwo.clother.user.service.UserService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Random;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,8 @@ public class EmailServiceImpl implements EmailService {
 
     // 임의의 6자리 양수를 반환 (이메일 인증 코드)
     public void makeRandomNumber() {
-        authNumber = (int) (Math.random() * 900000) + 100000;
+        Random r = new Random();
+        authNumber = r.nextInt(900000) + 100000; // 100000 ~ 999999
     }
 
     @Override
