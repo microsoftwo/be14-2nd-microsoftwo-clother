@@ -27,11 +27,14 @@ public class LikeController {
         List<LikeDTO> likes = likeService.getUserLikes(userId);                                // userId 변수로 받아 사용
         // LikeService를 호출하여 데이터를 조회.
         return ResponseEntity.ok(likes);        // HTTP 200 응답과 함께 조회된 데이터를 반환.
+    }
 
-        /* 설명.
-         *   1. 클라이언트가 /likes/user/3/ 같은 URL로 GET 요청을 보냄.
-         *   2. LikeController가 LikeService를 호출하여 데이터 조회
-         *   3. 조회된 데이터를 JSON 형태로 응답.return likeMapper.checkUserLiked(userId, type, targetid) > 0;
-         * */
+    @GetMapping("/user/{userId}/liked/{type}/{id}")
+    public ResponseEntity<Boolean> hasUserLiked(@PathVariable("userId") int userId,
+                                                @PathVariable("type") String type,
+                                                @PathVariable("id") int targetId) {
+
+        boolean hasLiked = likeService.hasUserLiked(userId, type, targetId);
+        return ResponseEntity.ok(hasLiked);
     }
 }
