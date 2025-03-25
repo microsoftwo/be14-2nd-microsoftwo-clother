@@ -1,0 +1,42 @@
+package com.microsoftwo.clother.product.command.domain.service;
+
+import com.microsoftwo.clother.product.command.application.dto.ProductRegistDTO;
+import com.microsoftwo.clother.product.command.domain.aggregate.ProductRegist;
+import com.microsoftwo.clother.product.command.domain.repository.ProductRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@Slf4j
+public class ProductService {
+
+    private final ProductRepository productRepository;
+    private final ModelMapper modelMapper;
+
+    @Autowired
+    public ProductService(ProductRepository productRepository, ModelMapper modelMapper) {
+        this.productRepository = productRepository;
+        this.modelMapper = modelMapper;
+    }
+
+    /* 설명. 상품 등록하기 (insert) */
+    @Transactional
+    public void registProduct(ProductRegistDTO newProduct) {
+
+        // DTO → Entity 매핑
+        ProductRegist productEntity = modelMapper.map(newProduct, ProductRegist.class);
+
+        // userId 값 설정
+        productEntity.setId(0); // 새로운 상품으로 인식되도록 id를 0으로 초기화
+        productEntity.setUserId(newProduct.getUserId());
+        productRepository.save(productEntity);
+    }
+
+    // User 서버에서 사용자 정보를 받아오기
+//    public UserDTO getUserById(int userId) {
+//
+//    }
+}

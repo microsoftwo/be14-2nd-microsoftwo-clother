@@ -30,6 +30,7 @@
         SELECT
         ID
         , BRAND_NAME
+        , NAME
         , CREATED_AT
         , PRODUCT_LINK
         FROM PRODUCT_REGISTRATION
