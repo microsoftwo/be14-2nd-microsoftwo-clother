@@ -20,5 +20,12 @@ public class CommentService {
         return CommentDTO.fromEntity(savedComment);
     }
 
+    @Transactional
+    public void deleteComment(Long commentId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 댓글이 존재하지 않습니다: " + commentId));
+        comment.setIsDeleted(true);
+        commentRepository.save(comment); // 변경된 댓글 저장
+    }
 
 }

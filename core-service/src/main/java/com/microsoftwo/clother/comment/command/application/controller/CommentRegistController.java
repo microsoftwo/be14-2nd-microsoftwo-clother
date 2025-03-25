@@ -18,4 +18,10 @@ public class CommentRegistController {
         return ResponseEntity.ok(commentService.createComment(commentDTO));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteComment(@PathVariable Long id) {
+        commentService.deleteComment(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
