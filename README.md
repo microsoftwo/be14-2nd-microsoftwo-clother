@@ -107,25 +107,85 @@
     </div>
 </details>
 
-### <p id="3-4">3-4. Redis를 활용한 이메일 인증 </p>
+<br>
 
-📌 인증 절차
-1. 사용자가 이메일을 입력하고 인증 요청을 보냄
-2. 서버에서 랜덤 인증 코드를 생성
-3. 해당 인증 코드를 Redis에 5분간 저장
-4. 동시에 인증 코드를 사용자의 이메일로 전송 (SMTP 사용)
-5. 사용자가 인증 코드를 입력하면, Redis에서 해당 코드가 유효한지 확인
-6. 일치하면 인증 성공, 불일치 또는 만료 시 인증 실패
+## <p id="3-4">3-4. 🧱 Redis를 활용한 이메일 인증 </p>
+회원가입 시 이메일로 전송되는 인증 코드는 일정 시간이 지나면 자동으로 무효화되어야 하며, 서버에 불필요한 데이터가 남지 않아야 한다. 
+따라서 Redis의 TTL(Time To Live) 기능을 사용하여 인증 번호를 저장하고, 5분이 지나면 자동으로 만료되도록 구성하였다.
 
 
+### 📥 인증 절차
+<details>
+    <summary>인증 절차</summary>
+    <div markdown="1">
+        1. 사용자가 이메일 입력 후 인증 요청<br>
+        2. 서버에서 6자리 인증 코드 생성<br>
+        3. Redis에 인증 코드 저장 (TTL: 5분)<br>
+        4. 사용자 이메일로 인증번호 발송 (SMTP 사용)<br>
+        5. 사용자가 인증번호를 입력하여 검증 요청<br>
+        6. Redis에서 이메일 키로 인증번호 조회<br>
+        7. 인증 성공 또는 실패 판단
+    </div>
+</details>
 
-auth-code-expiration-millis: 300000 
 
 
-### <p id="3-5">3-5. Redis 이용 트러블 슈팅 </p>
+<br>
+
+### 🕑 TTL 적용 구조 설명
+
+인증 코드의 유효 시간 설정
+```java
+spring:
+  mail:
+    auth-code-expiration-millis: 300000  # 5분
+```
+<br>
+
+이메일 인증번호를 Redis에 저장할 때 TTL로 설정
+```java
+@Value("${spring.mail.auth-code-expiration-millis}")
+private long authCodeExpirationMillis;
+```
+
+<br>
+
+RedisUtil 클래스 내 TTL 적용 메서드
+```java
+public void setDataExpire(String key, String value,
+                              long duration) {
+        ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
+        Duration expireDuration = Duration.ofMinutes(duration);
+        valueOperations.set(key, value, expireDuration);
+    }
+```
+이 TTL(Time To Live)이 적용된 키는 해당 시간 이후 자동으로 만료되고 삭제된다.
+
+<br>
+
+### TTL 사용 후 효과
+1. 설정된 TTL이 지나면 인증번호는 자동 삭제되어, 불필요한 데이터 제거
+2. 인증번호는 일시적 데이터이므로, 디스크 기반 RDB 대신 인메모리 Redis에서 빠르게 처리 가능
+3. 만료 스케줄러 없이 간단히 TTL 값만 설정하면 완료
+
+<br>
+
+## <p id="3-5">3-5. Redis 이용 트러블 슈팅 </p>
 
 <img width="1180" alt="image" src="https://github.com/user-attachments/assets/963ad2b7-1c8e-43bf-993a-7ba8f8ed0e4b" />
 
+## 이메일을 Key로, 인증 코드를 Value로 둔 이유
+
+### 📌 1. 이메일은 유일한 식별자이기 때문
+
+- 회원가입 또는 인증 과정에서 이메일은 사용자를 유일하게 식별할 수 있는 정보이다.
+- Redis는 Key-Value 구조이기 때문에, 유일한 값을 key로 사용해야 나중에 덮어쓰거나 충돌이 나지 않음.
+- 그래서 이메일 → 인증코드 구조로 저장하면, 같은 사람이 다시 인증 요청을 할 때 기존 인증 코드를 덮어쓰기도 쉽고, 빠르게 조회할 수 있다.
+
+### 📌 2. Value인 인증 코드는 자주 바뀜
+
+- 인증 코드는 6자리 숫자이고 5분이 지나면 사라진다.
+- 따라서 Redis의 TTL(Time-To-Live) 기능을 써서 저장해두고 일정 시간 후 삭제되도록 관리하였다.
 
 <br><br>
 
