@@ -74,6 +74,17 @@
 
 ### <p id="4-1">4-1. 단위 테스트 결과 </p>
 
+<details>
+    <summary>동료 평가 확인하기</summary>
+    <div markdown="1">
+        <img width="1400" alt="image" src="/readme-images/unit-test/회원가입.png">
+        <img width="1400" alt="image" src="/readme-images/unit-test/특정게시물조회.png">
+        <img width="1400" alt="image" src="/readme-images/unit-test/피드조회.png">
+        <img width="1400" alt="image" src="/readme-images/unit-test/댓글생성.png">
+        <img width="1400" alt="image" src="/readme-images/unit-test/하위카테고리검색.png">
+    </div>
+</details>
+
 ## <p id="5">✍🏻 5. 문서 </p>
 
 ### <p id="5-1">5-1. 요구사항 명세서 </p>
