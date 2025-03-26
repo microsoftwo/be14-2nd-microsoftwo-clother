@@ -117,20 +117,24 @@
 <details>
 <summary>테스트 결과 확인하기</summary>
 <div markdown="1">
-    <img width="1416" alt="image" src="https://github.com/user-attachments/assets/ae227e9b-d671-459e-9632-bf5e011a7c49">
-    <img width="1404" alt="image" src="https://github.com/user-attachments/assets/a3a1fa89-3bd3-4cbf-bb2d-1449b437e60d">
-    <img width="1373" alt="image" src="https://github.com/user-attachments/assets/e8414334-e5d6-4c9c-919e-e3afcc0197c0">
-    <img width="1396" alt="image" src="https://github.com/user-attachments/assets/29eef750-ae53-4d42-81a9-b79cf1af5774">
-    <img width="1399" alt="image" src="https://github.com/user-attachments/assets/422bdb7c-5919-4cd3-9b03-13d61e70a836">
-    <img width="1381" alt="image" src="https://github.com/user-attachments/assets/e48b8734-f886-4c13-a77d-db9f5ddfcbc5">
-    <img width="1381" alt="image" src="https://github.com/user-attachments/assets/9f6631f1-056f-4579-a907-e41f915e07ad">
-    <img width="1377" alt="image" src="https://github.com/user-attachments/assets/2f41eeac-d993-477b-a099-b5f7733b49dc">
-    <img width="1393" alt="image" src="https://github.com/user-attachments/assets/291e7701-d9a4-4f7c-9ec5-0dcd7c4da8db">
-    <img width="1382" alt="image" src="https://github.com/user-attachments/assets/4b132012-e6c4-4e6c-9912-71ade6e947f6">
-    <img width="1367" alt="image" src="https://github.com/user-attachments/assets/64079938-5d87-4d50-b7df-a0f7fc83f4a2">
-    <img width="1370" alt="image" src="https://github.com/user-attachments/assets/fef74b5d-fb31-4d77-9da4-701b2d7f8808">
-    <img width="1361" alt="image" src="https://github.com/user-attachments/assets/c3d62574-c8f6-43ec-9383-d2b281ba4b84">
-    <img width="1391" alt="image" src="https://github.com/user-attachments/assets/ee40affa-befb-4db1-a3f9-d889d991131d">
+    <img width="1400" alt="image" src="/readme-images/01인증번호전송.png">
+    <img width="1400" alt="image" src="/readme-images/02인증번호검증.png">
+    <img width="1400" alt="image" src="/readme-images/03회원가입.png">
+    <img width="1400" alt="image" src="/readme-images/04로그인.png">
+    <img width="1400" alt="image" src="/readme-images/05토큰미포함요청.png">
+    <img width="1400" alt="image" src="/readme-images/06토큰포함요청.png">
+    <img width="1400" alt="image" src="/readme-images/07상품등록신청.png">
+    <img width="1400" alt="image" src="/readme-images/08상품등록신청삭제.png">
+    <img width="1400" alt="image" src="/readme-images/09포스팅등록.png">
+    <img width="1400" alt="image" src="/readme-images/10포스팅조회.png">
+    <img width="1400" alt="image" src="/readme-images/11훈수게시판등록.png">
+    <img width="1400" alt="image" src="/readme-images/12훈수게시판조회.png">
+    <img width="1400" alt="image" src="/readme-images/13좋아요등록.png">
+    <img width="1400" alt="image" src="/readme-images/14좋아요취소.png">
+    <img width="1400" alt="image" src="/readme-images/15댓글등록.png">
+    <img width="1400" alt="image" src="/readme-images/16댓글삭제.png">
+
+
 </div>
 </details>
 
