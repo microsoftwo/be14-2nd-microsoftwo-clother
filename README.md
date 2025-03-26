@@ -31,17 +31,6 @@
 
 <a href="#4-1">4-1. 단위 테스트 결과 </a>
 
-<details>
-    <summary>테스트 결과 확인하기</summary>
-    <div markdown="1">
-        <img width="1400" alt="image" src="/readme-images/unit-test/댓글생성.png">
-        <img width="1400" alt="image" src="/readme-images/unit-test/특정게시물조회.png">
-        <img width="1400" alt="image" src="/readme-images/unit-test/피드조회.png">
-        <img width="1400" alt="image" src="/readme-images/unit-test/하위카테고리검색.png">
-        <img width="1400" alt="image" src="/readme-images/unit-test/">
-    </div>
-</details>
-
 <a href="#4-2">4-2. API 테스트 </a>
 
 <a href="#5">✍🏻 5. 문서 </a>
@@ -106,6 +95,17 @@
 ## <p id="4">🎮 4. 단위 테스트</p>
 
 ### <p id="4-1">4-1. 단위 테스트 결과 </p>
+
+<details>
+    <summary>테스트 결과 확인하기</summary>
+    <div markdown="1">
+        <img width="1400" alt="image" src="/readme-images/unit-test/댓글생성.png">
+        <img width="1400" alt="image" src="/readme-images/unit-test/특정게시물조회.png">
+        <img width="1400" alt="image" src="/readme-images/unit-test/피드조회.png">
+        <img width="1400" alt="image" src="/readme-images/unit-test/하위카테고리검색.png">
+        <img width="1400" alt="image" src="/readme-images/unit-test/">
+    </div>
+</details>
 
 ### <p id="4-2">4-2. API 테스트 </p>
 
