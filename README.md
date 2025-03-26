@@ -68,6 +68,15 @@
 
 ### <p id="1-2">1-1. 주요 기능 </p>
 
+- 코디뿐만 아니라 헤어, 메이크업, 악세서리까지의 스타일링을 공유할 수 있는 SNS
+
+- 사용자는 자신이 원하는 스타일의 포스팅을 선택하고, 포스팅에 달린 태그를 통해 제품 정보 알 수 있고, 구매링크를 통해 바로 구매 혹은 예약처까지 연결될 수 있다.
+
+- 포스팅 시에는 링크, 등록된 상품 등을 태그로 사용할 수 있고 원하는 상품이 없을 시 상품 등록 신청이 가능하다.
+
+- 훈수 게시판을 통해 자신의 스타일링에 대한 피드백을 받을 수 있다.
+  좋아요, 댓글 등 SNS의 기본적인 기능
+
 <br><br>
 
 ---
@@ -95,7 +104,7 @@
 ### <p id="3-2">3-2. MSA 아키텍쳐 </p>
 
 ![image](https://github.com/user-attachments/assets/21b8d5d9-acf6-44f7-8cba-ba36a588056a)
-
+<img width="1400" alt="image" src="/readme-images/msa/msa.png">
 
 ### <p id="3-3">3-3. 📚 API 명세서 </p>
 
@@ -110,11 +119,12 @@
 <br>
 
 ## <p id="3-4">3-4. 🧱 Redis를 활용한 이메일 인증 </p>
-회원가입 시 이메일로 전송되는 인증 코드는 일정 시간이 지나면 자동으로 무효화되어야 하며, 서버에 불필요한 데이터가 남지 않아야 한다. 
+
+회원가입 시 이메일로 전송되는 인증 코드는 일정 시간이 지나면 자동으로 무효화되어야 하며, 서버에 불필요한 데이터가 남지 않아야 한다.
 따라서 Redis의 TTL(Time To Live) 기능을 사용하여 인증 번호를 저장하고, 5분이 지나면 자동으로 만료되도록 구성하였다.
 
-
 ### 📥 인증 절차
+
 <details>
     <summary>인증 절차</summary>
     <div markdown="1">
@@ -128,21 +138,22 @@
     </div>
 </details>
 
-
-
 <br>
 
 ### 🕑 TTL 적용 구조 설명
 
 인증 코드의 유효 시간 설정
+
 ```java
 spring:
   mail:
     auth-code-expiration-millis: 300000  # 5분
 ```
+
 <br>
 
 이메일 인증번호를 Redis에 저장할 때 TTL로 설정
+
 ```java
 @Value("${spring.mail.auth-code-expiration-millis}")
 private long authCodeExpirationMillis;
@@ -151,6 +162,7 @@ private long authCodeExpirationMillis;
 <br>
 
 RedisUtil 클래스 내 TTL 적용 메서드
+
 ```java
 public void setDataExpire(String key, String value,
                               long duration) {
@@ -159,11 +171,13 @@ public void setDataExpire(String key, String value,
         valueOperations.set(key, value, expireDuration);
     }
 ```
+
 이 TTL(Time To Live)이 적용된 키는 해당 시간 이후 자동으로 만료되고 삭제된다.
 
 <br>
 
 ### TTL 사용 후 효과
+
 1. 설정된 TTL이 지나면 인증번호는 자동 삭제되어, 불필요한 데이터 제거
 2. 인증번호는 일시적 데이터이므로, 디스크 기반 RDB 대신 인메모리 Redis에서 빠르게 처리 가능
 3. 만료 스케줄러 없이 간단히 TTL 값만 설정하면 완료
@@ -310,7 +324,7 @@ public void setDataExpire(String key, String value,
 
 |  FROM  | COMMENT |
 | :----: | :------ |
-| 조윤태 |         |
+| 조윤태 |묵묵히 자신의 역할을 수행하며 책임감 있게 맡은 부분을 구현해내는 모습이 인상적이었습니다. 모르는 부분이 있을 때도 혼자 해결하고 넘어가는 것이 아니라, 적극적으로 의견을 공유하며 더 나은 방향을 고민하는 태도가 돋보였습니다. 이러한 자세는 좋은 개발자가 갖춰야 할 중요한 자질이며, 팀원들에게도 귀감이 되었습니다.|
 | 신민경 |         |
 | 황수민 |         |
 | 이예원 |         |
@@ -329,7 +343,7 @@ public void setDataExpire(String key, String value,
 |  FROM  | COMMENT |
 | :----: | :------ |
 | 김기종 |         |
-| 조윤태 |         |
+| 조윤태 |가장 어려운 부분 중 하나였던 Spring Security를 적용하면서, 프로젝트의 보안성을 한층 높였습니다. 여기에 더해 Redis까지 활용하며 성능 개선에도 기여하는 등, 프로젝트를 더욱 완성도 높은 형태로 발전시키는 데 주요한 역할을 했습니다. 어려운 문제를 해결해 나가는 과정에서 팀원들에게도 긍정적인 영향을 주었습니다.|
 | 황수민 |         |
 | 이예원 |         |
 
@@ -338,7 +352,7 @@ public void setDataExpire(String key, String value,
 |  FROM  | COMMENT |
 | :----: | :------ |
 | 김기종 |         |
-| 조윤태 |         |
+| 조윤태 |모르는 부분이 생기면 주저하지 않고 학습하며 해결하려는 적극적인 자세가 정말 인상적이었습니다. 특히, 게이트웨이 필터링을 구현하는 과정에서 기존 강의를 다시 찾아보며 끈질기게 해결책을 모색하는 모습이 돋보였습니다. 피곤한 상황에서도 힘든 기색 없이 끝까지 집중력을 유지하며 맡은 역할을 수행해 준 덕분에, 팀 전체가 더욱 적극적으로 프로젝트에 임할 수 있었습니다.|
 | 신민경 |         |
 | 이예원 |         |
 
@@ -347,7 +361,7 @@ public void setDataExpire(String key, String value,
 |  FROM  | COMMENT |
 | :----: | :------ |
 | 김기종 |         |
-| 조윤태 |         |
+| 조윤태 |모르는 부분이 있어도 쉽게 포기하지 않고 해결책을 찾아가며 기능을 구현하는 모습을 보며 저 역시 긍정적인 자극을 받을 수 있었습니다. 프로젝트의 완성도를 높이는 데 꾸준히 기여했을 뿐만 아니라, 좋은 아이디어를 제안해 프로젝트 주제를 정하는 과정에서도 중요한 역할을 했습니다. 덕분에 더욱 재미있고 의미 있는 프로젝트를 진행할 수 있었습니다.|
 | 신민경 |         |
 | 황수민 |         |
 
