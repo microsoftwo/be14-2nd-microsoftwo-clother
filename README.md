@@ -117,22 +117,22 @@
 <details>
 <summary>테스트 결과 확인하기</summary>
 <div markdown="1">
-    <img width="1400" alt="image" src="/readme-images/01인증번호전송.png">
-    <img width="1400" alt="image" src="/readme-images/02인증번호검증.png">
-    <img width="1400" alt="image" src="/readme-images/03회원가입.png">
-    <img width="1400" alt="image" src="/readme-images/04로그인.png">
-    <img width="1400" alt="image" src="/readme-images/05토큰미포함요청.png">
-    <img width="1400" alt="image" src="/readme-images/06토큰포함요청.png">
-    <img width="1400" alt="image" src="/readme-images/07상품등록신청.png">
-    <img width="1400" alt="image" src="/readme-images/08상품등록신청삭제.png">
-    <img width="1400" alt="image" src="/readme-images/09포스팅등록.png">
-    <img width="1400" alt="image" src="/readme-images/10포스팅조회.png">
-    <img width="1400" alt="image" src="/readme-images/11훈수게시판등록.png">
-    <img width="1400" alt="image" src="/readme-images/12훈수게시판조회.png">
-    <img width="1400" alt="image" src="/readme-images/13좋아요등록.png">
-    <img width="1400" alt="image" src="/readme-images/14좋아요취소.png">
-    <img width="1400" alt="image" src="/readme-images/15댓글등록.png">
-    <img width="1400" alt="image" src="/readme-images/16댓글삭제.png">
+    <img width="1400" alt="image" src="/readme-images/postman/01인증번호전송.png">
+    <img width="1400" alt="image" src="/readme-images/postman/02인증번호검증.png">
+    <img width="1400" alt="image" src="/readme-images/postman/03회원가입.png">
+    <img width="1400" alt="image" src="/readme-images/postman/04로그인.png">
+    <img width="1400" alt="image" src="/readme-images/postman/05토큰미포함요청.png">
+    <img width="1400" alt="image" src="/readme-images/postman/06토큰포함요청.png">
+    <img width="1400" alt="image" src="/readme-images/postman/07상품등록신청.png">
+    <img width="1400" alt="image" src="/readme-images/postman/08상품등록신청삭제.png">
+    <img width="1400" alt="image" src="/readme-images/postman/09포스팅등록.png">
+    <img width="1400" alt="image" src="/readme-images/postman/10포스팅조회.png">
+    <img width="1400" alt="image" src="/readme-images/postman/11훈수게시판등록.png">
+    <img width="1400" alt="image" src="/readme-images/postman/12훈수게시판조회.png">
+    <img width="1400" alt="image" src="/readme-images/postman/13좋아요등록.png">
+    <img width="1400" alt="image" src="/readme-images/postman/14좋아요취소.png">
+    <img width="1400" alt="image" src="/readme-images/postman/15댓글등록.png">
+    <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png">
 
 
 </div>
