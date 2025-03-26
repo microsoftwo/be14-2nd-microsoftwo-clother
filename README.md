@@ -1,4 +1,6 @@
-## 🗝️ Clother - Style Sharing Community
+<br>
+
+# 👕 Clother (Style Sharing Community) 👚
 
 <img src="https://github.com/user-attachments/assets/8e8c7919-f4dd-45b0-9c94-faab9ea0231a">
 <img src="https://github.com/user-attachments/assets/14df180e-8b17-4ba1-a5a5-573c32d46d33">
@@ -13,7 +15,7 @@
 
 <a href="#2">🔎 2. DDD (Domain-Driven Design) </a>
 
-<a href="#2-1">2-1. DDD (Event-Storiming) </a>
+<a href="#2-1">2-1. DDD (Event-Storming) </a>
 
 <a href="#2-2">2-2. DDD (Context-Map) </a>
 
@@ -43,18 +45,22 @@
 
 <a href="#7">🫡 7. 동료평가</a>
 
+<br><br>
+
 ---
 
-## 🚀 Team microsoftwo
+# 🚀 Team microsoftwo
 
 | <img src="https://github.com/user-attachments/assets/9e5c3e83-7f0d-41ca-816c-8133409537e1" width="200"> | <img src="https://github.com/user-attachments/assets/8f52dde1-3590-4e2f-880d-32098f5d098a" width="200"> | <img src="https://github.com/user-attachments/assets/0b56df7f-c48d-4975-abff-aeb51af8f2da" width="200"> | <img src="https://github.com/user-attachments/assets/f5cbf6cc-ff54-4720-be15-390182415083" width="200"> | <img src="https://github.com/user-attachments/assets/1d2619c6-f467-485e-9d90-14c7c43bc316" width="200"> |
 | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: |
 |                                                 김기종                                                  |                                                 조윤태                                                  |                                                 신민경                                                  |                                                 황수민                                                  |                                                 이예원                                                  |
 | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/rrangeess) |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/cxzaqq)   |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/mmmv41)   | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/emily9949) |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/oni128)   |
 
-<br>
+<br><br>
 
-## <p id="1">📁 1. 프로젝트 기획</p>
+---
+
+# <p id="1">📁 1. 프로젝트 기획</p>
 
 ### <p id="1-1">1-1. 배경 및 필요성</p>
 
@@ -62,9 +68,13 @@
 
 ### <p id="1-2">1-1. 주요 기능 </p>
 
-## <p id="2">🔎 2. DDD (Domain-Driven Design)</p>
+<br><br>
 
-### <p id="2-1">2-1. DDD (Event-Storiming)</p>
+---
+
+# <p id="2">🔎 2. DDD (Domain-Driven Design)</p>
+
+### <p id="2-1">2-1. DDD (Event-Storming)</p>
 
 ![KakaoTalk_Photo_2025-03-26-17-32-12](https://github.com/user-attachments/assets/11540776-bc6f-41bd-bc50-08364ce95aaa)
 
@@ -72,7 +82,11 @@
 
 ![마이크로소프투-2](https://github.com/user-attachments/assets/171a896c-2645-4830-8e8b-283c8d3a420b)
 
-## <p id="3">⚙️ 3. 프로젝트 설계</p>
+<br><br>
+
+---
+
+# <p id="3">⚙️ 3. 프로젝트 설계</p>
 
 ### <p id="3-1">3-1. 물리 모델링 (ERD)</p>
 
@@ -80,7 +94,8 @@
 
 ### <p id="3-2">3-2. MSA 아키텍쳐 </p>
 
-<img width="950" alt="스크린샷 2024-09-05 오전 5 20 43" src="https://github.com/user-attachments/assets/20507f4c-5a90-440e-a678-cb21de913caa">
+![image](https://github.com/user-attachments/assets/21b8d5d9-acf6-44f7-8cba-ba36a588056a)
+
 
 ### <p id="3-3">3-3. 📚 API 명세서 </p>
 
@@ -94,7 +109,11 @@
 
 ### <p id="3-4">3-4. Redis를 활용한 JWT 토큰 관리 </p>
 
-## <p id="4">🎮 4. 단위 테스트</p>
+<br><br>
+
+---
+
+# <p id="4">🎮 4. 단위 테스트</p>
 
 ### <p id="4-1">4-1. 단위 테스트 결과 </p>
 
@@ -134,7 +153,11 @@
 </div>
 </details>
 
-## <p id="5">✍🏻 5. 문서 </p>
+<br><br>
+
+---
+
+# <p id="5">✍🏻 5. 문서 </p>
 
 ### <p id="5-1">5-1. 📙 요구사항 명세서 </p>
 
@@ -145,7 +168,11 @@
 
 [[🔗 WBS Link]](https://docs.google.com/spreadsheets/d/1HQYulWkDctMpm4mhM3wYKbtAY3fCOOigEeM-M-q0jlg/edit?gid=393359725#gid=393359725)
 
-## <p id="6">🛠 6. 기술 스택 </p>
+<br><br>
+
+---
+
+# <p id="6">🛠 6. 기술 스택 </p>
 
 ### 언어
 
@@ -191,7 +218,11 @@
 
 ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=plastic&logo=notion&logoColor=white)
 
-## <p id="7">🫡 7. 동료평가 </p>
+<br><br>
+
+---
+
+# <p id="7">🫡 7. 동료평가 </p>
 
 <details>
 <summary>동료 평가 확인하기</summary>
