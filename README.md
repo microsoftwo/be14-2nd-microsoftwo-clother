@@ -122,6 +122,15 @@
 </div>
 </details>
 
+## 📚API 명세서
+<details>
+    <summary>테스트 결과 확인하기</summary>
+    <div markdown="1">
+            <img width="1400" alt="image" src="/readme-images/swagger/user-service-swagger.png">
+            <img width="1400" alt="image" src="/readme-images/swagger/core-service-swagger.png">
+    </div>
+</details>
+
 ## ⏱️ 동료 평가
 
 <details>
