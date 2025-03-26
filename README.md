@@ -107,7 +107,25 @@
     </div>
 </details>
 
-### <p id="3-4">3-4. Redis를 활용한 JWT 토큰 관리 </p>
+### <p id="3-4">3-4. Redis를 활용한 이메일 인증 </p>
+
+📌 인증 절차
+1. 사용자가 이메일을 입력하고 인증 요청을 보냄
+2. 서버에서 랜덤 인증 코드를 생성
+3. 해당 인증 코드를 Redis에 5분간 저장
+4. 동시에 인증 코드를 사용자의 이메일로 전송 (SMTP 사용)
+5. 사용자가 인증 코드를 입력하면, Redis에서 해당 코드가 유효한지 확인
+6. 일치하면 인증 성공, 불일치 또는 만료 시 인증 실패
+
+
+
+auth-code-expiration-millis: 300000 
+
+
+### <p id="3-5">3-5. Redis 이용 트러블 슈팅 </p>
+
+<img width="1180" alt="image" src="https://github.com/user-attachments/assets/963ad2b7-1c8e-43bf-993a-7ba8f8ed0e4b" />
+
 
 <br><br>
 
