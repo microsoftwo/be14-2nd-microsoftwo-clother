@@ -310,13 +310,22 @@ public void setDataExpire(String key, String value,
                           <img width="1400" alt="image" src="/readme-images/postman/13좋아요등록.png">
                     <summary>좋아요 취소</summary>
                           <img width="1400" alt="image" src="/readme-images/postman/14좋아요취소.png">
+                    <summary>회원 좋아요 내역 조회</summary>
+                          ![show-user-like-list](https://github.com/user-attachments/assets/3e9158fa-9319-4257-a929-179288a01711)
+                    <summary>좋아요 여부 조회</summary>
+                          ![check-user-like](https://github.com/user-attachments/assets/8a5054eb-c8ed-4b5f-a689-6c1947603d22)
+    
+
      </details>
       <details>
         <summary>댓글 도메인 테스트 결과 확인하기</summary>
                     <summary>댓글 등록</summary>
                           <img width="1400" alt="image" src="/readme-images/postman/15댓글등록.png">
                     <summary>댓글 삭제</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png"> 
+                          <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png">
+                    <summary>댓글 조회</summary>
+                          ![show-comment](https://github.com/user-attachments/assets/76546d8b-801b-4abf-bcb9-83e423d7018c)
+      
       </details>
     </div>
 </details>
