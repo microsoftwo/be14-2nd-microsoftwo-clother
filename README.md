@@ -271,24 +271,24 @@ public void setDataExpire(String key, String value,
     <details>
          <summary>회원 도메인 테스트 결과 확인하기</summary>
                     <summary>인증 번호 전송</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/01인증번호전송.png">
+                          <img width="1400" alt="image" src=https://github.com/user-attachments/assets/ef8f8efc-fd62-4958-9439-c38b88db12e5>
                     <summary>인증 번호 검증</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/02인증번호검증.png">
+                          <img width="1400" alt="image" src=https://github.com/user-attachments/assets/1efe56fb-123c-4e44-9c62-b06613843dea)>
                     <summary>회원 가입</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/03회원가입.png">
+                          <img width="1400" alt="image" src=https://github.com/user-attachments/assets/e1bdd46c-9cb9-4f7c-984e-5aa3c640e1c8)>
                     <summary>로그인</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/04로그인.png">
+                          ![04로그인](https://github.com/user-attachments/assets/2838e7e3-78ab-4e3b-94a6-a02f1d097d75)
                     <summary>토큰 미포함 요청</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/05토큰미포함요청.png">
+                          ![05토큰미포함요청](https://github.com/user-attachments/assets/a52c71c7-1b9f-4fad-9180-9ae1a060673c)
                     <summary>토큰 포함 요청</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/06토큰포함요청.png">        
+                          ![06토큰포함요청](https://github.com/user-attachments/assets/004bac3a-2bfa-400f-83a4-54af53b04170)    
     </details>
      <details>
         <summary>포스팅 도메인 테스트 결과 확인하기</summary>
                     <summary>포스팅 등록</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/09포스팅등록.png">
+                          ![09포스팅등록](https://github.com/user-attachments/assets/7a066c54-2de6-44cc-acbb-05cf9615edd4)
                     <summary>포스팅 조회</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/10포스팅조회.png">
+                          ![10포스팅조회](https://github.com/user-attachments/assets/714f467a-1507-40bf-8d9d-5c1bf310ad98)
      </details>
        <details>
           <summary>훈수 게시판 도메인 테스트 결과 확인하기</summary>
@@ -314,29 +314,36 @@ public void setDataExpire(String key, String value,
        <details>
           <summary>상품등록 도메인 테스트 결과 확인하기</summary>
                     <summary>상품 등록 신청</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/07상품등록신청.png">
+                          ![07상품등록신청](https://github.com/user-attachments/assets/44a37510-ca7f-41bd-9ca4-085fe1953816)
                     <summary>상품 등록 신청 삭제</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/08상품등록신청삭제.png">
+                          ![08상품등록신청삭제](https://github.com/user-attachments/assets/ac9a3915-6395-48c8-9555-b637092da3b7)
      </details>
        <details>    
           <summary>좋아요 도메인 테스트 결과 확인하기</summary>
                     <summary>좋아요 등록</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/13좋아요등록.png">
+                          ![13좋아요등록](https://github.com/user-attachments/assets/a9c5438e-d2d2-4bcb-9b47-9ab3f0fe34f0)
+
                     <summary>좋아요 취소</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/14좋아요취소.png">
+                          ![14좋아요취소](https://github.com/user-attachments/assets/8a4fe730-8c62-44af-9442-aa0f8f9fdd57)
+
                     <summary>회원 좋아요 내역 조회</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/18좋아요목록조회.png">
+                          ![18좋아요목록조회](https://github.com/user-attachments/assets/cebae2c7-8e18-426e-a8c5-75cbdaad8b9e)
+
                     <summary>좋아요 여부 조회</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/17좋아요여부조회.png">
+                          ![17좋아요여부조회](https://github.com/user-attachments/assets/077e600a-22c8-4427-9e0f-af910739473b)
+
      </details>
       <details>
         <summary>댓글 도메인 테스트 결과 확인하기</summary>
                     <summary>댓글 등록</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/15댓글등록.png">
+                          ![15댓글등록](https://github.com/user-attachments/assets/083b74fe-5565-4fc2-a2c8-c819c0d24bf3)
+
                     <summary>댓글 삭제</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png">
+                          ![16댓글삭제](https://github.com/user-attachments/assets/dd8168cd-13e4-4fb5-b04a-6977b943be96)
+
                     <summary>댓글 조회</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/19댓글조회.png">      
+                          ![19댓글조회](https://github.com/user-attachments/assets/82ae05d4-c5e4-4449-afae-a5c6faf802a9)
+      
       </details>
     </div>
 </details>
