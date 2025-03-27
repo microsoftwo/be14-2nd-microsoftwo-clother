@@ -280,16 +280,28 @@ public void setDataExpire(String key, String value,
     <img width="1400" alt="image" src="/readme-images/postman/10포스팅조회.png">
     <img width="1400" alt="image" src="/readme-images/postman/11훈수게시판등록.png">
     <img width="1400" alt="image" src="/readme-images/postman/12훈수게시판조회.png">
-    <img width="1400" alt="image" src="/readme-images/postman/13좋아요등록.png">
-    <img width="1400" alt="image" src="/readme-images/postman/14좋아요취소.png">
-    <img width="1400" alt="image" src="/readme-images/postman/15댓글등록.png">
-    <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png">
-    <summary>댓글 테스트 결과 확인하기</summary>
-    <div markdown="1">
-        <summary>댓글 등록</summary>
-        <img width="1400" alt="image" src="/readme-images/postman/15댓글등록.png">
-        <summary>댓글 삭제</summary>
-        <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png">
+    <details>
+        <summary>댓글 도메인 테스트 결과 확인하기</summary>
+            <details>
+                <summary>댓글 등록</summary>
+                    <img width="1400" alt="image" src="/readme-images/postman/15댓글등록.png">
+            </details>
+            <details>
+                <summary>댓글 삭제</summary>
+                    <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png">
+            </details>
+    </details>
+    <details>    
+        <summary>좋아요 도메인 테스트 결과 확인하기</summary>
+            <details>
+                  <summary>좋아요 등록</summary>
+                      <img width="1400" alt="image" src="/readme-images/postman/13좋아요등록.png">
+            </details>
+            <details> 
+                  <summary>좋아요 취소</summary>
+                      <img width="1400" alt="image" src="/readme-images/postman/14좋아요취소.png">
+            </details>
+    </details>
 
 </div>
 </details>
