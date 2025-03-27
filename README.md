@@ -289,14 +289,10 @@ public void setDataExpire(String key, String value,
         </details>
         <details>    
             <summary>좋아요 도메인 테스트 결과 확인하기</summary>
-                <details>
                       <summary>좋아요 등록</summary>
                           <img width="1400" alt="image" src="/readme-images/postman/13좋아요등록.png">
-                </details>
-                <details> 
                       <summary>좋아요 취소</summary>
                           <img width="1400" alt="image" src="/readme-images/postman/14좋아요취소.png">
-                </details>
         </details>   
     </div>
 </details>
