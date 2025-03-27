@@ -5,7 +5,23 @@
 <img src="https://github.com/user-attachments/assets/8e8c7919-f4dd-45b0-9c94-faab9ea0231a">
 <img src="https://github.com/user-attachments/assets/14df180e-8b17-4ba1-a5a5-573c32d46d33">
 
+
+<br><br><br>
+
 ---
+
+# 🚀 Team microsoftwo
+
+| <img src="https://github.com/user-attachments/assets/9e5c3e83-7f0d-41ca-816c-8133409537e1" width="200"> | <img src="https://github.com/user-attachments/assets/8f52dde1-3590-4e2f-880d-32098f5d098a" width="200"> | <img src="https://github.com/user-attachments/assets/0b56df7f-c48d-4975-abff-aeb51af8f2da" width="200"> | <img src="https://github.com/user-attachments/assets/f5cbf6cc-ff54-4720-be15-390182415083" width="200"> | <img src="https://github.com/user-attachments/assets/1d2619c6-f467-485e-9d90-14c7c43bc316" width="200"> |
+| :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: |
+|                                                 김기종                                                  |                                                 조윤태                                                  |                                                 신민경                                                  |                                                 황수민                                                  |                                                 이예원                                                  |
+| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/rrangeess) |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/cxzaqq)   |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/mmmv41)   | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/emily9949) |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/oni128)   |
+
+<br><br>
+
+---
+
+# 📋 목차
 
 <a href="#1">📁 1. 프로젝트 기획</a>
 
@@ -45,18 +61,8 @@
 
 <a href="#7">🫡 7. 동료평가</a>
 
-<br><br>
+<br><br><br>
 
----
-
-# 🚀 Team microsoftwo
-
-| <img src="https://github.com/user-attachments/assets/9e5c3e83-7f0d-41ca-816c-8133409537e1" width="200"> | <img src="https://github.com/user-attachments/assets/8f52dde1-3590-4e2f-880d-32098f5d098a" width="200"> | <img src="https://github.com/user-attachments/assets/0b56df7f-c48d-4975-abff-aeb51af8f2da" width="200"> | <img src="https://github.com/user-attachments/assets/f5cbf6cc-ff54-4720-be15-390182415083" width="200"> | <img src="https://github.com/user-attachments/assets/1d2619c6-f467-485e-9d90-14c7c43bc316" width="200"> |
-| :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: |
-|                                                 김기종                                                  |                                                 조윤태                                                  |                                                 신민경                                                  |                                                 황수민                                                  |                                                 이예원                                                  |
-| [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/rrangeess) |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/cxzaqq)   |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/mmmv41)   | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/emily9949) |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/oni128)   |
-
-<br><br>
 
 ---
 
@@ -64,7 +70,10 @@
 
 ### <p id="1-1">1-1. 배경 및 필요성</p>
 
-현재 의류를 포함한 헤어, 액세사리를 아우르는 스타일링 정보를 한번에 얻는 것이 매우 어렵다. 기존 쇼핑 앱은 의류 정보만 제공하며, 헤어스타일과 메이크업 제품 정보까지 연결되지 않는다. 사용자는 원하는 스타일을 찾으면 직접 댓글로 질문하거나 추가 검색을 해야 하는 불편함이 있다. 기존 스타일 공유 서비스도 한계를 가진다. 예를 들어, 온더룩은 의류 코디만 제공하고, 룩업은 남성 코디 위주이며, 인스타그램은 스타일링 정보를 체계적으로 제공하지 않는다. 이를 해결하기 위해 ‘클로저’ 스타일링 공유 서비스를 제안한다. 사용자는 스타일 사진을 보고 헤어샵, 메이크업 제품, 의류 브랜드 정보를 한 번에 확인할 수 있으며, 같은 아이템을 활용한 다양한 코디 사례도 찾아볼 수 있다. 또한, 팔로우한 유저의 스타일 변화 및 방문한 헤어샵 정보도 확인할 수 있어 보다 편리한 스타일링 경험을 제공한다.
+기존 서비스에서 의류를 포함한 헤어, 액세사리를 아우르는 스타일링 정보를 한번에 얻는 것이 매우 어렵다. 쇼핑 앱은 보통 의류 정보만 제공하며, 헤어스타일과 메이크업 제품 정보까지 연결되지 않는다. 
+사용자는 원하는 스타일을 찾으면 직접 댓글로 질문하거나 추가 검색을 해야 하는 불편함이 있다. 기존 스타일 공유 서비스도 한계를 가진다. 예를 들어, 온더룩은 의류 코디만 제공하고, 룩업은 남성 코디 위주이며, 인스타그램은 스타일링 정보를 체계적으로 제공하지 않는다. 
+이를 해결하기 위해 ‘Clother’ 스타일링 공유 서비스를 개발했다. 사용자는 스타일 사진을 보고 헤어샵, 메이크업 제품, 의류 브랜드 정보를 한 번에 확인할 수 있으며, 같은 아이템을 활용한 다양한 코디 사례도 찾아볼 수 있다. 
+또한, 팔로우한 유저의 스타일 변화 및 방문한 헤어샵 정보도 확인할 수 있어 보다 편리한 스타일링 경험을 제공한다.
 
 ### <p id="1-2">1-1. 주요 기능 </p>
 
@@ -106,24 +115,35 @@
 ![image](https://github.com/user-attachments/assets/21b8d5d9-acf6-44f7-8cba-ba36a588056a)
 <img width="1400" alt="image" src="/readme-images/msa/msa.png">
 
+<br>
+
 ### <p id="3-3">3-3. 📚 API 명세서 </p>
 
 <details>
-    <summary>API 명세서</summary>
+    <summary>user-service</summary>
     <div markdown="1">
         <img width="1400" alt="image" src="/readme-images/swagger/user-service-swagger.png">
+    </div>
+</details>
+
+<details>
+    <summary>core-service</summary>
+    <div markdown="1">
         <img width="1400" alt="image" src="/readme-images/swagger/core-service-swagger.png">
     </div>
 </details>
 
 <br>
 
-## <p id="3-4">3-4. 🧱 Redis를 활용한 이메일 인증 </p>
+### <p id="3-4">3-4. 🧱 Redis를 활용한 이메일 인증 </p>
 
 회원가입 시 이메일로 전송되는 인증 코드는 일정 시간이 지나면 자동으로 무효화되어야 하며, 서버에 불필요한 데이터가 남지 않아야 한다.
+
 따라서 Redis의 TTL(Time To Live) 기능을 사용하여 인증 번호를 저장하고, 5분이 지나면 자동으로 만료되도록 구성하였다.
 
-### 📥 인증 절차
+<br>
+
+### 📥 1) 인증 절차
 
 <details>
     <summary>인증 절차</summary>
@@ -140,7 +160,7 @@
 
 <br>
 
-### 🕑 TTL 적용 구조 설명
+### 🕑 2) TTL 적용 구조 설명
 
 인증 코드의 유효 시간 설정
 
@@ -176,27 +196,26 @@ public void setDataExpire(String key, String value,
 
 <br>
 
-### TTL 사용 후 효과
+### 👍🏻 3) TTL 사용 후 효과
 
-1. 설정된 TTL이 지나면 인증번호는 자동 삭제되어, 불필요한 데이터 제거
-2. 인증번호는 일시적 데이터이므로, 디스크 기반 RDB 대신 인메모리 Redis에서 빠르게 처리 가능
-3. 만료 스케줄러 없이 간단히 TTL 값만 설정하면 완료
+1. 설정된 TTL이 지나면 인증번호는 자동 삭제되어, 불필요한 데이터 제거 가능.
+2. 인증번호는 일시적 데이터이므로, 디스크 기반 RDB 대신 인메모리 Redis에서 빠르게 처리 가능.
 
 <br>
 
-## <p id="3-5">3-5. Redis 이용 트러블 슈팅 </p>
+### <p id="3-5">3-5. ☄️ Redis 이용 트러블 슈팅 </p>
 
 <img width="1180" alt="image" src="https://github.com/user-attachments/assets/963ad2b7-1c8e-43bf-993a-7ba8f8ed0e4b" />
 
-## 이메일을 Key로, 인증 코드를 Value로 둔 이유
+🔑 ###이메일을 Key로, 인증 코드를 Value로 둔 이유
 
-### 📌 1. 이메일은 유일한 식별자이기 때문
+📌 1. 이메일은 유일한 식별자이기 때문
 
 - 회원가입 또는 인증 과정에서 이메일은 사용자를 유일하게 식별할 수 있는 정보이다.
 - Redis는 Key-Value 구조이기 때문에, 유일한 값을 key로 사용해야 나중에 덮어쓰거나 충돌이 나지 않음.
 - 그래서 이메일 → 인증코드 구조로 저장하면, 같은 사람이 다시 인증 요청을 할 때 기존 인증 코드를 덮어쓰기도 쉽고, 빠르게 조회할 수 있다.
 
-### 📌 2. Value인 인증 코드는 자주 바뀜
+📌 2. Value인 인증 코드는 자주 바뀜
 
 - 인증 코드는 6자리 숫자이고 5분이 지나면 사라진다.
 - 따라서 Redis의 TTL(Time-To-Live) 기능을 써서 저장해두고 일정 시간 후 삭제되도록 관리하였다.
@@ -262,9 +281,14 @@ public void setDataExpire(String key, String value,
 [[🔗요구사항 명세서 Link]](https://docs.google.com/spreadsheets/d/1HQYulWkDctMpm4mhM3wYKbtAY3fCOOigEeM-M-q0jlg/edit?gid=269659385#gid=269659385)
 <br>
 
+<img width="783" alt="image" src="https://github.com/user-attachments/assets/96815989-ef5b-4b72-a3cb-ea1563a0188b" />
+
+
 ### <p id="5-2">5-2. 🗓️ WBS (Work Breakdown Structure) </p>
 
 [[🔗 WBS Link]](https://docs.google.com/spreadsheets/d/1HQYulWkDctMpm4mhM3wYKbtAY3fCOOigEeM-M-q0jlg/edit?gid=393359725#gid=393359725)
+
+<img width="1291" alt="image" src="https://github.com/user-attachments/assets/d46f9ea3-64a6-4529-a3e5-dee22989bd26" />
 
 <br><br>
 
