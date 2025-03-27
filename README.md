@@ -311,9 +311,9 @@ public void setDataExpire(String key, String value,
                     <summary>좋아요 취소</summary>
                           <img width="1400" alt="image" src="/readme-images/postman/14좋아요취소.png">
                     <summary>회원 좋아요 내역 조회</summary>
-                          ![show-user-like-list](https://github.com/user-attachments/assets/3e9158fa-9319-4257-a929-179288a01711)
+                          <img width="1400" alt="image" src="/readme-images/postman/18좋아요목록조회.png">
                     <summary>좋아요 여부 조회</summary>
-                          ![check-user-like](https://github.com/user-attachments/assets/8a5054eb-c8ed-4b5f-a689-6c1947603d22)
+                          <img width="1400" alt="image" src="/readme-images/postman/17좋아요여부조회.png">
     
 
      </details>
@@ -324,7 +324,7 @@ public void setDataExpire(String key, String value,
                     <summary>댓글 삭제</summary>
                           <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png">
                     <summary>댓글 조회</summary>
-                          ![show-comment](https://github.com/user-attachments/assets/76546d8b-801b-4abf-bcb9-83e423d7018c)
+                          <img width="1400" alt="image" src="/readme-images/postman/19댓글조회.png">
       
       </details>
     </div>
