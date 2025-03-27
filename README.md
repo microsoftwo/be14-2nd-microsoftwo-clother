@@ -287,7 +287,7 @@ public void setDataExpire(String key, String value,
                     <summary>포스팅 조회</summary>
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/714f467a-1507-40bf-8d9d-5c1bf310ad98>
      </details>
-       <details>
+      <details>
           <summary>훈수 게시판 도메인 테스트 결과 확인하기</summary>
                     <summary>훈수 게시물 등록
                           <img width="1400" alt="게시물 등록" src="https://github.com/user-attachments/assets/0c9b2556-6ddb-4157-91db-82364666bb05">
@@ -308,39 +308,41 @@ public void setDataExpire(String key, String value,
                           <img width="1400" alt="키워드별 조회" src="https://github.com/user-attachments/assets/16c564d6-b8ab-4449-be9f-8414fc627e9a" />
                     </summary>
      </details>
-       <details>
+      <details>
           <summary>상품등록 도메인 테스트 결과 확인하기</summary>
-                    <summary>상품 등록 신청</summary>
+                  <summary>상품 등록 신청
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/44a37510-ca7f-41bd-9ca4-085fe1953816>
-                    <summary>상품 등록 신청 삭제</summary>
+                  </summary>
+                  <summary>상품 등록 신청 삭제
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/ac9a3915-6395-48c8-9555-b637092da3b7>
+                  </summary>
      </details>
        <details>    
           <summary>좋아요 도메인 테스트 결과 확인하기</summary>
-                    <summary>좋아요 등록</summary>
+                  <summary>좋아요 등록
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/a9c5438e-d2d2-4bcb-9b47-9ab3f0fe34f0>
-
-                    <summary>좋아요 취소</summary>
+                  </summary>
+                  <summary>좋아요 취소
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/8a4fe730-8c62-44af-9442-aa0f8f9fdd57>
-
-                    <summary>회원 좋아요 내역 조회</summary>
+                  </summary>
+                  <summary>회원 좋아요 내역 조회
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/cebae2c7-8e18-426e-a8c5-75cbdaad8b9e>
-
-                    <summary>좋아요 여부 조회</summary>
+                  </summary>
+                  <summary>좋아요 여부 조회
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/077e600a-22c8-4427-9e0f-af910739473b>
-
+                  </summary>
      </details>
       <details>
         <summary>댓글 도메인 테스트 결과 확인하기</summary>
-                    <summary>댓글 등록</summary>
-                          <img width="1400" alt="image" src=https://github.com/user-attachments/assets/083b74fe-5565-4fc2-a2c8-c819c0d24bf3>
-
-                    <summary>댓글 삭제</summary>
-                          <img width="1400" alt="image" src=https://github.com/user-attachments/assets/dd8168cd-13e4-4fb5-b04a-6977b943be96>
-
-                    <summary>댓글 조회</summary>
-                          <img width="1400" alt="image" src=https://github.com/user-attachments/assets/82ae05d4-c5e4-4449-afae-a5c6faf802a9>
-
+                  <summary>댓글 등록
+                        <img width="1400" alt="image" src=https://github.com/user-attachments/assets/083b74fe-5565-4fc2-a2c8-c819c0d24bf3>
+                  </summary>
+                  <summary>댓글 삭제
+                        <img width="1400" alt="image" src=https://github.com/user-attachments/assets/dd8168cd-13e4-4fb5-b04a-6977b943be96>
+                  </summary>
+                  <summary>댓글 조회
+                        <img width="1400" alt="image" src=https://github.com/user-attachments/assets/82ae05d4-c5e4-4449-afae-a5c6faf802a9>
+                  </summary>
       </details>
     </div>
 
