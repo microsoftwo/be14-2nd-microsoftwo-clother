@@ -242,6 +242,11 @@ public void setDataExpire(String key, String value,
     <img width="1400" alt="image" src="/readme-images/postman/15댓글등록.png">
     <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png">
     <summary>댓글 테스트 결과 확인하기</summary>
+    <div markdown="1">
+        <summary>댓글 등록</summary>
+        <img width="1400" alt="image" src="/readme-images/postman/15댓글등록.png">
+        <summary>댓글 삭제</summary>
+        <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png">
 
 </div>
 </details>
