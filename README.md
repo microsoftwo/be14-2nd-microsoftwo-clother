@@ -314,8 +314,6 @@ public void setDataExpire(String key, String value,
                           <img width="1400" alt="image" src="/readme-images/postman/18좋아요목록조회.png">
                     <summary>좋아요 여부 조회</summary>
                           <img width="1400" alt="image" src="/readme-images/postman/17좋아요여부조회.png">
-    
-
      </details>
       <details>
         <summary>댓글 도메인 테스트 결과 확인하기</summary>
@@ -324,8 +322,7 @@ public void setDataExpire(String key, String value,
                     <summary>댓글 삭제</summary>
                           <img width="1400" alt="image" src="/readme-images/postman/16댓글삭제.png">
                     <summary>댓글 조회</summary>
-                          <img width="1400" alt="image" src="/readme-images/postman/19댓글조회.png">
-      
+                          <img width="1400" alt="image" src="/readme-images/postman/19댓글조회.png">      
       </details>
     </div>
 </details>
