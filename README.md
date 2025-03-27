@@ -316,6 +316,12 @@ public void setDataExpire(String key, String value,
                   <summary>상품 등록 신청 삭제
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/ac9a3915-6395-48c8-9555-b637092da3b7>
                   </summary>
+                  <summary>카테고리별 상품 목록 조회
+                          <img width="1400" alt="image" sr<img width="1000"  src="https://github.com/user-attachments/assets/80a4cc56-7706-498a-9ce8-31e4fa67db32" />
+                  </summary>
+                  <summary>상품 상세 페이지 조회
+                          <img width="993" alt="스크린샷 2025-03-27 오후 5 38 06" src="https://github.com/user-attachments/assets/8fa3c87e-444d-4e7f-a443-40a506da1bef" />
+                  </summary> 
      </details>
        <details>    
           <summary>좋아요 도메인 테스트 결과 확인하기</summary>
