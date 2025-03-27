@@ -270,9 +270,9 @@ public void setDataExpire(String key, String value,
                     <summary>인증 번호 전송</summary>
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/ef8f8efc-fd62-4958-9439-c38b88db12e5>
                     <summary>인증 번호 검증</summary>
-                          <img width="1400" alt="image" src=https://github.com/user-attachments/assets/1efe56fb-123c-4e44-9c62-b06613843dea)>
+                          <img width="1400" alt="image" src=https://github.com/user-attachments/assets/e078de72-5973-4408-8339-dcad4411c783>
                     <summary>회원 가입</summary>
-                          <img width="1400" alt="image" src=https://github.com/user-attachments/assets/e1bdd46c-9cb9-4f7c-984e-5aa3c640e1c8)>
+                          <img width="1400" alt="image" src=https://github.com/user-attachments/assets/210f01ac-43fa-4282-8811-ba2567023ddb>
                     <summary>로그인</summary>
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/2838e7e3-78ab-4e3b-94a6-a02f1d097d75>
                     <summary>토큰 미포함 요청</summary>
