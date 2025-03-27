@@ -113,7 +113,7 @@
 ### <p id="3-2">3-2. MSA 아키텍쳐 </p>
 
 ![image](https://github.com/user-attachments/assets/21b8d5d9-acf6-44f7-8cba-ba36a588056a)
-<img width="1400" alt="image" src="/readme-images/msa/msa.png">
+![msa](https://github.com/user-attachments/assets/b67bf7bd-a623-4db1-ba1f-ddb13413db21)
 
 <br>
 
@@ -122,14 +122,14 @@
 <details>
     <summary>user-service</summary>
     <div markdown="1">
-        <img width="1400" alt="image" src="/readme-images/swagger/user-service-swagger.png">
+      ![user-service-swagger](https://github.com/user-attachments/assets/2372f030-ffee-4724-8ee5-4464965793c3)
     </div>
 </details>
 
 <details>
     <summary>core-service</summary>
     <div markdown="1">
-        <img width="1400" alt="image" src="/readme-images/swagger/core-service-swagger.png">
+      ![core-service-swagger](https://github.com/user-attachments/assets/423c352f-a830-4b8e-8c52-c29c21ff2390)
     </div>
 </details>
 
@@ -254,12 +254,12 @@ public void setDataExpire(String key, String value,
 
 <details>
     <summary>테스트 결과 확인하기</summary>
-    <div markdown="1">
-        <img width="1400" alt="image" src="/readme-images/unit-test/댓글생성.png">
-        <img width="1400" alt="image" src="/readme-images/unit-test/특정게시물조회.png">
-        <img width="1400" alt="image" src="/readme-images/unit-test/피드조회.png">
-        <img width="1400" alt="image" src="/readme-images/unit-test/하위카테고리검색.png">
-        <img width="1400" alt="image" src="/readme-images/unit-test/">
+    <div markdown="1">  
+      ![댓글생성](https://github.com/user-attachments/assets/33e71cb6-d3e1-4574-bf55-d81c0259d1c0)
+      ![특정게시물조회](https://github.com/user-attachments/assets/b8319b3f-641c-4500-bd28-2c4cc1c960d2)
+      ![피드조회](https://github.com/user-attachments/assets/c812d542-6af2-458a-82ab-84f18144d06e)
+      ![하위카테고리검색](https://github.com/user-attachments/assets/8404292e-7a5f-4d13-9568-605663d1c7f5)
+      <img width="1141" alt="회원가입" src="https://github.com/user-attachments/assets/38f07e02-c7d1-434a-bcbd-21f706de7acc" />
     </div>
 </details>
 
