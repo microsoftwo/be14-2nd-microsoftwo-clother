@@ -255,10 +255,10 @@ public void setDataExpire(String key, String value,
 <details>
     <summary>테스트 결과 확인하기</summary>
     <div markdown="1">  
-      ![댓글생성](https://github.com/user-attachments/assets/33e71cb6-d3e1-4574-bf55-d81c0259d1c0)
-      ![특정게시물조회](https://github.com/user-attachments/assets/b8319b3f-641c-4500-bd28-2c4cc1c960d2)
-      ![피드조회](https://github.com/user-attachments/assets/c812d542-6af2-458a-82ab-84f18144d06e)
-      ![하위카테고리검색](https://github.com/user-attachments/assets/8404292e-7a5f-4d13-9568-605663d1c7f5)
+      <img width="1141" alt="댓글생성" src=https://github.com/user-attachments/assets/33e71cb6-d3e1-4574-bf55-d81c0259d1c0 />
+      <img width="1141" alt="특정게시글조회" src=https://github.com/user-attachments/assets/b8319b3f-641c-4500-bd28-2c4cc1c960d2 />
+      <img width="1141" alt="피드조회" src=https://github.com/user-attachments/assets/c812d542-6af2-458a-82ab-84f18144d06e />
+      <img width="1141" alt="하위카테고리검색" src=https://github.com/user-attachments/assets/8404292e-7a5f-4d13-9568-605663d1c7f5 />
       <img width="1141" alt="회원가입" src="https://github.com/user-attachments/assets/38f07e02-c7d1-434a-bcbd-21f706de7acc" />
     </div>
 </details>
