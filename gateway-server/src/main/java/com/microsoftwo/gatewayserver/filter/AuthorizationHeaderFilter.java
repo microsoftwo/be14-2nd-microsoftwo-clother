@@ -41,20 +41,6 @@ public class AuthorizationHeaderFilter
             // 현재 요청 경로 확인
             String path = exchange.getRequest().getPath().toString();
 
-            // 경로 패턴 매칭
-            if (path.startsWith("/auth") || path.startsWith("/mails")) {
-                // Authorization 헤더가 있든 없든 그대로 통과
-                return chain.filter(exchange);
-            }
-
-//            log.info("Request path: {}", path);
-//            if (path.startsWith("/auth/") || path.startsWith("/mails/")) {
-//                log.info("Bypassing authentication for path: {}", path);
-//            }
-//
-//            log.info("Request URI: {}", exchange.getRequest().getURI());
-//            log.info("Request Headers: {}", exchange.getRequest().getHeaders());
-//            log.info("Request Method: {}", exchange.getRequest().getMethod());
             System.out.println(path);
 
             ServerHttpRequest request = exchange.getRequest();
@@ -92,7 +78,7 @@ public class AuthorizationHeaderFilter
         try {
             // JWT 토큰을 파싱하고 검증하는 부분
             subject = Jwts.parser()
-                    .setSigningKey(env.getProperty("token.secret")) // 토큰의 비밀 키 설정
+                    .setSigningKey(env.getProperty("spring.jwt.secret")) // 토큰의 비밀 키 설정
                     .parseClaimsJws(jwt) // JWT 토큰 파싱 및 검증
                     .getBody()
                     .getSubject(); // 토큰에서 'subject' 정보 추출
