@@ -42,7 +42,7 @@
 
 <a href="#3-3">3-3. REST API 설계 (Swagger) </a>
 
-<a href="#3-4">3-4. Redis 를 활용한 JWT 토큰 관리 </a>
+<a href="#3-4">🧱  3-4. Redis를 활용한 이메일 인증  </a>
 
 <a href="#4">🎮 4. 테스트 결과 </a>
 
@@ -216,7 +216,7 @@ public void setDataExpire(String key, String value,
 
 <br>
 
-### <p id="3-5">3-5. ☄️ Redis 이용 트러블 슈팅 </p>
+### 4) ☄️ Redis 이용 트러블 슈팅 
 
 <img width="1180" alt="image" src="https://github.com/user-attachments/assets/963ad2b7-1c8e-43bf-993a-7ba8f8ed0e4b" />
 
