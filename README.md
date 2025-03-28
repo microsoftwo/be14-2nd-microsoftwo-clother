@@ -315,18 +315,27 @@ public void setDataExpire(String key, String value,
                     </details>
      </details>
       <details>
-          <summary>상품등록 도메인 테스트 결과 확인하기</summary>
+          <summary>상품 도메인 테스트 결과 확인하기</summary>
                   <summary>상품 등록 신청
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/44a37510-ca7f-41bd-9ca4-085fe1953816>
                   </summary>
                   <summary>상품 등록 신청 삭제
                           <img width="1400" alt="image" src=https://github.com/user-attachments/assets/ac9a3915-6395-48c8-9555-b637092da3b7>
                   </summary>
-                  <summary>카테고리별 상품 목록 조회
-                          <img width="1400" alt="image" sr<img width="1000"  src="https://github.com/user-attachments/assets/80a4cc56-7706-498a-9ce8-31e4fa67db32" />
+                 <summary>상품 등록 신청 수정
+                          <img width="1400" alt="image" src="https://github.com/user-attachments/assets/19b7f83c-ca08-4545-b07d-933c043e393b">
                   </summary>
+                  <summary>상품 등록 신청 목록 조회
+                          <img width="999" src="https://github.com/user-attachments/assets/9221f6d6-39ce-4010-ad8d-f262e7250092" />
+                  </summary> 
+                  <summary>카테고리별 상품 목록 조회
+                        <img width="990" src="https://github.com/user-attachments/assets/1463d44a-8d39-49a5-afdc-df0573e50bc4" />
+                  </summary>
+                   <summary>하위 카테고리 목록 조회
+                         <img width="989" src="https://github.com/user-attachments/assets/a1a3298d-ae03-4cb3-ae14-2770aceb8dfb" />
+                  </summary> 
                   <summary>상품 상세 페이지 조회
-                          <img width="993" alt="스크린샷 2025-03-27 오후 5 38 06" src="https://github.com/user-attachments/assets/8fa3c87e-444d-4e7f-a443-40a506da1bef" />
+                          <img width="1007" src="https://github.com/user-attachments/assets/bbe14ffa-fe17-4cc3-91b7-e3a7645572db" />
                   </summary> 
      </details>
        <details>    
