@@ -289,24 +289,30 @@ public void setDataExpire(String key, String value,
      </details>
       <details>
           <summary>훈수 게시판 도메인 테스트 결과 확인하기</summary>
-                    <summary>훈수 게시물 등록
-                          <img width="1400" alt="게시물 등록" src="https://github.com/user-attachments/assets/0c9b2556-6ddb-4157-91db-82364666bb05">
-                    </summary>
-                    <summary>훈수 게시물 수정
-                          <img width="1400" alt="게시물 수정" src="https://github.com/user-attachments/assets/d4e308a0-ced9-4c55-b038-a740545bf679" >
-                    </summary>
-                    <summary>훈수 게시물 삭제
+                    <details>
+                      <summary>훈수 게시물 등록</summary>
+                      <img width="1400" alt="게시물 등록" src="https://github.com/user-attachments/assets/0c9b2556-6ddb-4157-91db-82364666bb05">
+                    </details>
+                    <details>  
+                      <summary>훈수 게시물 수정</summary>
+                            <img width="1400" alt="게시물 수정" src="https://github.com/user-attachments/assets/d4e308a0-ced9-4c55-b038-a740545bf679">
+                    </details>
+                    <details>
+                    <summary>훈수 게시물 삭제</summary>
                           <img width="1400" alt="게시물 삭제" src="https://github.com/user-attachments/assets/a465a856-ac17-40c9-855c-71b2b7f0135e" >
-                    </summary>
-                    <summary>훈수 게시판 최신순(기본)조회
+                    </details>
+                    <details>
+                    <summary>훈수 게시판 최신순(기본)조회 - 사용자</summary>
                           <img width="1400" alt="게시판 최신순 조회" src="https://github.com/user-attachments/assets/84757fed-da97-464e-b8f2-a636a58f962a" />
-                    </summary>
-                    <summary>훈수 게시판 좋아요순 조회
+                    </details>
+                    <details>
+                    <summary>훈수 게시판 좋아요순 조회 - 사용자</summary>
                           <img width="1400" alt="게시판 좋아요순 조회" src="https://github.com/user-attachments/assets/b03d2d95-b1a1-4e6a-a1f3-74dd8a520e97" />
-                    </summary>
-                    <summary>훈수 게시판 키워드별 조회
+                    </details>
+                    <details>
+                    <summary>훈수 게시판 키워드별 조회 - 사용자</summary>
                           <img width="1400" alt="키워드별 조회" src="https://github.com/user-attachments/assets/16c564d6-b8ab-4449-be9f-8414fc627e9a" />
-                    </summary>
+                    </details>
      </details>
       <details>
           <summary>상품등록 도메인 테스트 결과 확인하기</summary>
