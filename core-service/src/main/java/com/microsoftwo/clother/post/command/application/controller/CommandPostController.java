@@ -23,8 +23,8 @@ public class CommandPostController {
         this.commandPostService = commandPostService;
     }
 
-    @PostMapping("")
-    public ResponseEntity<Void> registPost(@RequestBody RequestRegistPostVO newPost) {
+        @PostMapping("")
+        public ResponseEntity<Void> registPost(@RequestBody RequestRegistPostVO newPost) {
         commandPostService.registPost(newPost);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
