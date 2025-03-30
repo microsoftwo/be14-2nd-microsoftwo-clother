@@ -120,7 +120,7 @@
 <details>
     <summary>user-service</summary>
     <div markdown="1">
-      <img width="1400" alt="image" src=https://github.com/user-attachments/assets/2372f030-ffee-4724-8ee5-4464965793c3>
+      <img width="1400" alt="image" src=https://github.com/user-attachments/assets/df5c035d-0402-4e1a-88f2-dfee258b3629>
     </div>
 </details>
 
