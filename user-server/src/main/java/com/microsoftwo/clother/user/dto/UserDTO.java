@@ -1,11 +1,11 @@
 package com.microsoftwo.clother.user.dto;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class UserDTO {
     private String email;
-    private String encryptedPwd; // 비밀번호는 암호화된 값만 저장
+    private String encryptedPwd;
     private String nickname;
     private String gender;
     private int height;

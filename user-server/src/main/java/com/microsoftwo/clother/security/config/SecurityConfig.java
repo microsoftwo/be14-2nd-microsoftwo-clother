@@ -71,17 +71,21 @@ public class SecurityConfig {
                         .frameOptions(frameOptions -> frameOptions.sameOrigin()))
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/auth/**",
-                                "/mails/**",
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/v3/api-docs",
-                                "/swagger-resources/**",
-                                "/webjars/**"
-                        ).permitAll()
-                        .anyRequest().authenticated()
+                        // 모든 요청에 대해 인증을 거치지 않게 허용
+                        .anyRequest().permitAll()
                 )
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers(
+//                                "/auth/**",
+//                                "/mails/**",
+//                                "/swagger-ui/**",
+//                                "/v3/api-docs/**",
+//                                "/v3/api-docs",
+//                                "/swagger-resources/**",
+//                                "/webjars/**"
+//                        ).permitAll()
+//                        .anyRequest().authenticated()
+//                )
 
                 // 빈으로 등록한 JwtFilter 를 추가
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class)
