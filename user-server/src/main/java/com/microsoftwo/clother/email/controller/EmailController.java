@@ -27,6 +27,7 @@ public class EmailController {
         return mailService.joinEmail(emailRequestVO.getEmail());
     }
 
+    // 인증 코드 일치 여부 확인
     @PostMapping("/verification")
     public ResponseEntity<String> verifyEmail(@RequestBody @Valid EmailCheckDTO emailCheckDto) {
         return userService.verifyEmailAuthentication(emailCheckDto);

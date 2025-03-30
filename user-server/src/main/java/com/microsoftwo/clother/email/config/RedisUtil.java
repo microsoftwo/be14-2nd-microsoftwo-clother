@@ -22,7 +22,7 @@ public class RedisUtil {
     // 데이터 저장
     public void setData(String key, String value) {
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
-        valueOperations.set(key, value);
+        valueOperations.set(key, value); // key는 이메일, value는 인증코드
     }
 
     // 일정 시간 후 만료되는 데이터 저장

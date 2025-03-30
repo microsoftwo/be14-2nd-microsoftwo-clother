@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -20,6 +21,9 @@ public class EmailServiceImpl implements EmailService {
     private final JavaMailSender mailSender;
     private final RedisUtil redisUtil;
     private final UserService userService;
+
+    @Value("${spring.mail.auth-code-expiration-millis}")
+    private long authCodeExpirationMillis;
 
     @Autowired
     public EmailServiceImpl(JavaMailSender mailSender, RedisUtil redisUtil, UserService userService) {
@@ -93,7 +97,7 @@ public class EmailServiceImpl implements EmailService {
             e.printStackTrace();
         }
 
-        // 인증번호를 email을 키로 저장
-        redisUtil.setDataExpire(toMail, Integer.toString(authNumber), 5);
+        // key : 이메일, value : 인증 번호
+        redisUtil.setDataExpire(toMail, Integer.toString(authNumber), authCodeExpirationMillis / 60000);
     }
 }
