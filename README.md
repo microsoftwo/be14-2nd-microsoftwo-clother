@@ -120,14 +120,14 @@
 <details>
     <summary>user-service</summary>
     <div markdown="1">
-      ![user-service-swagger](https://github.com/user-attachments/assets/2372f030-ffee-4724-8ee5-4464965793c3)
+      <img width="1400" alt="image" src=https://github.com/user-attachments/assets/2372f030-ffee-4724-8ee5-4464965793c3>
     </div>
 </details>
 
 <details>
     <summary>core-service</summary>
     <div markdown="1">
-      ![core-service-swagger](https://github.com/user-attachments/assets/423c352f-a830-4b8e-8c52-c29c21ff2390)
+      <img width="1400" alt="image" src=https://github.com/user-attachments/assets/423c352f-a830-4b8e-8c52-c29c21ff2390>
     </div>
 </details>
 
@@ -141,10 +141,8 @@
 
 <br>
 
-### 📥 1) 인증 절차
-
 <details>
-    <summary>인증 절차</summary>
+    <summary>📥 1) 인증 절차</summary>
     <div markdown="1">
       <br>
         1. 사용자가 이메일 입력 후 인증 요청<br>
@@ -157,12 +155,8 @@
     </div>
 </details>
 
-<br>
-
-### 🕑 2) TTL 적용 구조 설명
-
 <details>
-    <summary>TTL 적용 구조 설명</summary>
+    <summary>🕑 2) TTL 적용 구조 설명</summary>
     <div markdown="1">
 <br> 
       
@@ -202,33 +196,25 @@ public void setDataExpire(String key, String value,
 
 </details>
 
-<br>
-
-### 👍🏻 3) TTL 사용 후 효과
-
 <details>
-    <summary>TTL 사용 후 효과</summary>
+    <summary>👍🏻 3) TTL 사용 후 효과</summary>
     <div markdown="1">
         <br>1. 설정된 TTL이 지나면 인증번호는 자동 삭제되어, 불필요한 데이터 제거 가능. <br>
         2. 인증번호는 일시적 데이터이므로, 디스크 기반 RDB 대신 인메모리 Redis에서 빠르게 처리 가능.
     </div>
 </details>
 
-<br>
-
-### 4) ☄️ Redis 이용 트러블 슈팅 
-
-<img width="1180" alt="image" src="https://github.com/user-attachments/assets/963ad2b7-1c8e-43bf-993a-7ba8f8ed0e4b" />
+<details>
+    <summary>☄️ 4) Redis 이용 트러블 슈팅 </summary>
+    <div markdown="1">
+    <br>
+      <img width="1180" alt="image" src="https://github.com/user-attachments/assets/963ad2b7-1c8e-43bf-993a-7ba8f8ed0e4b" />
 
 <br>
 
 #### 🔑 이메일을 Key로, 인증 코드를 Value로 둔 이유
 
-<details>
-    <summary>설명</summary>
-    <div markdown="1">
-    <br>
-    📌 1. 이메일은 유일한 식별자이기 때문
+📌 1. 이메일은 유일한 식별자이기 때문
 
 - 회원가입 또는 인증 과정에서 이메일은 사용자를 유일하게 식별할 수 있는 정보이다.
 - Redis는 Key-Value 구조이기 때문에, 유일한 값을 key로 사용해야 나중에 덮어쓰거나 충돌이 나지 않음.
