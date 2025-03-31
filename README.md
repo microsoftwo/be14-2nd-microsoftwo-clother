@@ -399,9 +399,11 @@ public void setDataExpire(String key, String value,
 ### 도구
 
 - 에디터
+  
   ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ-000000?style=plastic&logo=intellij-idea&logoColor=white)
 - 빌드
-  - ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=plastic&logo=Gradle&logoColor=white)
+  
+  ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=plastic&logo=Gradle&logoColor=white)
 
 ### 데이터베이스
 
