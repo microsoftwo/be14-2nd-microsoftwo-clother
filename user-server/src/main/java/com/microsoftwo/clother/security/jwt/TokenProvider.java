@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 public class TokenProvider {
 
     private static final String AUTHORITIES_KEY = "auth";
+    private static final String USER_ID_KEY = "userId";  // 🔹 userId 키 추가
     private static final String BEARER_TYPE = "Bearer";
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 30;            // 30분
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;  // 7일
@@ -36,7 +37,6 @@ public class TokenProvider {
     private final Key key;
 
     public TokenProvider(@Value("${spring.jwt.secret}") String secretKey) {
-        // log.info("Injected JWT Secret Key: {}", secretKey);
         if (secretKey == null || secretKey.isEmpty()) {
             throw new IllegalStateException("JWT Secret Key is NOT set!");
         }
@@ -44,22 +44,23 @@ public class TokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-
-    public TokenDTO generateTokenDTO(Authentication authentication) {
-        // 권한들 가져오기
+    // 🔹 userId를 포함하도록 변경
+    public TokenDTO generateTokenDTO(Authentication authentication, int userId) {
+        // 권한 가져오기
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
 
-        // Access Token 생성
+        // Access Token 생성 (userId 포함)
         Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
         String accessToken = Jwts.builder()
-                .setSubject(authentication.getName())       // payload "sub": "name"
-                .claim(AUTHORITIES_KEY, authorities)        // payload "auth": "ROLE_USER"
-                .setExpiration(accessTokenExpiresIn)        // payload "exp": 151621022 (ex)
-                .signWith(key, SignatureAlgorithm.HS512)    // header "alg": "HS512"
+                .setSubject(authentication.getName())       // "sub": "name"
+                .claim(AUTHORITIES_KEY, authorities)        // "auth": "ROLE_USER"
+                .claim(USER_ID_KEY, userId)                 // 🔹 "userId": 38 추가
+                .setExpiration(accessTokenExpiresIn)        // "exp": 151621022 (예제)
+                .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
 
         // Refresh Token 생성
@@ -73,9 +74,11 @@ public class TokenProvider {
                 .accessToken(accessToken)
                 .accessTokenExpiresIn(accessTokenExpiresIn.getTime())
                 .refreshToken(refreshToken)
+                .userId(userId)  // 🔹 userId 추가
                 .build();
     }
 
+    // 🔹 userId도 추출할 수 있도록 수정
     public Authentication getAuthentication(String accessToken) {
         // 토큰 복호화
         Claims claims = parseClaims(accessToken);
@@ -92,6 +95,10 @@ public class TokenProvider {
 
         // UserDetails 객체를 만들어서 Authentication 리턴
         UserDetails principal = new User(claims.getSubject(), "", authorities);
+
+        // 🔹 userId 값 로그 출력 (필요하면 사용 가능)
+        int userId = claims.get(USER_ID_KEY, int.class);
+        log.info("Extracted userId from JWT: {}", userId);
 
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }

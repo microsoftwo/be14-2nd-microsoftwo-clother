@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 public class TokenDTO {
+    private int userId;     // 유저 pk 추가
     private String grantType;
     private String accessToken;
     private String refreshToken;
