@@ -58,7 +58,7 @@ public class TokenProvider {
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())       // "sub": "name"
                 .claim(AUTHORITIES_KEY, authorities)        // "auth": "ROLE_USER"
-                .claim(USER_ID_KEY, userId)                 // 🔹 "userId": 38 추가
+                .claim(USER_ID_KEY, userId)                 // "userId": 30
                 .setExpiration(accessTokenExpiresIn)        // "exp": 151621022 (예제)
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
@@ -74,11 +74,10 @@ public class TokenProvider {
                 .accessToken(accessToken)
                 .accessTokenExpiresIn(accessTokenExpiresIn.getTime())
                 .refreshToken(refreshToken)
-                .userId(userId)  // 🔹 userId 추가
+                .userId(userId)
                 .build();
     }
 
-    // 🔹 userId도 추출할 수 있도록 수정
     public Authentication getAuthentication(String accessToken) {
         // 토큰 복호화
         Claims claims = parseClaims(accessToken);
@@ -95,10 +94,6 @@ public class TokenProvider {
 
         // UserDetails 객체를 만들어서 Authentication 리턴
         UserDetails principal = new User(claims.getSubject(), "", authorities);
-
-        // 🔹 userId 값 로그 출력 (필요하면 사용 가능)
-        int userId = claims.get(USER_ID_KEY, int.class);
-        log.info("Extracted userId from JWT: {}", userId);
 
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }

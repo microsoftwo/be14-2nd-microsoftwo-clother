@@ -77,7 +77,7 @@ public class AuthService {
                 .accessToken(tokenDTO.getAccessToken())
                 .refreshToken(tokenDTO.getRefreshToken())
                 .accessTokenExpiresIn(tokenDTO.getAccessTokenExpiresIn())
-                .userId(userEntity.getId())  // 추가된 PK 정보
+                .userId(userEntity.getId())
                 .build();
     }
 }
