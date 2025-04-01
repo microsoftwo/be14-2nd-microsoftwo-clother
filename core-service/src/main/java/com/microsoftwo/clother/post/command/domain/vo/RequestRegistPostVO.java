@@ -13,7 +13,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class RequestRegistPostVO {
-    private int userId;
     private String content;
     private List<PostImageVO> imageVOs;
 
