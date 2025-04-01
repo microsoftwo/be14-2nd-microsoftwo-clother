@@ -27,6 +27,7 @@ public class AuthService {
     private final RefreshTokenRepository refreshTokenRepository;
     private final UserService userService;
 
+
     public AuthService(AuthenticationManager authenticationManager, UserRepository userRepository,
                        PasswordEncoder passwordEncoder, TokenProvider tokenProvider,
                        RefreshTokenRepository refreshTokenRepository, UserService userService) {
@@ -56,8 +57,12 @@ public class AuthService {
         // 검증 (사용자 비밀번호 체크)
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
+        // 로그인한 유저의 정보 가져오기
+        UserEntity userEntity = userRepository.findByEmail(loginRequestVO.getEmail())
+                .orElseThrow(() -> new RuntimeException("해당 유저를 찾을 수 없습니다."));
+
         // 인증 정보를 기반으로 JWT 토큰 생성
-        TokenDTO tokenDTO = tokenProvider.generateTokenDTO(authentication);
+        TokenDTO tokenDTO = tokenProvider.generateTokenDTO(authentication, userEntity.getId());
 
         // RefreshToken 저장
         RefreshToken refreshToken = RefreshToken.builder()
@@ -68,7 +73,13 @@ public class AuthService {
         refreshTokenRepository.save(refreshToken);
 
         // 토큰 발급
-        return tokenDTO;
+        return TokenDTO.builder()
+                .grantType(tokenDTO.getGrantType())
+                .accessToken(tokenDTO.getAccessToken())
+                .refreshToken(tokenDTO.getRefreshToken())
+                .accessTokenExpiresIn(tokenDTO.getAccessTokenExpiresIn())
+                .userId(userEntity.getId())
+                .build();
     }
 
     @Transactional
@@ -81,6 +92,10 @@ public class AuthService {
         // Access Token 에서 Member ID 가져오기
         Authentication authentication = tokenProvider.getAuthentication(tokenRequestDto.getAccessToken());
 
+        // 로그인한 유저의 정보 가져오기
+        UserEntity userEntity = userRepository.findByEmail(tokenRequestDto.getAccessToken())
+                .orElseThrow(() -> new RuntimeException("해당 유저를 찾을 수 없습니다."));
+
         // 저장소에서 Member ID 를 기반으로 Refresh Token 값 가져옴
         RefreshToken refreshToken = refreshTokenRepository.findByKey(authentication.getName())
                 .orElseThrow(() -> new RuntimeException("로그아웃 된 사용자입니다."));
@@ -91,7 +106,7 @@ public class AuthService {
         }
 
         // 새로운 토큰 생성
-        TokenDTO tokenDto = tokenProvider.generateTokenDTO(authentication);
+        TokenDTO tokenDto = tokenProvider.generateTokenDTO(authentication, userEntity.getId());
 
         // 저장소 정보 업데이트
         RefreshToken newRefreshToken = refreshToken.updateValue(tokenDto.getRefreshToken());
