@@ -25,12 +25,4 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
-
-//    public String getSubject(String token) {
-//        return parseJwt(token).getSubject();
-//    }
-//
-//    public String getAuth(String token) {
-//        return parseJwt(token).get("auth", String.class);
-//    }
 }
