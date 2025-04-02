@@ -1,5 +1,6 @@
 package com.microsoftwo.clother.likes.command.application.service;
 
+import com.microsoftwo.clother.adviceBoard.query.service.BoardQueryServiceImpl;
 import com.microsoftwo.clother.likes.command.application.dto.LikeDTO;
 import com.microsoftwo.clother.likes.command.domain.aggregate.Like;
 import com.microsoftwo.clother.likes.command.domain.repository.LikeRepository;
@@ -12,11 +13,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class LikeService {
 
     private final LikeRepository likeRepository;
+    private final BoardQueryServiceImpl boardQueryService;
 
     @Transactional
     public LikeDTO createLike(LikeDTO likeDTO) {
         Like like = likeDTO.toEntity();
         Like savedLike = likeRepository.save(like);
+
+        // post에 요청
+
+        // adviceBoard에 요청
+
         return LikeDTO.fromEntity(savedLike);
     }
 

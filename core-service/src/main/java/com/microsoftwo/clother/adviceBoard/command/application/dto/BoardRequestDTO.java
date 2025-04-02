@@ -28,6 +28,8 @@ public class BoardRequestDTO {
     private List<BoardImageDTO> images;
 
 
+
+
     public static BoardRequestDTO fromEntity(BoardEntity entity) {
         if (entity == null) {
             throw new IllegalArgumentException("BoardEntity가 null입니다.");

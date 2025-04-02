@@ -1,7 +1,7 @@
 package com.microsoftwo.clother.adviceBoard.query.controller;
 
 import com.microsoftwo.clother.adviceBoard.query.dto.BoardDTO;
-import com.microsoftwo.clother.adviceBoard.query.service.BoardQueryService;
+import com.microsoftwo.clother.adviceBoard.query.service.BoardQueryServiceImpl;
 import io.micrometer.common.util.StringUtils;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +15,13 @@ import java.util.List;
 @Slf4j
 public class BoardQueryController {
 
-    private final BoardQueryService boardQueryService;
+    private final BoardQueryServiceImpl boardQueryService;
 
     // 게시판 조회
     @GetMapping
     public List<BoardDTO> getBoards(@RequestParam(required = false) String sortBy) {
+
+
         return boardQueryService.getBoards(sortBy);
     }
 
