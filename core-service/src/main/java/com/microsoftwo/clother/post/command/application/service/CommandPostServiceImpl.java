@@ -37,10 +37,10 @@ public class CommandPostServiceImpl implements CommandPostService {
 
     @Transactional
     @Override
-    public void registPost(RequestRegistPostVO newPost) {
+    public void registPost(RequestRegistPostVO newPost, int userId) {
         // PostEntity 생성
         PostEntity postEntity = new PostEntity();
-        postEntity.setUserId(newPost.getUserId());
+        postEntity.setUserId(userId);
         postEntity.setContent(newPost.getContent());
 
         // Post 저장 (ID 생성됨)
@@ -48,7 +48,7 @@ public class CommandPostServiceImpl implements CommandPostService {
 
         // PostImageEntity 리스트 생성
         List<PostImageEntity> imageEntities = newPost.getImageVOs().stream()
-                .map(imageVO -> new PostImageEntity(0, savedPost, imageVO.getImageUrl(), imageVO.getOrder()))
+                .map(imageVO -> new PostImageEntity(0, savedPost, imageVO.getImageUrl().split("\\?")[0], imageVO.getOrder()))
                 .collect(Collectors.toList());
 
         // PostImage 저장
