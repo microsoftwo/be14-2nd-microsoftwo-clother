@@ -23,7 +23,6 @@ public class LikeRegistController {
     public ResponseEntity<Void> deleteLike(@PathVariable int id) {
         likeService.deleteLike(id);
 
-
         return ResponseEntity.noContent().build(); // 204 No Content 응답 반환
     }
 

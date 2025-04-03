@@ -20,6 +20,8 @@ public class LikeService {
     private final PostRepository postRepository ;
     private final CommentRepository commentRepository ;
 
+
+    // 좋아요 등록
     @Transactional
     public void createLike(LikeDTO likeDTO) {
 
@@ -54,15 +56,28 @@ public class LikeService {
 
     }
 
+
+    // 좋아요 등록 해제
     @Transactional
     public void deleteLike(int id) {
-        if (likeRepository.existsById(id)) {
-            likeRepository.deleteById(id); // JPA를 활용한 ID로 삭제
-        } else {
-            throw new IllegalArgumentException("좋아요 ID를 찾을 수 없습니다: " + id);
+        Like like = likeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("좋아요 ID를 찾을 수 없습니다: " + id));
+
+        // 좋아요수 감소
+        if (like.getBoardId() != null) {
+            boardCommandRepository.decreaseLikeCount(like.getBoardId());
+        } else if (like.getPostId() != null) {
+            postRepository.decreaseLikeCount(like.getPostId());
+        } else if (like.getCommentId() != null) {
+            commentRepository.decreaseLikeCount(like.getCommentId());
         }
 
+        // 좋아요 감소
+        likeRepository.deleteById(id);
+
     }
+
+
 }
 
 
