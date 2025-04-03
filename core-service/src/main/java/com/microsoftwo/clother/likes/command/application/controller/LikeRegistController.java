@@ -14,9 +14,9 @@ public class LikeRegistController {
     private final LikeService likeService;
 
     @PostMapping
-    public ResponseEntity<LikeDTO> createLike(@RequestBody LikeDTO likeDTO) {
-        System.out.println(likeDTO.toString());
-        return ResponseEntity.ok(likeService.createLike(likeDTO));
+    public ResponseEntity<Void> createLike(@RequestBody LikeDTO likeDTO) {
+        likeService.createLike(likeDTO);
+        return ResponseEntity.ok().build(); // or 201 Created
     }
 
     @DeleteMapping("/{id}")

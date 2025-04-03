@@ -12,9 +12,11 @@ import lombok.*;
 public class LikeDTO {
     private int id;
     private int userId;
+
     private Integer postId;
     private Integer boardId;
     private Integer commentId;
+
 
 
     public static LikeDTO fromEntity(Like like) {

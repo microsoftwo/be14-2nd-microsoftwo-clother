@@ -33,6 +33,9 @@ public class Comment {
     private String content; // 댓글 내용
 
     @Column(nullable = false)
+    private int likeCount = 0;
+
+    @Column(nullable = false)
     private LocalDateTime createdAt; // 작성 시간
 
     @Column(nullable = false)

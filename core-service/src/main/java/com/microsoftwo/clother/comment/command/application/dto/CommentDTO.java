@@ -1,6 +1,7 @@
 package com.microsoftwo.clother.comment.command.application.dto;
 
 import com.microsoftwo.clother.comment.command.domain.aggregate.Comment;
+import jakarta.persistence.Column;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class CommentDTO {
     private String content;
     private LocalDateTime createdAt;
     private Boolean isDeleted = false;
+    private int likeCount;
 
     public static CommentDTO fromEntity(Comment comment) {
         return CommentDTO.builder()
@@ -30,6 +32,7 @@ public class CommentDTO {
                 .content(comment.getContent())
                 .createdAt(comment.getCreatedAt())
                 .isDeleted(comment.getIsDeleted())
+                .likeCount(comment.getLikeCount())
                 .build();
     }
 
@@ -42,6 +45,7 @@ public class CommentDTO {
                 .content(this.content)
                 .isDeleted(this.isDeleted != null ? this.isDeleted : false)
                 .createdAt(this.createdAt != null ? this.createdAt : LocalDateTime.now())
+                .likeCount(this.likeCount)
                 .build();
     }
 }

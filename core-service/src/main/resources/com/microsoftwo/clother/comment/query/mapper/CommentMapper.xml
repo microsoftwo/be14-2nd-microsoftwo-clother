@@ -10,6 +10,7 @@
         <result property="createDate" column="created_at"/>
         <result property="isDeleted" column="is_deleted"/>
         <result property="parentId" column="parent_id"/>
+        <result property="likeCount" column="like_count"/>
     </resultMap>
 
     <select id="findCommentByType" resultType="com.microsoftwo.clother.comment.query.dto.CommentDTO">
@@ -25,6 +26,7 @@
              , CREATED_AT  AS CREATED_DATE
              , IS_DELETED  AS IS_DELETED
              , PARENT_ID   AS PARENT_ID
+             , LIKE_COUNT
           FROM COMMENT
          WHERE (
                     (#{type} = 'post'    AND POST_ID   = #{id})
