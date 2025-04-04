@@ -63,7 +63,7 @@ public class LikeService {
         Like like = likeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("좋아요 ID를 찾을 수 없습니다: " + id));
 
-        // 좋아요수 감소
+        // 좋아요수 등록 해제
         if (like.getBoardId() != null) {
             boardCommandRepository.decreaseLikeCount(like.getBoardId());
         } else if (like.getPostId() != null) {
@@ -72,7 +72,7 @@ public class LikeService {
             commentRepository.decreaseLikeCount(like.getCommentId());
         }
 
-        // 좋아요 감소
+        // 좋아요 등록 해제
         likeRepository.deleteById(id);
 
     }
