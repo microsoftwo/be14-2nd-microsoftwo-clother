@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.microsoftwo.clother.report.query.mapper.ReportMapper">
+    <resultMap id="ReportResultsMap" type="com.microsoftwo.clother.report.query.dto.ReportDTO">
+        <id column="id" property="id"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="reason" property="reason"/>
+        <result column="is_approved" property="isApproved"/>
+        <result column="reporter_id" property="reporterId"/>
+        <result column="reported_id" property="reportedId"/>
+        <result column="post_id" property="postId"/>
+        <result column="board_id" property="boardId"/>
+        <result column="comment_id" property="commentId"/>
+    </resultMap>
+
+    <select id="findAllReports" resultMap="ReportResultsMap">
+        SELECT
+        R.ID,
+        R.created_at,
+        R.reason,
+        R.is_approved,
+        R.reporter_id,
+        R.reported_id,
+        R.post_id,
+        R.board_id,
+        R.comment_id
+        FROM report R
+        <choose>
+            <when test="orderById == 'ASC'">
+                ORDER BY ID ASC
+            </when>
+            <when test="orderById == 'DESC'">
+                ORDER BY ID DESC
+            </when>
+            <otherwise>
+                ORDER BY ID ASC  <!-- 기본 정렬 방식 -->
+            </otherwise>
+        </choose>
+    </select>
+
+</mapper>
