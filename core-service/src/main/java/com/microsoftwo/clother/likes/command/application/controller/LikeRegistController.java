@@ -14,15 +14,14 @@ public class LikeRegistController {
     private final LikeService likeService;
 
     @PostMapping
-    public ResponseEntity<LikeDTO> createLike(@RequestBody LikeDTO likeDTO) {
-        System.out.println(likeDTO.toString());
-        return ResponseEntity.ok(likeService.createLike(likeDTO));
+    public ResponseEntity<Void> createLike(@RequestBody LikeDTO likeDTO) {
+        likeService.createLike(likeDTO);
+        return ResponseEntity.ok().build(); // or 201 Created
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteLike(@PathVariable int id) {
         likeService.deleteLike(id);
-
 
         return ResponseEntity.noContent().build(); // 204 No Content 응답 반환
     }
