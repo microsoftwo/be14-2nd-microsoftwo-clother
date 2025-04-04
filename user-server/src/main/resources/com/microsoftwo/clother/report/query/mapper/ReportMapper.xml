@@ -21,13 +21,14 @@
         R.ID,
         R.created_at,
         R.reason,
-        R.is_approved,
+        R.status,  <!-- 변경된 필드 -->
         R.reporter_id,
         R.reported_id,
         R.post_id,
         R.board_id,
         R.comment_id
         FROM report R
+        WHERE R.status = 'N'  <!-- 'N' 상태인 신고만 조회 -->
         <choose>
             <when test="orderById == 'ASC'">
                 ORDER BY ID ASC

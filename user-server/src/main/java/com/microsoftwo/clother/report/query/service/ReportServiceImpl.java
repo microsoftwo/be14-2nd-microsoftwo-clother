@@ -20,8 +20,8 @@ public class ReportServiceImpl implements ReportService {
     // 신고 최신순 조회
     @Override
     public List<ReportDTO> getReports(String orderById) {
-        if(!List.of("ASC", "DESC").contains(orderById.toUpperCase())) {
-            orderById = "ASC";
+        if (orderById == null || !List.of("ASC", "DESC").contains(orderById.toUpperCase().trim())) {
+            orderById = "ASC";      // 기본값 ASC
         }
         return reportMapper.findAllReports(orderById);
     }
