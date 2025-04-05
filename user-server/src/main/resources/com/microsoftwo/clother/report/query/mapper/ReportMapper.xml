@@ -8,7 +8,7 @@
         <id column="id" property="id"/>
         <result column="created_at" property="createdAt"/>
         <result column="reason" property="reason"/>
-        <result column="is_approved" property="isApproved"/>
+        <result column="status" property="status"/>
         <result column="reporter_id" property="reporterId"/>
         <result column="reported_id" property="reportedId"/>
         <result column="post_id" property="postId"/>
@@ -21,12 +21,12 @@
                R.ID
              , R.created_at
              , R.reason
-             , R.status  <!-- 변경된 필드 -->
+             , R.status
              , R.reporter_id
              , R.reported_id
              , R.post_id
              , R.board_id
-               R.comment_id
+             , R.comment_id
           FROM report R
          WHERE R.status = #{status}
         <choose>
@@ -41,5 +41,26 @@
             </otherwise>
         </choose>
     </select>
+
+    <select id="findOverFiveReportedUsers" resultMap="ReportResultsMap">
+        SELECT
+              R.ID
+            , R.created_at
+            , R.reason
+            , R.status
+            , R.reporter_id
+            , R.reported_id
+            , R.post_id
+            , R.board_id
+            , R.comment_id
+         FROM report R
+        WHERE R.status = 'N'
+          AND R.reported_id IN (SELECT reported_id
+                                FROM report
+                                WHERE status = 'N'
+                                GROUP BY reported_id
+                                HAVING COUNT(*) >= 5)
+        order by r.reported_id ASC, r.id DESC
+        </select>
 
 </mapper>
