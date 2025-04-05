@@ -15,7 +15,7 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final BoardCommandRepository boardCommandRepository;
-    private final PostRepository  postRepository;
+    private final PostRepository postRepository;
 
     @Transactional
     public void createComment(CommentDTO commentDto) {
@@ -41,7 +41,17 @@ public class CommentService {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 ID의 댓글이 존재하지 않습니다: " + commentId));
         comment.setIsDeleted(true);
-        commentRepository.save(comment); // 변경된 댓글 저장
-    }
 
+
+        // 댓글 수 삭제 로직
+        if (comment.getBoardId() != null) {
+            boardCommandRepository.decreaseCommentCount(comment.getBoardId());
+        } else if (comment.getPostId() != null) {
+            postRepository.decreaseCommentCount(comment.getPostId());
+
+            commentRepository.save(comment); // 변경된 댓글 저장
+        }
+
+    }
 }
+

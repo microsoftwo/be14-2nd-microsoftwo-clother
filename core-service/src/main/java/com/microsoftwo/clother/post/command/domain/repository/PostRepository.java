@@ -20,4 +20,8 @@ public interface PostRepository extends JpaRepository<PostEntity, Integer> {
     @Modifying
     @Query("UPDATE PostEntity p SET p.commentCount = p.commentCount + 1 WHERE p.id = :postId")
     void increaseCommentCount(Integer postId);
+
+    @Modifying
+    @Query("UPDATE PostEntity p SET p.commentCount = p.commentCount - 1 WHERE p.id = :postId")
+    void decreaseCommentCount(Integer postId);
 }
