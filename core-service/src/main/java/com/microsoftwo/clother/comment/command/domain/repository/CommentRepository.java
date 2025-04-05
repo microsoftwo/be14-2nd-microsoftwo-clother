@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Modifying
-    @Query("UPDATE Comment b SET b.likeCount = b.likeCount + 1 WHERE b.id = :commentId")
+    @Query("UPDATE Comment c SET c.likeCount = c.likeCount + 1 WHERE c.id = :commentId")
     void increaseLikeCount(Integer commentId);
 
     @Modifying
-    @Query("UPDATE Comment b SET b.likeCount = b.likeCount - 1 WHERE b.id = :commentId")
+    @Query("UPDATE Comment c SET c.likeCount = c.likeCount - 1 WHERE c.id = :commentId")
     void decreaseLikeCount(Integer commentId);
+
 }

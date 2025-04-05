@@ -14,8 +14,9 @@ public class CommentRegistController {
     private final CommentService commentService;
 
     @PostMapping
-    public ResponseEntity<CommentDTO> createComment(@RequestBody CommentDTO commentDTO) {
-        return ResponseEntity.ok(commentService.createComment(commentDTO));
+    public ResponseEntity<Void> createComment(@RequestBody CommentDTO commentDTO) {
+        commentService.createComment(commentDTO);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
