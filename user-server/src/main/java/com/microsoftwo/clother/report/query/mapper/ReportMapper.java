@@ -10,5 +10,5 @@ import java.util.List;
 public interface ReportMapper {
 
     // 신고 조회
-    List<ReportDTO> findAllReports(@Param("orderById") String orderById);
+    List<ReportDTO> findAllReports(@Param("sortDirection") String sortDirection, @Param("status") String status);
 }

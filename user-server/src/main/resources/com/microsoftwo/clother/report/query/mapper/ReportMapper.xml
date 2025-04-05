@@ -28,12 +28,12 @@
         R.board_id,
         R.comment_id
         FROM report R
-        WHERE R.status = 'N'  <!-- 'N' 상태인 신고만 조회 -->
+        WHERE R.status = #{status}
         <choose>
-            <when test="orderById == 'ASC'">
+            <when test="sortDirection == 'ASC'">
                 ORDER BY ID ASC
             </when>
-            <when test="orderById == 'DESC'">
+            <when test="sortDirection == 'DESC'">
                 ORDER BY ID DESC
             </when>
             <otherwise>

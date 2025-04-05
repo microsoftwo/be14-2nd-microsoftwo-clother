@@ -5,5 +5,5 @@ import com.microsoftwo.clother.report.query.dto.ReportDTO;
 import java.util.List;
 
 public interface ReportService {
-    List<ReportDTO> getReports(String orderById);
+    List<ReportDTO> getReports(String sortDirection, String status);
 }

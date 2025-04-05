@@ -19,10 +19,13 @@ public class ReportServiceImpl implements ReportService {
 
     // 신고 최신순 조회
     @Override
-    public List<ReportDTO> getReports(String orderById) {
-        if (orderById == null || !List.of("ASC", "DESC").contains(orderById.toUpperCase().trim())) {
-            orderById = "ASC";      // 기본값 ASC
+    public List<ReportDTO> getReports(String sortDirection, String status) {
+        if (sortDirection == null || !List.of("ASC", "DESC").contains(sortDirection.toUpperCase().trim())) {
+            sortDirection = "ASC";      // 기본값 ASC
         }
-        return reportMapper.findAllReports(orderById);
+        if (status == null || !List.of("N", "T", "F").contains(status.toUpperCase())) {
+            status = "N";
+        }
+        return reportMapper.findAllReports(sortDirection.toUpperCase(), status.toUpperCase());
     }
 }

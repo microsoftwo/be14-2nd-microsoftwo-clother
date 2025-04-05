@@ -23,7 +23,11 @@ public class ReportController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ReportDTO>> getReports(@RequestParam(required = false, defaultValue = "ASC") String orderById) {
-        return ResponseEntity.ok(reportService.getReports(orderById));
+    public ResponseEntity<List<ReportDTO>> getReports(
+            @RequestParam(required = false, defaultValue = "ASC") String sortDirection,
+            @RequestParam(required = false, defaultValue = "N") String status
+    ) {
+        return ResponseEntity.ok(reportService.getReports(sortDirection, status));
     }
+
 }
