@@ -56,11 +56,11 @@
          FROM report R
         WHERE R.status = 'N'
           AND R.reported_id IN (SELECT reported_id
-                                FROM report
-                                WHERE status = 'N'
-                                GROUP BY reported_id
+                                  FROM report
+                                 WHERE status = 'N'
+                                 GROUP BY reported_id
                                 HAVING COUNT(*) >= 5)
-        order by r.reported_id ASC, r.id DESC
+        ORDER BY r.reported_id ASC, r.id DESC
         </select>
 
 </mapper>
