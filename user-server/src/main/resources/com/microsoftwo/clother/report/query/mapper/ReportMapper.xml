@@ -18,17 +18,17 @@
 
     <select id="findAllReports" resultMap="ReportResultsMap">
         SELECT
-        R.ID,
-        R.created_at,
-        R.reason,
-        R.status,  <!-- 변경된 필드 -->
-        R.reporter_id,
-        R.reported_id,
-        R.post_id,
-        R.board_id,
-        R.comment_id
-        FROM report R
-        WHERE R.status = #{status}
+               R.ID
+             , R.created_at
+             , R.reason
+             , R.status  <!-- 변경된 필드 -->
+             , R.reporter_id
+             , R.reported_id
+             , R.post_id
+             , R.board_id
+               R.comment_id
+          FROM report R
+         WHERE R.status = #{status}
         <choose>
             <when test="sortDirection == 'ASC'">
                 ORDER BY ID ASC
