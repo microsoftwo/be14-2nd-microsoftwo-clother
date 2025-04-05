@@ -11,12 +11,12 @@ import static org.mockito.Mockito.*;
 class BoardQueryServiceTest {
 
     private BoardMapper boardMapper;
-    private BoardQueryService boardQueryService;
+    private BoardQueryServiceImpl boardQueryService;
 
     @BeforeEach
     void setUp() {
         boardMapper = mock(BoardMapper.class);
-        boardQueryService = new BoardQueryService(boardMapper);
+        boardQueryService = new BoardQueryServiceImpl(boardMapper);
     }
 
     @DisplayName("게시글 id로 조회하면 해당 게시글이 반환")
