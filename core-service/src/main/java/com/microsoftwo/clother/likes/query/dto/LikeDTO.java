@@ -14,5 +14,4 @@ public class LikeDTO {
     private String type; // post, comment, board
     private String content; // 내용
     private LocalDateTime createdAt; // 생성 날짜
-
     }
