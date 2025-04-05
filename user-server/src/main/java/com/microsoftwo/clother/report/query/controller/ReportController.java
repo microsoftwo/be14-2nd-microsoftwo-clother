@@ -30,4 +30,9 @@ public class ReportController {
         return ResponseEntity.ok(reportService.getReports(sortDirection, status));
     }
 
+    @GetMapping("/overFive")
+    public ResponseEntity<List<ReportDTO>> getOverFiveReportedUsers(){
+        return ResponseEntity.ok(reportService.getOverFiveReportedUsers());
+    }
+
 }

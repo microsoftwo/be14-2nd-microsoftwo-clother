@@ -11,4 +11,5 @@ public interface ReportMapper {
 
     // 신고 조회
     List<ReportDTO> findAllReports(@Param("sortDirection") String sortDirection, @Param("status") String status);
+    List<ReportDTO> findOverFiveReportedUsers();
 }

@@ -28,4 +28,9 @@ public class ReportServiceImpl implements ReportService {
         }
         return reportMapper.findAllReports(sortDirection.toUpperCase(), status.toUpperCase());
     }
+
+    @Override
+    public List<ReportDTO> getOverFiveReportedUsers() {
+        return reportMapper.findOverFiveReportedUsers();
+    }
 }
