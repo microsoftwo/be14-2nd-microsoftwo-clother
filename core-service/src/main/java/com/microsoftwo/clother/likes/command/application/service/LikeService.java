@@ -1,7 +1,6 @@
 package com.microsoftwo.clother.likes.command.application.service;
 
 import com.microsoftwo.clother.adviceBoard.command.domain.repository.BoardCommandRepository;
-import com.microsoftwo.clother.adviceBoard.query.service.BoardQueryServiceImpl;
 import com.microsoftwo.clother.comment.command.domain.repository.CommentRepository;
 import com.microsoftwo.clother.likes.command.application.dto.LikeDTO;
 import com.microsoftwo.clother.likes.command.domain.aggregate.Like;
