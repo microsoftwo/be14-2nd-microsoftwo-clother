@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class EmailRequestVO {
-    @Email//1)@기호를 포함해야 한다.2_@기호를 기준으로 이메일 주소를 이루는 로컬호스트와 도메인 파트가 존재해야 한다.3)도메인 파트는 최소하나의 점과
-    //그 뒤에 최소한 2개의 알파벳을 가진다를 검증
+    @Email(message = "올바른 형식의 이메일 주소를 입력해주세요")
+    // @ 기호 포함 / @ 기준으로 로컬호스트, 도메인파트 나뉨 / 도메인파트는 . 후에 2개 이상의 알파벳 필요
     @NotEmpty(message = "이메일을 입력해 주세요")
     private String email;
 }
