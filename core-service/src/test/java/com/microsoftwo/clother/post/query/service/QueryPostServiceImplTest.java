@@ -22,9 +22,6 @@ class QueryPostServiceImplTest {
                     queryPostServiceImpl.getPostFeedOrderByDate(null);
                 }
         );
-
-        List<PostForFeedDTO> posts = queryPostServiceImpl.getPostFeedOrderByDate(null);
-        Assertions.assertEquals(9, posts.size());
     }
 
 

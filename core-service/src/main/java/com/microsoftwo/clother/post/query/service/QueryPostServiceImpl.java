@@ -6,6 +6,7 @@ import com.microsoftwo.clother.post.query.dto.PostDTO;
 import com.microsoftwo.clother.post.query.dto.PostForFeedDTO;
 import com.microsoftwo.clother.post.query.dto.ProductDetailDTO;
 import com.microsoftwo.clother.post.query.dto.ProductTagDTO;
+import com.microsoftwo.clother.post.query.dto.RequestFeedDTO;
 import com.microsoftwo.clother.post.query.dto.ResponsePostDetailDTO;
 import com.microsoftwo.clother.product.query.dto.ProductForPostDTO;
 import com.microsoftwo.clother.product.query.service.ProductService;
@@ -126,7 +127,7 @@ public class QueryPostServiceImpl implements QueryPostService {
     }
 
     @Override
-    public List<PostForFeedDTO> getPostFeedOrderByDate(Integer lastPostId) {
-        return queryPostMapper.getPostFeedOrderByDate(lastPostId);
+    public List<PostForFeedDTO> getFeed(RequestFeedDTO requestFeedDTO) {
+        return queryPostMapper.selectFeed(requestFeedDTO);
     }
 }

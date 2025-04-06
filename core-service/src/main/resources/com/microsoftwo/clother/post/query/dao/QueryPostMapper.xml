@@ -75,24 +75,100 @@
          WHERE POST_ID = #{postId} AND PRODUCT_ID IS NOT NULL;
     </select>
 
-    <resultMap id="getPostFeedOrderByDateResultMap" type="com.microsoftwo.clother.post.query.dto.PostForFeedDTO">
+    <!-- select feed resultMap -->
+    <resultMap id="selectFeedResultMap" type="com.microsoftwo.clother.post.query.dto.PostForFeedDTO">
         <id property="id" column="id"/>
         <result property="likeCount" column="like_count"/>
         <result property="commentCount" column="comment_count"/>
         <result property="thumbnailUrl" column="thumbnail_url"/>
     </resultMap>
-    <select id="getPostFeedOrderByDate" resultMap="getPostFeedOrderByDateResultMap" parameterType="int">
+
+    <!-- 태그 필터 조건 분리 -->
+    <sql id="feedTagFilter">
+        <if test="(lookTagIds != null and lookTagIds.size() > 0) or (categoryIds != null and categoryIds.size() > 0)">
+            HAVING
+            <!-- 첫 번째 AND 제거 -->
+            <trim prefixOverrides="AND">
+                <if test="lookTagIds != null and lookTagIds.size() > 0">
+                    (
+                    <foreach collection="lookTagIds" item="tagId" separator=" OR ">
+                        FIND_IN_SET(#{tagId}, look_tag_ids)
+                    </foreach>
+                    )
+                </if>
+                <if test="categoryIds != null and categoryIds.size() > 0">
+                    <if test="lookTagIds != null and lookTagIds.size() > 0">
+                        AND
+                    </if>
+                    (
+                    <foreach collection="categoryIds" item="catId" separator=" OR ">
+                        FIND_IN_SET(#{catId}, category_ids)
+                    </foreach>
+                    )
+                </if>
+            </trim>
+        </if>
+    </sql>
+
+    <!-- select feed -->
+    <select id="selectFeed" resultMap="selectFeedResultMap" parameterType="com.microsoftwo.clother.post.query.dto.RequestFeedDTO">
         SELECT
-               A.ID
-             , A.LIKE_COUNT
-             , A.COMMENT_COUNT
-             , B.IMAGE_URL AS THUMBNAIL_URL
-          FROM POST A
-          JOIN POST_IMAGE B ON A.ID = B.POST_ID AND B.ORDER = 1
-         WHERE <![CDATA[
-                 (#{lastPostId} IS NULL OR A.ID < #{lastPostId})
-               ]]>
-         ORDER BY A.ID DESC
-         LIMIT 9;
+               p.id
+             , p.like_count
+             , p.comment_count
+             , thumb.image_url AS thumbnail_url
+             , GROUP_CONCAT(DISTINCT plt.look_tag_id) AS look_tag_ids
+             , GROUP_CONCAT(DISTINCT t.category_id) AS category_ids
+          FROM post p
+          JOIN user u ON p.user_id = u.id
+          LEFT JOIN post_image thumb ON thumb.post_id = p.id AND thumb.`order` = 1
+          LEFT JOIN post_look_tag plt ON p.id = plt.post_id
+          LEFT JOIN tag t ON p.id = t.post_id
+        <where>
+            p.is_deleted = FALSE
+            <if test="minHeight != null">
+                AND u.height &gt;= #{minHeight}
+            </if>
+            <if test="maxHeight != null">
+                AND u.height &lt;= #{maxHeight}
+            </if>
+            <if test="minWeight != null">
+                AND u.weight &gt;= #{minWeight}
+            </if>
+            <if test="maxWeight != null">
+                AND u.weight &lt;= #{maxWeight}
+            </if>
+            <if test="lastPostId != null and sort == 'latest'">
+                AND p.id &lt; #{lastPostId}
+            </if>
+            <if test="lastPostId != null and sort == 'likes'">
+                AND (
+                    p.like_count &lt; (
+                        SELECT like_count
+                          FROM post
+                         WHERE id = #{lastPostId}
+                    )
+                    OR (
+                        p.like_count = (
+                            SELECT like_count
+                              FROM post
+                             WHERE id = #{lastPostId}
+                        )
+                        AND p.id &lt; #{lastPostId}
+                    )
+                )
+            </if>
+        </where>
+        GROUP BY p.id
+        <include refid="feedTagFilter"/>
+        <choose>
+            <when test="sort == 'likes'">
+                ORDER BY p.like_count DESC, p.created_at DESC
+            </when>
+            <otherwise>
+                ORDER BY p.created_at DESC
+            </otherwise>
+        </choose>
+        LIMIT 20
     </select>
 </mapper>
