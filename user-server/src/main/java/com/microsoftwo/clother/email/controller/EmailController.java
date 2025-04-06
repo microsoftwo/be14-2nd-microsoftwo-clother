@@ -1,6 +1,7 @@
 package com.microsoftwo.clother.email.controller;
 
 import com.microsoftwo.clother.email.dto.EmailCheckDTO;
+import com.microsoftwo.clother.email.dto.EmailResponseDTO;
 import com.microsoftwo.clother.email.service.EmailServiceImpl;
 import com.microsoftwo.clother.email.vo.EmailRequestVO;
 import com.microsoftwo.clother.user.service.UserService;
@@ -23,7 +24,7 @@ public class EmailController {
 
     // 인증 코드 전송
     @PostMapping
-    public String mailSend(@RequestBody @Valid EmailRequestVO emailRequestVO) {
+    public EmailResponseDTO mailSend(@RequestBody @Valid EmailRequestVO emailRequestVO) {
         return mailService.joinEmail(emailRequestVO.getEmail());
     }
 
