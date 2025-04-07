@@ -18,7 +18,7 @@ public class CommentService {
     private final PostRepository postRepository;
 
     @Transactional
-    public void createComment(CommentDTO commentDto) {
+    public CommentDTO createComment(CommentDTO commentDto) {
 
         // 댓글 저장
         Comment comment = commentDto.toEntity();
@@ -33,6 +33,7 @@ public class CommentService {
         } else if (postId != null) {
             postRepository.increaseCommentCount(postId);
         }
+        return CommentDTO.fromEntity(comment);
 
     }
 
