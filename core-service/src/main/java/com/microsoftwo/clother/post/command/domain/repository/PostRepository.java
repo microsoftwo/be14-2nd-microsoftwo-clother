@@ -10,10 +10,18 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<PostEntity, Integer> {
     @Modifying
-    @Query("UPDATE PostEntity b SET b.likeCount = b.likeCount + 1 WHERE b.id = :postId")
+    @Query("UPDATE PostEntity p SET p.likeCount = p.likeCount + 1 WHERE p.id = :postId")
     void increaseLikeCount(Integer postId);
 
     @Modifying
-    @Query("UPDATE PostEntity b SET b.likeCount = b.likeCount - 1 WHERE b.id = :postId")
+    @Query("UPDATE PostEntity p SET p.likeCount = p.likeCount - 1 WHERE p.id = :postId")
     void decreaseLikeCount(Integer postId);
+
+    @Modifying
+    @Query("UPDATE PostEntity p SET p.commentCount = p.commentCount + 1 WHERE p.id = :postId")
+    void increaseCommentCount(Integer postId);
+
+    @Modifying
+    @Query("UPDATE PostEntity p SET p.commentCount = p.commentCount - 1 WHERE p.id = :postId")
+    void decreaseCommentCount(Integer postId);
 }

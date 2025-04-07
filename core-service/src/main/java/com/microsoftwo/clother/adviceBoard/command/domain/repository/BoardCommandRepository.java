@@ -16,4 +16,12 @@ public interface BoardCommandRepository extends JpaRepository<BoardEntity, Integ
     @Modifying
     @Query("UPDATE BoardEntity b SET b.likeCount = b.likeCount - 1 WHERE b.id = :boardId")
     void decreaseLikeCount(Integer boardId);
+
+    @Modifying
+    @Query("UPDATE BoardEntity b SET b.commentCount = b.commentCount + 1 WHERE b.id = :boardId")
+    void increaseCommentCount(Integer boardId);
+
+    @Modifying
+    @Query("UPDATE BoardEntity b SET b.commentCount = b.commentCount - 1 WHERE b.id = :boardId")
+    void decreaseCommentCount(Integer boardId);
 }
