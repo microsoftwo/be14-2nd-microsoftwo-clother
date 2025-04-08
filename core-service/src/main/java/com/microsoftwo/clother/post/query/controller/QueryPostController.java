@@ -1,6 +1,7 @@
 package com.microsoftwo.clother.post.query.controller;
 
 import com.microsoftwo.clother.post.query.dto.PostForFeedDTO;
+import com.microsoftwo.clother.post.query.dto.RequestFeedDTO;
 import com.microsoftwo.clother.post.query.dto.ResponsePostDetailDTO;
 import com.microsoftwo.clother.post.query.service.QueryPostService;
 import java.util.List;
@@ -8,9 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -33,10 +34,8 @@ public class QueryPostController {
     }
 
     @GetMapping("/feed")
-    public ResponseEntity<List<PostForFeedDTO>> getPostFeedOrderByDate(
-            @RequestParam(required = false) Integer lastPostId) {
-
-        List<PostForFeedDTO> posts = queryPostService.getPostFeedOrderByDate(lastPostId);
+    public ResponseEntity<List<PostForFeedDTO>> getFeeds(@ModelAttribute RequestFeedDTO requestFeedDTO) {
+        List<PostForFeedDTO> posts = queryPostService.getFeed(requestFeedDTO);
         return ResponseEntity.ok(posts);
     }
 }
