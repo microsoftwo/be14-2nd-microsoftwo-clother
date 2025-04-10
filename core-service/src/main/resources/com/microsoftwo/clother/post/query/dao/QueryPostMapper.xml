@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.microsoftwo.clother.post.query.dao.QueryPostMapper">
-    <!-- select feed resultMap -->
+    <!-- 피드 조회 resultMap -->
     <resultMap id="selectFeedResultMap" type="com.microsoftwo.clother.post.query.dto.ResponsePostFeedDTO">
         <id property="id" column="id"/>
         <result property="likeCount" column="like_count"/>
@@ -38,7 +38,7 @@
         </if>
     </sql>
 
-    <!-- select feed -->
+    <!-- 피드 조회 -->
     <select id="selectFeed" resultMap="selectFeedResultMap" parameterType="com.microsoftwo.clother.post.query.dto.RequestFeedDTO">
         SELECT
                p.id
@@ -100,7 +100,7 @@
         LIMIT 20
     </select>
 
-    <!-- select post detail by postId -->
+    <!-- 포스트 상세 조회 -->
     <resultMap id="selectPostDetailResultMap" type="com.microsoftwo.clother.post.query.dto.ResponsePostDetailDTO">
         <id property="id" column="id"/>
         <result property="content" column="content"/>
