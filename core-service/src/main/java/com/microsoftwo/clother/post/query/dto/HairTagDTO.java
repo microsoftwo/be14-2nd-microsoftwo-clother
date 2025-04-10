@@ -4,17 +4,19 @@ import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @ToString
 public class HairTagDTO {
-    private Integer id;
-    private String link;
-    private String name;
-    private int categoryId;
-    private BigDecimal hairTagPositionX;
-    private BigDecimal hairTagPositionY;
+    int id; // 태그 id
+    int categoryId; // 카테고리 id
+    BigDecimal hairTagPositionX; // 헤어태그 x 좌표
+    BigDecimal hairTagPositionY; // 헤어태그 y 좌표
+    String hairShopLink; // 헤어샵 링크
+    String hairShopName; // 헤어샵 이름
 }
