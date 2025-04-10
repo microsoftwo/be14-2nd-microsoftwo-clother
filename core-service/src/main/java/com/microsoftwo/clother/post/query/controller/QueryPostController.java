@@ -1,9 +1,11 @@
 package com.microsoftwo.clother.post.query.controller;
 
-import com.microsoftwo.clother.post.query.dto.PostForFeedDTO;
-import com.microsoftwo.clother.post.query.dto.RequestFeedDTO;
+import com.microsoftwo.clother.common.JwtUtil;
 import com.microsoftwo.clother.post.query.dto.ResponsePostDetailDTO;
+import com.microsoftwo.clother.post.query.dto.ResponsePostFeedDTO;
+import com.microsoftwo.clother.post.query.dto.RequestFeedDTO;
 import com.microsoftwo.clother.post.query.service.QueryPostService;
+import io.jsonwebtoken.Claims;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/post")
@@ -20,22 +24,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class QueryPostController {
 
     private final QueryPostService queryPostService;
+    private final JwtUtil jwtUtil;
 
     @Autowired
-    public QueryPostController(QueryPostService queryPostService) {
+    public QueryPostController(QueryPostService queryPostService, JwtUtil jwtUtil) {
         this.queryPostService = queryPostService;
+        this.jwtUtil = jwtUtil;
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<ResponsePostDetailDTO> getPostById(@PathVariable int postId) {
-        ResponsePostDetailDTO responsePostDetailDTO = queryPostService.getPostById(postId);
+    public ResponseEntity<ResponsePostDetailDTO> getPostById(
+            @RequestHeader(value = "Authorization") String authorizationHeader,
+            @PathVariable int postId) {
 
-        return ResponseEntity.ok(responsePostDetailDTO);
+        // "Bearer " 부분 제거
+        String token = authorizationHeader.replace("Bearer", "").trim();
+        Claims claims = jwtUtil.parseJwt(token);
+        int userId = ((Number) claims.get("userId")).intValue();
+
+        ResponsePostDetailDTO postDetail = queryPostService.getPostById(postId, userId);
+        return ResponseEntity.ok(postDetail);
     }
 
     @GetMapping("/feed")
-    public ResponseEntity<List<PostForFeedDTO>> getFeeds(@ModelAttribute RequestFeedDTO requestFeedDTO) {
-        List<PostForFeedDTO> posts = queryPostService.getFeed(requestFeedDTO);
+    public ResponseEntity<List<ResponsePostFeedDTO>> getFeeds(@ModelAttribute RequestFeedDTO requestFeedDTO) {
+        List<ResponsePostFeedDTO> posts = queryPostService.getFeed(requestFeedDTO);
         return ResponseEntity.ok(posts);
     }
 }

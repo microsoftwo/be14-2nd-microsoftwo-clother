@@ -9,9 +9,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @ToString
-public class PostForFeedDTO {
-    private int id;
-    private int likeCount;
-    private int commentCount;
-    private String thumbnailUrl;
+public class ResponsePostFeedDTO {
+    private int id; // post id
+    private int likeCount; // 좋아요 수
+    private int commentCount; // 댓글 수
+    private String thumbnailUrl; // 썸네일 이미지 URL
 }
