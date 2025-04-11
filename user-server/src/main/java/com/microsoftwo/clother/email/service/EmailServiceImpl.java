@@ -1,6 +1,7 @@
 package com.microsoftwo.clother.email.service;
 
 import com.microsoftwo.clother.email.config.RedisUtil;
+import com.microsoftwo.clother.email.dto.EmailResponseDTO;
 import com.microsoftwo.clother.user.service.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -41,7 +42,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public String joinEmail(String email) {
+    public EmailResponseDTO joinEmail(String email) {
         makeRandomNumber();
         String setFrom = "\"Clother Admin\" <yushiii002@gmail.com>";
         String toMail = email;
@@ -50,14 +51,13 @@ public class EmailServiceImpl implements EmailService {
         try {
             // HTML 템플릿 로드
             String content = loadHtmlTemplate();
-
-            // 템플릿에 인증 번호 삽입
             content = content.replace("${authNumber}", String.valueOf(authNumber));
 
             // 이메일 발송
             mailSend(setFrom, toMail, title, content);
 
-            return Integer.toString(authNumber);
+            // DTO 객체로 응답 반환
+            return new EmailResponseDTO("인증 코드가 이메일로 발송되었습니다", authNumber);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
