@@ -12,12 +12,12 @@ class QueryPostServiceImplTest {
     @Autowired
     private QueryPostServiceImpl queryPostServiceImpl;
 
-    @DisplayName("피드 9개씩 최신순 조회")
+    @DisplayName("피드 조회")
     @Test
     void testGetPostsOrderByDate() {
         Assertions.assertDoesNotThrow(
                 () -> {
-                    queryPostServiceImpl.getPostFeedOrderByDate(null);
+                    queryPostServiceImpl.getFeed(null);
                 }
         );
     }
