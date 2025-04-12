@@ -48,7 +48,7 @@
     </select>
 
     <!-- 게시물 조회 -->
-    <select id="getBoradById" resultMap="BoardResultMap">
+    <select id="getBoardById" resultMap="BoardResultMap">
         SELECT
                a.id AS board_id
              , a.user_id
