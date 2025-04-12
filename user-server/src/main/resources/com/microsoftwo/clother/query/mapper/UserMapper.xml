@@ -39,4 +39,25 @@
          WHERE u.nickname LIKE CONCAT('%', #{keyword}, '%')
          ORDER BY u.created_at DESC
     </select>
+
+    <select id="getUser" resultMap="UserResultMap">
+        SELECT
+            id AS user_id
+             , email
+             , password
+             , nickname
+             , gender
+             , height
+             , weight
+             , `role`
+             , bio
+             , created_at
+             , updated_at
+             , is_suspended
+             , is_deleted
+             , image_url
+        FROM `user` u
+        WHERE u.id = #{userId}
+        ORDER BY u.created_at DESC
+    </select>
 </mapper>
