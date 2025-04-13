@@ -23,7 +23,6 @@
         SELECT
                id AS user_id
              , email
-             , password
              , nickname
              , gender
              , height
@@ -42,9 +41,8 @@
 
     <select id="getUser" resultMap="UserResultMap">
         SELECT
-            id AS user_id
+               id AS user_id
              , email
-             , password
              , nickname
              , gender
              , height
@@ -56,8 +54,8 @@
              , is_suspended
              , is_deleted
              , image_url
-        FROM `user` u
-        WHERE u.id = #{userId}
-        ORDER BY u.created_at DESC
+          FROM `user` u
+         WHERE u.id = #{userId}
+         ORDER BY u.created_at DESC
     </select>
 </mapper>
