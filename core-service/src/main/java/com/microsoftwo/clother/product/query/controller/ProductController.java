@@ -2,6 +2,7 @@ package com.microsoftwo.clother.product.query.controller;
 
 import com.microsoftwo.clother.product.query.dto.CategoryDTO;
 import com.microsoftwo.clother.product.query.dto.CategoryProductDTO;
+import com.microsoftwo.clother.product.query.dto.ProductDTO;
 import com.microsoftwo.clother.product.query.dto.ProductDetailDTO;
 import com.microsoftwo.clother.product.query.dto.ProductForPostDTO;
 import com.microsoftwo.clother.product.query.dto.ProductRegistHistoryDTO;
@@ -64,6 +65,14 @@ public class ProductController {
     @GetMapping("/products")
     public ResponseEntity<List<ProductForPostDTO>> getProducts(@RequestParam List<Integer> productIds) {
         List<ProductForPostDTO> products = productService.getProductsByIds(productIds);
+
+        return ResponseEntity.ok(products);
+    }
+
+    // posting 시 상품 태그 추가를 위한 검색
+    @GetMapping("/products/search")
+    public ResponseEntity<List<ProductDTO>> getProductsByKeyword(@RequestParam String keyword) {
+        List<ProductDTO> products = productService.getProductsByKeyword(keyword);
 
         return ResponseEntity.ok(products);
     }

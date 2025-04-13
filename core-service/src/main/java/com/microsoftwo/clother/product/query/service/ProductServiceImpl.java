@@ -53,4 +53,9 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductForPostDTO> getProductsByIds(List<Integer> productIds) {
         return productMapper.selectProductsByIds(productIds);
     }
+
+    @Override
+    public List<ProductDTO> getProductsByKeyword(String keyword) {
+        return productMapper.selectProductsByKeyword(keyword);
+    }
 }

@@ -120,4 +120,19 @@
             #{id}
         </foreach>
     </select>
+
+    <select id="selectProductsByKeyword" resultType="com.microsoftwo.clother.product.query.dto.ProductForSearchDTO">
+        SELECT
+               id
+             , brand_name AS brandName
+             , name
+             , image_url AS imageUrl
+             , link
+             , category_id AS categoryId
+          FROM product
+         WHERE name LIKE CONCAT('%', #{keyword}, '%')
+            OR brand_name LIKE CONCAT('%', #{keyword}, '%')
+         LIMIT 20
+    </select>
+
 </mapper>

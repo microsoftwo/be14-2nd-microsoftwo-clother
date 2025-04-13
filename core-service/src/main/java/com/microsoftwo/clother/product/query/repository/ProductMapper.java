@@ -23,4 +23,6 @@ public interface ProductMapper {
     ProductDetailDTO selectProductDetailByProductId(int productId);
 
     List<ProductForPostDTO> selectProductsByIds(List<Integer> productIds);
+
+    List<ProductDTO> selectProductsByKeyword(String keyword);
 }
