@@ -20,4 +20,6 @@ public interface ProductService {
     ProductDetailDTO getProductDetailByProductId(int productId);
 
     List<ProductForPostDTO> getProductsByIds(List<Integer> productIds);
+
+    List<ProductDTO> getProductsByKeyword(String keyword);
 }
