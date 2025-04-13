@@ -67,7 +67,21 @@
                 AND u.weight &lt;= #{maxWeight}
             </if>
             <if test="lastPostId != null and sort == 'latest'">
-                AND p.id &lt; #{lastPostId}
+                AND (
+                    p.created_at &lt; (
+                        SELECT created_at
+                          FROM post
+                         WHERE id = #{lastPostId}
+                    )
+                    OR (
+                        p.created_at = (
+                            SELECT created_at
+                              FROM post
+                             WHERE id = #{lastPostId}
+                        )
+                    AND p.id &lt; #{lastPostId}
+                    )
+                )
             </if>
             <if test="lastPostId != null and sort == 'likes'">
                 AND (
