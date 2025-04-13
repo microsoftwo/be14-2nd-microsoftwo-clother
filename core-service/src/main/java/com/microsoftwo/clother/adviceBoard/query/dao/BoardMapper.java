@@ -13,7 +13,7 @@ public interface BoardMapper {
     List<BoardDTO> getBoards(@Param("sortBy") String sortBy);
 
     // 게시물 조회
-    BoardDTO getBoradById(@Param("id") int id);
+    BoardDTO getBoardById(@Param("id") int id);
 
     // 키워드별 조회
     List<BoardDTO> searchBoards(@Param("sortBy") String sortBy, @Param("keyword") String keyword);

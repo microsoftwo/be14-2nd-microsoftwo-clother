@@ -31,7 +31,7 @@ public class BoardQueryServiceImpl implements  BoardQueryService {
     // 게시물 조회
     @Override
     public BoardDTO getBoardById(int postId) {
-        return boardMapper.getBoradById(postId);
+        return boardMapper.getBoardById(postId);
     }
     // 키워드별 조회
     @Override
