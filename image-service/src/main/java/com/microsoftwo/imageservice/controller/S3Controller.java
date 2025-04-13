@@ -1,10 +1,13 @@
 package com.microsoftwo.imageservice.controller;
 
 import com.microsoftwo.imageservice.service.S3Service;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,5 +33,11 @@ public class S3Controller {
     public ResponseEntity<String> getPresignedUrl(@RequestParam String fileName) {
         String presignedUrl = s3Service.generatePresignedUrl(fileName);
         return ResponseEntity.ok(presignedUrl);
+    }
+
+    @DeleteMapping("/object")
+    public ResponseEntity<String> deleteUploadedObject(@RequestBody List<String> fileNames) {
+        s3Service.deleteObjects(fileNames);
+        return ResponseEntity.ok("삭제 완료");
     }
 }
