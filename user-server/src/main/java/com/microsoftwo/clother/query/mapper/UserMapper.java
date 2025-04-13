@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     List<UserDTO> getUsers(@Param("keyword") String keyword);
+
+    UserDTO getUser(@Param("userId") int userId);
 }

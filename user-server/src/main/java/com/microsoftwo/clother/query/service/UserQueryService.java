@@ -7,4 +7,6 @@ import java.util.List;
 public interface UserQueryService {
 
     List<UserDTO> getUsers(String keyword);
+
+    UserDTO getUser(int userId);
 }

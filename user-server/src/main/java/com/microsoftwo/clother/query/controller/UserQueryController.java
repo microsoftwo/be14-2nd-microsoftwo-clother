@@ -7,10 +7,7 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,12 @@ public class UserQueryController {
     @GetMapping
     public List<UserDTO> getUsers(@RequestParam("keyword") String keyword) {
         return userQueryService.getUsers(keyword);
+    }
+
+    // 회원 조회 ( userId로 )
+    @GetMapping("/{userId}")
+    public UserDTO getUser(@PathVariable("userId") int userId) {
+        return userQueryService.getUser(userId);
     }
 
 }

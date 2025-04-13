@@ -23,4 +23,10 @@ public class UserQueryServiceImpl implements UserQueryService {
     public List<UserDTO> getUsers(String keyword) {
         return userMapper.getUsers(keyword);
     }
+
+    // 회원 조회 ( UserId )
+    @Override
+    public UserDTO getUser(int userId) {
+        return userMapper.getUser(userId);
+    }
 }
