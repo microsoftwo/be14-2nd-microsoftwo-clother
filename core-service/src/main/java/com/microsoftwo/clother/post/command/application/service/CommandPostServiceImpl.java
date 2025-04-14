@@ -3,9 +3,11 @@ package com.microsoftwo.clother.post.command.application.service;
 import com.microsoftwo.clother.post.command.domain.aggregate.HairTagEntity;
 import com.microsoftwo.clother.post.command.domain.aggregate.PostEntity;
 import com.microsoftwo.clother.post.command.domain.aggregate.PostImageEntity;
+import com.microsoftwo.clother.post.command.domain.aggregate.PostLookTagEntity;
 import com.microsoftwo.clother.post.command.domain.aggregate.TagEntity;
 import com.microsoftwo.clother.post.command.domain.repository.HairTagRepository;
 import com.microsoftwo.clother.post.command.domain.repository.PostImageRepository;
+import com.microsoftwo.clother.post.command.domain.repository.PostLookTagRepository;
 import com.microsoftwo.clother.post.command.domain.repository.PostRepository;
 import com.microsoftwo.clother.post.command.domain.repository.TagRepository;
 import com.microsoftwo.clother.post.command.domain.vo.HairTagVO;
@@ -23,16 +25,18 @@ public class CommandPostServiceImpl implements CommandPostService {
     private final PostImageRepository postImageRepository;
     private final TagRepository tagRepository;
     private final HairTagRepository hairTagRepository;
+    private final PostLookTagRepository postLookTagRepository;
 
     @Autowired
     public CommandPostServiceImpl(PostRepository postRepository
             , PostImageRepository postImageRepository
             , TagRepository tagRepository
-            , HairTagRepository hairTagRepository) {
+            , HairTagRepository hairTagRepository, PostLookTagRepository postLookTagRepository) {
         this.postRepository = postRepository;
         this.postImageRepository = postImageRepository;
         this.tagRepository = tagRepository;
         this.hairTagRepository = hairTagRepository;
+        this.postLookTagRepository = postLookTagRepository;
     }
 
     @Transactional
@@ -54,17 +58,14 @@ public class CommandPostServiceImpl implements CommandPostService {
         // PostImage 저장
         postImageRepository.saveAll(imageEntities);
 
-        // LookTagEntity 리스트 생성 및 저장
-        if (newPost.getLookTagIds() != null && !newPost.getLookTagIds().isEmpty()) {
-            List<TagEntity> lookTagEntities = newPost.getLookTagIds().stream()
-                    .map(lookTagId -> {
-                        TagEntity tagEntity = new TagEntity();
-                        tagEntity.setPost(savedPost);  // Post와 연결
-                        tagEntity.setLookTagId(lookTagId);  // LookTag ID 설정
-                        return tagEntity;
-                    })
-                    .collect(Collectors.toList());
-            tagRepository.saveAll(lookTagEntities);
+        // 3. 룩 태그 저장
+        if (newPost.getLookTagIds() != null) {
+            for (Integer lookTagId : newPost.getLookTagIds()) {
+                PostLookTagEntity lookTag = new PostLookTagEntity();
+                lookTag.setPost(savedPost);
+                lookTag.setLookTag(lookTagId);
+                postLookTagRepository.save(lookTag);
+            }
         }
 
         // HairTagEntity 생성 및 저장
@@ -73,7 +74,6 @@ public class CommandPostServiceImpl implements CommandPostService {
             HairTagEntity hairTagEntity = new HairTagEntity();
             hairTagEntity.setLink(hairTagVO.getHairShopLink());
             hairTagEntity.setName(hairTagVO.getHairShopName());
-            hairTagEntity.setCategoryId(hairTagVO.getCategoryId());
 
             // HairTag 저장 후 id 가져오기
             HairTagEntity savedHairTag = hairTagRepository.save(hairTagEntity);
@@ -82,6 +82,7 @@ public class CommandPostServiceImpl implements CommandPostService {
             TagEntity hairTag = new TagEntity();
             hairTag.setPost(savedPost);
             hairTag.setHairTagId(savedHairTag.getId());
+            hairTag.setCategoryId(hairTagVO.getCategoryId());
             hairTag.setPositionX(hairTagVO.getHairTagPositionX());
             hairTag.setPositionY(hairTagVO.getHairTagPositionY());
             tagRepository.save(hairTag);
@@ -94,6 +95,7 @@ public class CommandPostServiceImpl implements CommandPostService {
                         TagEntity tagEntity = new TagEntity();
                         tagEntity.setPost(savedPost);
                         tagEntity.setProductId(productTagVO.getProductId());
+                        tagEntity.setCategoryId(productTagVO.getCategoryId());
                         tagEntity.setPositionX(productTagVO.getProductTagPositionX());
                         tagEntity.setPositionY(productTagVO.getProductTagPositionY());
                         return tagEntity;

@@ -27,7 +27,7 @@ class BoardQueryServiceTest {
         BoardDTO board = new BoardDTO();
         board.setId(boardId);
 
-        when(boardMapper.getBoradById(boardId)).thenReturn(board);
+        when(boardMapper.getBoardById(boardId)).thenReturn(board);
 //
         // when
         BoardDTO result = boardQueryService.getBoardById(boardId);
@@ -35,7 +35,7 @@ class BoardQueryServiceTest {
         // then
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(boardId);
-        verify(boardMapper, times(1)).getBoradById(boardId);
+        verify(boardMapper, times(1)).getBoardById(boardId);
     }
 }
 
