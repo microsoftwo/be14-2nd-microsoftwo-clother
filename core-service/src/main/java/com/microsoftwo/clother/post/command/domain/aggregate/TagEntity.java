@@ -33,14 +33,14 @@ public class TagEntity {
     @JoinColumn(name="post_id")
     private PostEntity post;
 
-    @Column(name="look_tag_id")
-    private Integer lookTagId;
-
     @Column(name="hair_tag_id")
     private Integer hairTagId;
 
     @Column(name="product_id")
     private Integer productId;
+
+    @Column(name="category_id")
+    private Integer categoryId;
 
     @Column(name="position_x")
     BigDecimal positionX;

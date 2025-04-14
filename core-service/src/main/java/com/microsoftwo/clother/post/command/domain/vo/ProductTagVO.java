@@ -14,6 +14,7 @@ import lombok.ToString;
 @ToString
 public class ProductTagVO {
     private int productId;
+    private int categoryId;
     private BigDecimal productTagPositionX;
     private BigDecimal productTagPositionY;
 }

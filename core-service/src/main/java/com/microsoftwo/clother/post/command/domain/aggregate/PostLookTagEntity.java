@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,17 +20,18 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name="hair_tag")
-public class HairTagEntity {
+@Table(name="post_look_tag")
+public class PostLookTagEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
-    @Column(name="link")
-    private String link;
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false)
+    private PostEntity post;
 
-    @Column(name="name")
-    private String name;
+    @Column(name = "look_tag_id", nullable = false)
+    private int lookTag;
 }

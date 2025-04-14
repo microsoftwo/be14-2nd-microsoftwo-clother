@@ -52,4 +52,10 @@ public class PostEntity {
 
     @OneToMany(mappedBy = "post")
     private List<PostImageEntity> imageEntities = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post")
+    private List<PostLookTagEntity> postLookTags = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post")
+    private List<TagEntity> tags = new ArrayList<>();
 }
