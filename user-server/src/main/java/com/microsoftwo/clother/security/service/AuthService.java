@@ -62,7 +62,11 @@ public class AuthService {
                 .orElseThrow(() -> new RuntimeException("해당 유저를 찾을 수 없습니다."));
 
         // 인증 정보를 기반으로 JWT 토큰 생성
-        TokenDTO tokenDTO = tokenProvider.generateTokenDTO(authentication, userEntity.getId());
+        TokenDTO tokenDTO = tokenProvider.generateTokenDTO(
+                authentication,
+                userEntity.getId(),
+                userEntity.getImageUrl(),
+                userEntity.getNickname());
 
         // RefreshToken 저장
         RefreshToken refreshToken = RefreshToken.builder()
@@ -78,7 +82,9 @@ public class AuthService {
                 .accessToken(tokenDTO.getAccessToken())
                 .refreshToken(tokenDTO.getRefreshToken())
                 .accessTokenExpiresIn(tokenDTO.getAccessTokenExpiresIn())
-                .userId(userEntity.getId())
+//                .userId(userEntity.getId())
+                .userProfileImageUrl(userEntity.getImageUrl())
+                .userNickname(userEntity.getNickname())
                 .build();
     }
 
@@ -106,7 +112,11 @@ public class AuthService {
         }
 
         // 새로운 토큰 생성
-        TokenDTO tokenDto = tokenProvider.generateTokenDTO(authentication, userEntity.getId());
+        TokenDTO tokenDto = tokenProvider.generateTokenDTO(
+                authentication,
+                userEntity.getId(),
+                userEntity.getImageUrl(),
+                userEntity.getNickname());
 
         // 저장소 정보 업데이트
         RefreshToken newRefreshToken = refreshToken.updateValue(tokenDto.getRefreshToken());
