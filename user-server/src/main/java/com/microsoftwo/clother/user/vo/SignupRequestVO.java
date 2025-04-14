@@ -13,16 +13,17 @@ import lombok.NoArgsConstructor;
 @Getter
 public class SignupRequestVO {
 
-    @Email
-    @NotEmpty(message = "이메일을 입력해 주세요.")
+    @Email(message = "올바른 형식의 이메일 주소를 입력해주세요")
+    @NotEmpty(message = "이메일을 입력해 주세요")
     private String email;
 
-    @Size(min = 8, message = "비밀번호는 8자 이상이어야 합니다.")
-    @NotEmpty(message = "비밀번호를 입력해 주세요.")
+    @Size(min = 8, max = 20, message = "비밀번호는 8자 이상이어야 합니다")
+    @NotEmpty(message = "비밀번호를 입력해 주세요")
     @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-={}\\[\\]:;\"'<>,.?/]).+$",
             message = "비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다")
     private String password;
 
+    @Size(min = 2, max = 20, message = "닉네임은 2자 이상 20자 이하이어야 합니다.")
     @NotEmpty(message = "닉네임을 입력해 주세요")
     private String nickname;
 
@@ -33,10 +34,4 @@ public class SignupRequestVO {
     private int height;
 
     private int weight;
-
-    public void setGender(String gender) {
-        if (gender != null) {
-            this.gender = gender.toUpperCase();  // 소문자를 대문자로 변환
-        }
-    }
 }
