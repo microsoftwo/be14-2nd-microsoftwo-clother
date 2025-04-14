@@ -26,11 +26,11 @@ import org.hibernate.annotations.CreationTimestamp;
 @Table(name="post")
 public class PostEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
-
     @Column(name="user_id")
     private int userId;
 
